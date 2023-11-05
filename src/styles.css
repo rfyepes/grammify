@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600&family=Bebas+Neue&family=Lilita+One&family=Passion+One&family=Patua+One&family=Paytone+One&family=Tenor+Sans&family=Sriracha&family=DM+Serif+Display&family=Prata&display=swap');
+
+body {
+  margin: 0px;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-body {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.game {
+  background-color: teal;
+  height: 100vh;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.awards {
+  /* background-color: teal; */
+  /* width: 50%; */
+  width: 750px;
+  height: 750px;
+  margin-left: 3vw;
+  /* flex: 1; */
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  /* align-items:  */
+  flex-direction: column;
+    /* background-image: url(../../../corduroy.jpg); */
+}
+
+.button {
+  margin: 10px 20px;
+  font-size: 30px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+  transform: scale(1);
+  cursor: pointer;
+}
+
+.button span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:hover span {
+  transform: scale(1);
+}
+
+.button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
+  transform: scale(1.1);
+}
+
+.button:active {
+  transform: scale(1);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-family: Sriracha; /* Lilita One, Patua One, Passion One, Paytone One, Tenor Sans, Sriracha */
+}
+/*******/
+.award {
+  border: 1px red solid;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+.award:nth-child(1) {
+  align-items: flex-start;
+}
+.award:nth-child(2) {
+  align-items: center;
+}
+.award:nth-child(3) {
+  align-items: flex-end;
+}
+
+
+.nominees {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.nominee {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: white;
+  font-family: Lilita One;
+  border: 1px blue solid;
+  font-size: 16px;
+}
+
+.nominee-details {
+  font-family: Bebas Neue;
+}
+
+img {
+  /* width: 8vw; */
+  width: 115px;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4); 
+}
+
+.category-title {
+  font-family: Bebas Neue; /* DM Serif Display, Prata, Paytone One, Tenor Sans */
+  padding: 7px 14px;
+  font-size: 30px;
+  color: white;
+  border: 1px black solid;
+  text-transform: uppercase;
+  /* background: rgba(0, 0, 0, 0.5); */
+  /* text-align: center; TODO: titles staggered left center right? */
+}
+
+
+* {
+  border: 0 !important;
+}
+
+
+.award:nth-child(1) {
+  /* background-color: #d07f0d; */
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.5) inset, inset 0 -7px 9px -7px rgba(0,0,0,0.5); 
+  background: rgb(222,153,57);
+  background: radial-gradient(circle, rgba(222,153,57,1) 0%, rgba(208,127,13,1) 48%);
+  /* background: rgb(34,193,195); */
+/* background: linear-gradient(166deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%); */
+}
+.award:nth-child(2) {
+  /* box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.4) inset; */
+  box-shadow: inset 7px 0 9px -7px rgba(0,0,0,0.5), inset -7px 0 9px -7px rgba(0,0,0,0.5), inset 0 -7px 9px -7px rgba(0,0,0,0.5);
+  /* background-image: url(../../../cardstock.jpg); */
+  background: rgba(190, 89, 70, 0.8);
+  background: radial-gradient(circle, rgba(190,89,70,1) 0%, rgba(168,63,44,1) 48%);
+
+  /* from https://www.w3schools.com/css/css3_shadows_box.asp */
+  /* background: rgb(208,127,13); */
+  /* background: linear-gradient(170deg, rgba(208,127,13,1) 0%, rgba(168,63,44,1) 58%, rgba(83,46,34,1) 100%); */
+}
+
+.award:nth-child(3) {
+  /* background-color: #532e22; */
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2); 
+  background: rgb(99,61,48);
+  background: radial-gradient(circle, rgba(99,61,48,1) 0%, rgba(83,46,34,1) 48%);
+}
+
+.control-panel {
+  border: 1px green solid;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-selector {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  justify-content: space-around;
+  height: 80px;
+  background-color: #eeeeee;
+  border-radius: 15px;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0px 30px;
+}
+
+.theme-button {
+  border: 1px teal solid;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  
+}
