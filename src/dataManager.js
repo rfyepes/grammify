@@ -106,31 +106,35 @@ export function generateNominations(data) {
     // return nominations;
     
     return {
-      albums: nominations.albums.map((album) => {
+      albums: nominations.albums.map((album, rank) => {
         return {
           name: album.name,
           image: album.images[1].url,
           imageAlt: album.name + " album cover",
-          details: album.artists[0].name
+          details: album.artists[0].name,
+          isWinner: rank == 0
         };
-      }),
-      records: nominations.records.map((record) => {
+      }).sort((a, b) => a.details.localeCompare(b.details)),
+      records: nominations.records.map((record, rank) => {
         return {
           name: record.name,
           image: record.album.images[1].url,
           imageAlt: record.album.name + " album cover",
-          details: record.artists[0].name
+          details: record.artists[0].name,
+          isWinner: rank == 0
         };
-      }),
-      artists: nominations.artists.map((artist) => {
+      }).sort((a, b) => a.details.localeCompare(b.details)),
+      artists: nominations.artists.map((artist, rank) => {
         return {
           name: artist.name,
-          image: "https://i.scdn.co/image/ab67616d00001e020744690248ef3ba7b776ea7b", // TODO
+          id: artist.id,
           imageAlt: artist.name + " profile image",
-          details: null
+          details: null,
+          isWinner: rank == 0
         };
-      }),
+      }).sort((a, b) => a.name.localeCompare(b.name)),
     };
+  
     
     // TODO: if is_local
   }
