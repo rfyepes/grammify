@@ -9,7 +9,7 @@ import html2canvas from "html2canvas";
 import { RxInfoCircled } from 'react-icons/rx';
 import { TbLogout2 } from 'react-icons/tb';
 
-import grammy from './grammy.png'
+import grammy from './grammy3.png'
 
 const PALETTES = {
   spring: ["#fa92b1", "#94DE8B", "#F4DB87"],
@@ -20,27 +20,36 @@ const PALETTES = {
 
 // TODO: not just overview image, but one image (looks like spotify wrapped)
 // for each category? if they only want to share one
-function Nominee({ data }) {
+function Nominee({ data, isArtist }) {
   const grammyStyle = {
     display: data.isWinner ? "block" : "none"
   };
-  // TODO: make artist image round?
+  const imageStyle = {
+    borderRadius: isArtist ? "50%" : "0%",
+    width: data.isWinner ? "100%" : "85%"
+  };
+  const nameStyle = {
+    textAlign: isArtist ? "center" : "left",
+    marginTop: isArtist ? "10px" : "0px"
+  };
   
   return (
     <div className="nominee">
-      <div className="image-wrap">
-        <img src={data.image} alt={data.imageAlt} className="nominee-img" />
-        <img src={grammy} alt="grammy icon" className="grammy" style={grammyStyle}/>
-      </div>
-      <div class="nominee-name">
-        {data.name}
-        {
-          (data.details === null) 
-            ? "" 
-            : <div class="nominee-details">
-                {data.details}
-              </div>
-        }
+      <div className="nominee-wrap">
+        <div className="image-wrap">
+          <img src={data.image} alt={data.imageAlt} className="nominee-img" style={imageStyle} />
+          <img src={grammy} alt="grammy icon" className="grammy" style={grammyStyle}/>
+        </div>
+        <div class="nominee-name" style={nameStyle}>
+          {data.name}
+          {
+            (data.details === null) 
+              ? "" 
+              : <div class="nominee-details">
+                  {data.details}
+                </div>
+          }
+        </div>
       </div>
     </div>
   );
@@ -50,11 +59,12 @@ function Award({ category, nominees, color }) {
   const style = {
     background: color
   };
+  const isArtist = category == "Artist of the Year";
   return (
     <div className="award" style={style}>
       <div className="category-title">{category}</div>
       <div className="nominees">
-      {nominees.map((nominee) => { return <Nominee data={nominee} />; })}
+      {nominees.map((nominee) => { return <Nominee data={nominee} isArtist={isArtist} />; })}
       </div>
     </div>
   );
@@ -63,9 +73,9 @@ function Award({ category, nominees, color }) {
 function Awards({ nominations, palette }) {
   return (
     <div className="awards" id="temp">
-      <Award category="Song of the Year" nominees={nominations.records} color={palette[0]}/>
-      <Award category="Album of the Year" nominees={nominations.albums} color={palette[1]}/>
-      <Award category="Artist of the Year" nominees={nominations.artists} color={palette[2]}/>
+      <Award category="Song of the Year" nominees={nominations.records} color={palette[0]} />
+      <Award category="Album of the Year" nominees={nominations.albums} color={palette[1]} />
+      <Award category="Artist of the Year" nominees={nominations.artists} color={palette[2]} />
     </div>
   );
 }

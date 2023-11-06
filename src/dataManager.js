@@ -5,6 +5,11 @@ const NOW = {
   month: new Date().getMonth() + 1
 };
 
+// TODO:
+// maybe the order should be long term songs, but if a song that was 
+// released <6 months ago is ranked higher than one of the long term songs
+// in the 6 month list, then it moves above the long term one?
+
 const AWARD_MONTH = 2; // Assumes Grammy Awards are held in February
 const AWARD_YEAR = (NOW.month > AWARD_MONTH) ? NOW.year + 1 : NOW.year;
 
