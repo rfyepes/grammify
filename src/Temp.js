@@ -16,24 +16,16 @@ const PALETTES = {
 
 // TODO: not just overview image, but one image (looks like spotify wrapped)
 // for each category? if they only want to share one
-function Nominee({ data, isArtist }) {
-  const imageStyle = {
-    borderRadius: isArtist ? "50%" : "0%",
-    // width: data.isWinner ? "85%" : "85%"
-  };
-  const nameStyle = {
-    textAlign: isArtist ? "center" : "left",
-    // marginTop: isArtist ? "10px" : "0px"
-  };
-  
+function Nominee({ data }) {
+
   return (
     <div className="nominee">
       <div className="nominee-wrap">
         <div className="image-wrap">
-          <img src={data.image} alt={data.imageAlt} className="nominee-img" style={imageStyle} />
+          <img src={data.image} alt={data.imageAlt} className="nominee-img" />
         </div>
         { (data.isWinner) ? <img src={grammy} alt="grammy icon" className="grammy" /> : "" }
-        <div class="nominee-name" style={nameStyle}>
+        <div class="nominee-name">
           {data.name}
           {
             (data.details === null) 
@@ -48,27 +40,38 @@ function Nominee({ data, isArtist }) {
   );
 }
 
-function Award({ category, nominees, color }) {
-  const style = {
+function Award({ category, nominees, color, row }) {
+  const isEvenRow = (row % 2) == 0
+  const awardStyle = {
     background: color
   };
-  const isArtist = category == "Artist of the Year";
+  const titleStyle = {
+    transform: isEvenRow ? "rotate(180deg)" : "rotate(0deg)"
+  };
+  const title = <div className="category-title" style={titleStyle}>{category}</div>;
+  const winner = (
+    <div className="winner">
+      {nominees.map((nominee, rank) => { 
+        return (rank == 0) ? <Nominee data={nominee} /> : "";
+      })}
+    </div>
+  );
+  const losers = (
+    <div className="losers">
+      {nominees.map((nominee, rank) => { 
+        return (rank != 0) ? <Nominee data={nominee} /> : "";
+      })}
+    </div>
+  );
   // TODO: fix map situation...
   return (
-    <div className="award" style={style}>
-      <div className="category-title">{category}</div>
+    <div className="award" style={awardStyle}>
+      {isEvenRow ? title : ""}
       <div className="nominees">
-        <div className="winner">
-          {nominees.map((nominee, rank) => { 
-            return (rank == 0) ? <Nominee data={nominee} isArtist={isArtist} /> : "";
-          })}
-        </div>
-        <div className="losers">
-          {nominees.map((nominee, rank) => { 
-            return (rank != 0) ? <Nominee data={nominee} isArtist={isArtist} /> : "";
-          })}
-        </div>
+        {isEvenRow ? winner : losers}
+        {isEvenRow ? losers : winner}
       </div>
+      {isEvenRow ? "" : title}
     </div>
   );
 }
@@ -76,9 +79,9 @@ function Award({ category, nominees, color }) {
 function Awards({ nominations, palette }) {
   return (
     <div className="awards" id="temp">
-      <Award category="Song of the Year" nominees={nominations.records} color={palette[0]} />
-      <Award category="Album of the Year" nominees={nominations.albums} color={palette[1]} />
-      <Award category="Artist of the Year" nominees={nominations.artists} color={palette[2]} />
+      <Award category="Song of the Year" nominees={nominations.records} color={palette[0]} row={0} />
+      <Award category="Album of the Year" nominees={nominations.albums} color={palette[1]} row={1} />
+      <Award category="Artist of the Year" nominees={nominations.artists} color={palette[2]} row={2} />
     </div>
   );
 }
@@ -169,8 +172,23 @@ export default function Temp() {
     
   }, [topTracks]);
   
+  // useEffect(() => {
+  //   if (nominations.albums.length != 0) {
+  //     htmlToImage.toPng(document.getElementById('final-image'))
+  //       .then(function (dataUrl) {
+  //         const downloadLink = document.createElement('a');
+  //         downloadLink.href = dataUrl; // Set the base64 data as the link's href
+  //         downloadLink.download = 'image.png'; // Set the desired filename for the download
+  // 
+  //         // Trigger a click event on the anchor element to initiate the download
+  //         downloadLink.click();
+  //       });
+  //   }
+  // 
+  // }, [nominations])
+  
   return (
-    <div className="final-image">
+    <div className="final-image" id="final-image">
       <div className="image-title">
         SpotiGrammy
       </div>

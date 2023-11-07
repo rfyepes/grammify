@@ -7,7 +7,7 @@ body {
 }
 
 .final-image {
-  width: 800px;
+  width: 1000px;
   height: 1000px;
   background-color: black;
   color: white;
@@ -19,9 +19,10 @@ body {
 .image-title {
   height: 10%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  margin: 0px 25px;
   align-items: center;
-  font-size: 70px;
+  font-size: 85px;
   font-family: Bebas Neue; /* Lilita One, Patua One, Passion One, Paytone One, Tenor Sans, Sriracha */
 
 }
@@ -29,7 +30,7 @@ body {
 .awards {
   height: 85%;
   margin: 0px 25px;
-  background-color: red;
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,16 +47,20 @@ body {
 
 .award {
   height: 100%;
-  padding: 5px 10px;
+  /* padding: 5px 10px;TODO */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .category-title {
   font-family: Bebas Neue; /* DM Serif Display, Prata, Paytone One, Tenor Sans */
-  font-size: 40px;
+  font-size: 42px;
   text-transform: uppercase;
-  margin: 0px 4px;
+  writing-mode: vertical-rl; /* Text flows from top to bottom with the bottom facing the right */
+  transform: rotate(180deg);
+  text-align: center;
+  padding: 0px 5px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .award:nth-child(1) {
@@ -71,7 +76,10 @@ body {
 .nominees {
   height: 100%;
   display: flex;
-  margin-bottom: 5px;
+  width: 100%;
+  padding: 0px 10px;
+  /* background: red; */
+  margin: auto;
 }
 
 .winner {
@@ -85,10 +93,12 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin: 7px 0px;
 }
 
 .winner .nominee {
-  flex: 1;
+  width: 100%;
+  height: 100%;
 }
 
 .losers .nominee {
@@ -96,19 +106,25 @@ body {
   height: 50%;
 }
 
+.nominee {
+  display: flex;
+  align-items: center;
+}
+
 .nominee-wrap {
-  height: 100%;
+  height: 95%;
   width: 100%;
   display: flex;
 }
 
 .image-wrap {
-  max-height: 100%;
+  height: 97%;
   aspect-ratio: 1/1;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  margin: auto;
 }
 
 .nominee-name {
@@ -117,11 +133,13 @@ body {
   /* background: blue; */
   width: 40%; /* Adjust the width accordingly */
   font-family: Bebas Neue;
-  margin-left: 2px;
+  margin-left: 3px;
   position: relative;
   display: flex;
   flex-direction: column;
   z-index: 2;
+  font-size: 20px;
+  text-align: left;
   /* justify-content: flex-end; */
 }
 
@@ -130,7 +148,8 @@ body {
 }
 
 .winner .nominee-name {
-  font-size: 24px;
+  font-size: 35px;
+  margin-left: 4px;
 }
 
 .nominee-img {
@@ -140,8 +159,8 @@ body {
   /* max-width: 100%; */
   /* max-height: 100%; */
   /* display: none; */
-  width: 97%;
-  height: 97%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   top: 0;
   position: absolute;
@@ -149,15 +168,16 @@ body {
 }
 
 .losers .nominee-img {
-  width: 96%;
-  height: 96%;
+  width: 100%;
+  height: 100%;
+  /* margin-top: 2px; */
 }
 
 .grammy {
   width: 30%;
   position: absolute;
   z-index: 1;
-  bottom: 0px;
+  bottom: 10px;
   right: 20px;
   /* filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)); */
   opacity: 0.3;

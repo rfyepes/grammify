@@ -1,7 +1,7 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./temp-styles.css";
+import "./styles.css";
 
 import App from "./App";
 import Callback from "./Callback";
@@ -13,7 +13,7 @@ export default function App1() {
     <BrowserRouter>
       <Routes>
         <Route index element={<App />} />
-        <Route path="callback" element={<Temp />} />
+        <Route path="callback" element={<Callback />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
