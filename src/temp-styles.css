@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600&family=Bebas+Neue&family=Lilita+One&family=Passion+One&family=Patua+One&family=Paytone+One&family=Tenor+Sans&family=Sriracha&family=DM+Serif+Display&family=Prata&display=swap');
+* {
+  /* border: 1px green solid; */
+}
+body {
+  margin: 0px;
+}
+
+.final-image {
+  width: 800px;
+  height: 1000px;
+  background-color: black;
+  color: white;
+  /* padding: 25px; */
+  position: relative;
+  box-sizing: border-box;
+}
+
+.image-title {
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+  font-family: Bebas Neue; /* Lilita One, Patua One, Passion One, Paytone One, Tenor Sans, Sriracha */
+
+}
+
+.awards {
+  height: 85%;
+  margin: 0px 25px;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.image-footer {
+  height: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: Bebas Neue; /* Lilita One, Patua One, Passion One, Paytone One, Tenor Sans, Sriracha */
+}
+
+.award {
+  height: 100%;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-title {
+  font-family: Bebas Neue; /* DM Serif Display, Prata, Paytone One, Tenor Sans */
+  font-size: 40px;
+  text-transform: uppercase;
+  margin: 0px 4px;
+}
+
+.award:nth-child(1) {
+  text-align: left;
+}
+.award:nth-child(2) {
+  text-align: center;
+}
+.award:nth-child(3) {
+  text-align: right;
+}
+
+.nominees {
+  height: 100%;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.winner {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.losers {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.winner .nominee {
+  flex: 1;
+}
+
+.losers .nominee {
+  width: 50%;
+  height: 50%;
+}
+
+.nominee-wrap {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.image-wrap {
+  max-height: 100%;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.nominee-name {
+  flex: 1;
+  width: 100%;
+  /* background: blue; */
+  width: 40%; /* Adjust the width accordingly */
+  font-family: Bebas Neue;
+  margin-left: 2px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  /* justify-content: flex-end; */
+}
+
+.nominee-details {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.winner .nominee-name {
+  font-size: 24px;
+}
+
+.nominee-img {
+  /* width: auto; */
+  /* height: 50px; */
+  /* align-self: center; */
+  /* max-width: 100%; */
+  /* max-height: 100%; */
+  /* display: none; */
+  width: 97%;
+  height: 97%;
+  object-fit: cover;
+  top: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.losers .nominee-img {
+  width: 96%;
+  height: 96%;
+}
+
+.grammy {
+  width: 30%;
+  position: absolute;
+  z-index: 1;
+  bottom: 0px;
+  right: 20px;
+  /* filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)); */
+  opacity: 0.3;
+  /* display: none; */
+}
+

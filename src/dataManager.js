@@ -119,7 +119,7 @@ export function generateNominations(data) {
           details: album.artists[0].name,
           isWinner: rank == 0
         };
-      }).sort((a, b) => a.details.localeCompare(b.details)),
+      }),//.sort((a, b) => a.details.localeCompare(b.details)),
       records: nominations.records.map((record, rank) => {
         return {
           name: record.name,
@@ -128,7 +128,7 @@ export function generateNominations(data) {
           details: record.artists[0].name,
           isWinner: rank == 0
         };
-      }).sort((a, b) => a.details.localeCompare(b.details)),
+      }),//.sort((a, b) => a.details.localeCompare(b.details)),
       artists: nominations.artists.map((artist, rank) => {
         return {
           name: artist.name,
@@ -137,7 +137,7 @@ export function generateNominations(data) {
           details: null,
           isWinner: rank == 0
         };
-      }).sort((a, b) => a.name.localeCompare(b.name)),
+      }),//.sort((a, b) => a.name.localeCompare(b.name)),
     };
   
     

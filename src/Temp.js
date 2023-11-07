@@ -5,11 +5,7 @@ import * as htmlToImage from 'html-to-image';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import html2canvas from "html2canvas";
 
-// TODO: cite
-import { RxInfoCircled } from 'react-icons/rx';
-import { TbLogout2 } from 'react-icons/tb';
-
-import grammy from './grammy3.png'
+import grammy from './grammy4.png'
 
 const PALETTES = {
   spring: ["#fa92b1", "#94DE8B", "#F4DB87"],
@@ -21,16 +17,13 @@ const PALETTES = {
 // TODO: not just overview image, but one image (looks like spotify wrapped)
 // for each category? if they only want to share one
 function Nominee({ data, isArtist }) {
-  const grammyStyle = {
-    display: data.isWinner ? "block" : "none"
-  };
   const imageStyle = {
     borderRadius: isArtist ? "50%" : "0%",
     // width: data.isWinner ? "85%" : "85%"
   };
   const nameStyle = {
     textAlign: isArtist ? "center" : "left",
-    marginTop: isArtist ? "10px" : "0px"
+    // marginTop: isArtist ? "10px" : "0px"
   };
   
   return (
@@ -38,8 +31,8 @@ function Nominee({ data, isArtist }) {
       <div className="nominee-wrap">
         <div className="image-wrap">
           <img src={data.image} alt={data.imageAlt} className="nominee-img" style={imageStyle} />
-          <img src={grammy} alt="grammy icon" className="grammy" style={grammyStyle}/>
         </div>
+        { (data.isWinner) ? <img src={grammy} alt="grammy icon" className="grammy" /> : "" }
         <div class="nominee-name" style={nameStyle}>
           {data.name}
           {
@@ -60,11 +53,21 @@ function Award({ category, nominees, color }) {
     background: color
   };
   const isArtist = category == "Artist of the Year";
+  // TODO: fix map situation...
   return (
     <div className="award" style={style}>
       <div className="category-title">{category}</div>
       <div className="nominees">
-      {nominees.map((nominee) => { return <Nominee data={nominee} isArtist={isArtist} />; })}
+        <div className="winner">
+          {nominees.map((nominee, rank) => { 
+            return (rank == 0) ? <Nominee data={nominee} isArtist={isArtist} /> : "";
+          })}
+        </div>
+        <div className="losers">
+          {nominees.map((nominee, rank) => { 
+            return (rank != 0) ? <Nominee data={nominee} isArtist={isArtist} /> : "";
+          })}
+        </div>
       </div>
     </div>
   );
@@ -80,75 +83,6 @@ function Awards({ nominations, palette }) {
   );
 }
 
-function MenuButton({ icon: Icon, onClick }) {
-  return (
-    <div className="button" onClick={onClick}>
-      <span><Icon /></span>
-    </div>
-  )
-}
-
-function MenuBar() {
-  function handleClick() {
-    // alert("clicked!")
-    const albumDiv = document.getElementById('temp');
-
-
-    let iframe = document.createElement("iframe");
-    // iframe.style.position = 'absolute';
-    // iframe.style.left = '-10000px'; // Position it off-screen
-    iframe.style.width = "750px";
-    iframe.style.height = "500px";
-    document.body.appendChild(iframe);
-    // add html to iframe
-    // iframe.srcdoc = document.getElementById('temp').outerHTML;
-    
-    const linkElement = document.createElement('link');
-    linkElement.rel = 'stylesheet';
-    linkElement.type = 'text/css';
-    linkElement.href = 'styles.css'; // Replace with the correct path to your CSS file
-
-    // Append the <link> element to the iframe's <head>
-    iframe.contentDocument.head.appendChild(linkElement);
-    
-    iframe.contentDocument.body.innerHTML = document.getElementById('temp').outerHTML;
-
-    
-
-    // wait for iframe to load
-    iframe.addEventListener("load", () => {
-      
-      htmlToImage.toPng(iframe.contentWindow.document.body)
-      .then(function (dataUrl) {
-        let link = document.createElement('a');
-        link.href = dataUrl; // Set the base64 data as the link's href
-        link.download = 'image.png'; // Set the desired filename for the download
-
-        // Trigger a click event on the anchor element to initiate the download
-        link.click();
-      });
-       // use html2canvas to save the webpage
-       // html2canvas(iframe.contentWindow.document.body).then(function(canvas) {
-       //   // document.body.removeChild(iframe);
-       //   let filename = "image.jpg";
-       //   let link = document.createElement("a");
-       //   link.download = filename.toLowerCase();
-       //   canvas.toBlob( function(blob) {
-       //          link.href = URL.createObjectURL(blob);
-       //          link.click();
-       //      }, 'image/jpg');
-       //   });
-    });
-  }
-  
-  return (
-    <div className="menu">
-      <MenuButton icon={RxInfoCircled} onClick={handleClick} />
-      <div className="title">SpotiGrammy</div>
-      <MenuButton icon={TbLogout2} onClick={handleClick} />
-    </div>
-  );
-}
 
 async function retrieveTopTracks(timeRange, next = "https://api.spotify.com/v1/me/top/tracks") {
   
@@ -187,49 +121,19 @@ async function getArtistImages(artists) {
   return await Promise.all(images);
 }
 
-function ThemeButton({ theme, onClick }) {
-  function setTheme() {
-    Array.from(document.getElementsByClassName('active-theme'))
-      .forEach((elem, _) => {
-          elem.classList.remove('active-theme');
-      });
-    onClick();
-    document.getElementById(theme).classList.add('active-theme');
-  }
-  
-  return (
-    <div className="theme-button" id={theme} onClick={setTheme}>
-    </div>
-  );
-}
 
-function ControlPanel({ changeSeason }) {
-  return (
-    <div className="control-panel">hi
-      <div className="theme-selector">
-        <ThemeButton theme="spring" onClick={() => changeSeason("spring")} />
-        <ThemeButton theme="summer" onClick={() => changeSeason("summer")} />
-        <ThemeButton theme="autumn" onClick={() => changeSeason("autumn")} />
-        <ThemeButton theme="winter" onClick={() => changeSeason("winter")} />
-      </div>
-    </div>
-  );
-}
 
-export default function Callback() {
+export default function Temp() {
   const [topTracks, setTopTracks] = useState(null);
-  const [season, setSeason] = useState(Array(3).fill(null));
+  const [season, setSeason] = useState(PALETTES.autumn);
   const [nominations, setNominations] = useState({
     albums: [],
     records: [],
     artists: []
   });
-  
   useEffect(() => {
-    const getTopTracks = async () => {
-      // alert("in GET TOP TRACKS");
+      const getTopTracks = async () => {
       const params = new URLSearchParams(window.location.hash.slice(1));
-      
       const accessToken = params.get('access_token');
       sessionStorage.setItem("accessToken", accessToken);
       const error = params.get('error');
@@ -261,19 +165,18 @@ export default function Callback() {
     if (topTracks !== null) {
       getNominations();
     }
-    // nominations.artists = await getArtistDetails(nominations.artists);
     
     
   }, [topTracks]);
   
-  
-
   return (
-    <div className="main-wrapper">
-      <MenuBar />
-      <div className="main-body">
-        <Awards nominations={nominations} palette={season}/>
-        <ControlPanel changeSeason={(season) => setSeason(PALETTES[season])}/>
+    <div className="final-image">
+      <div className="image-title">
+        SpotiGrammy
+      </div>
+      <Awards nominations={nominations} palette={season} />
+      <div className="image-footer">
+        spotigrammy.com
       </div>
     </div>
   );

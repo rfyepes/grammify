@@ -156,12 +156,20 @@ body {
   width: 85%;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4); 
 }
+.nominee:nth-child(1) .nominee-img {
+  height: 100%;
+}
 
 .image-wrap {
   position: relative;
   text-align: center;
   border: 1px green solid;
   width: 100%;
+}
+
+.nominee:nth-child(1) {
+  display: flex;
+  flex-direction: row;
 }
 
 .grammy {
@@ -188,7 +196,7 @@ body {
 
 
 * {
-  border: 0 !important;
+  /* border: 0 !important; */
 }
 
 .award:nth-child(1) {
