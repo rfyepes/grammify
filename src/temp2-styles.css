@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600&family=Bebas+Neue&family=Lilita+One&family=Passion+One&family=Patua+One&family=Paytone+One&family=Tenor+Sans&family=Sriracha&family=DM+Serif+Display&family=Prata&display=swap');
+
+* {
+  /* border: 1px black solid; */
+}
+
+body {
+  margin: 0px;
+  background: black;
+}
+
+.export-image {
+  background: #fbfbf8;
+  width: 1050px;
+  font-family: Bebas Neue;
+}
+
+.export-image-header {
+  width: 1050px;
+  padding-bottom: 25px;
+}
+
+
+.export-image-footer {
+  width: 1050px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px 25px 20px 25px;
+}
+
+.export-image-footer-title {
+  padding-top: 20px;
+  font-size: 80px;
+}
+
+.export-image-footer-description {
+  font-size: 40px;
+}
+
+.awards {
+  width: 1000px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  padding: 0px 25px 0px 25px;
+}
+
+.award {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px;
+}
+
+.award:nth-child(1) {
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.5) inset, inset 0 -7px 9px -7px rgba(0,0,0,0.5); 
+}
+.award:nth-child(2) {
+  box-shadow: inset 7px 0 9px -7px rgba(0,0,0,0.5), inset -7px 0 9px -7px rgba(0,0,0,0.5), inset 0 -7px 9px -7px rgba(0,0,0,0.5);
+}
+
+.award:nth-child(3) {
+  box-shadow: inset 7px 0 9px -7px rgba(0,0,0,0.5), inset -7px 0 9px -7px rgba(0,0,0,0.5), inset 0 -7px 9px -7px rgba(0,0,0,0.5);
+}
+
+
+.category-title {
+  font-size: 250%;
+  height: 15%;
+  padding: 0px 13px; /* TODO: this padding is to make the title align with album cover */
+}
+
+.nominees {
+  margin-top: 10px;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.award:nth-child(3) .nominees {
+  margin-top: 20px;
+}
+
+.nominee {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nominee-wrap {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.image-wrap {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.nominee-img {
+  width: 85%;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4); 
+}
+
+.grammy {
+  width: 35%;
+  position: absolute;
+  bottom: 0px;
+  right: 8px;
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));
+}
+
+.nominee-name {
+  width: 85%;
+  font-size: 20px;
+}
+
+.nominee-details {
+  opacity: 0.5;
+}
