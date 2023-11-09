@@ -12,7 +12,6 @@
 //   - Tracks on the long_term field get prioritized over those in the 
 //     medium_term, which get prioritized over the short_term.
 
-
 import PriorityQueue from "./priorityQueue"
 
 const NOW = {
@@ -126,7 +125,7 @@ export default function generateNominations(data) {
         image: (song.album.images.length === 0) ? null : (song.album.images.length < 2) ? song.album.images[0].url : song.album.images[1].url,
         imageAlt: song.album.name + " album cover",
         details: song.artists.map(artist => artist.name).join(", "),
-        isWinner: rank == 0,
+        isWinner: rank === 0,
         releaseDate: song.album.release_date
       };
     }).sort((a, b) => { return new Date(a.releaseDate) - new Date(b.releaseDate); }),
@@ -136,7 +135,7 @@ export default function generateNominations(data) {
         image: (album.images.length === 0) ? null : (album.images.length < 2) ? album.images[0].url : album.images[1].url,
         imageAlt: album.name + " album cover",
         details: album.artists.map(artist => artist.name).join(", "),
-        isWinner: rank == 0,
+        isWinner: rank === 0,
         releaseDate: album.release_date
       };
     }).sort((a, b) => { return new Date(a.releaseDate) - new Date(b.releaseDate); }),
@@ -147,7 +146,7 @@ export default function generateNominations(data) {
         image: null, // Artist images need to be retrieved separately
         imageAlt: artist.name + " profile image",
         details: null,
-        isWinner: rank == 0
+        isWinner: rank === 0
       };
     }).sort((a, b) => a.name.localeCompare(b.name)),
     year: nominations.year

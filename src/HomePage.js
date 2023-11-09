@@ -1,5 +1,8 @@
+import { useState, useEffect } from "react";
+
 import Menu from "./Menu";
 import Footer from "./Footer";
+import AwardsPage from "./AwardsPage";
 import spotigrammy from "./images/example.jpg";
 
 // TODO: credit Spotify for code
@@ -13,7 +16,7 @@ var generateRandomString = function (length) {
 };
 
 var client_id = "daf1a83621b44968afa25e3d49387bf1";
-var redirect_uri = "http://localhost:3000/awards";
+var redirect_uri = "https://www.spotigrammy.com";
 
 var state = generateRandomString(16);
 localStorage.setItem("stateKey", state);
@@ -43,7 +46,7 @@ function HomeContent() {
           Sign in with Spotify
         </div>
         <div className="description-block privacy">
-          <a href="/privacy" target="_blank">Privacy Policy</a>
+          <a href="/#/privacy" target="_blank">Privacy Policy</a>
         </div>
       </div>
     </div>
@@ -51,9 +54,23 @@ function HomeContent() {
 }
 
 export default function HomePage() {
+  const [accessToken, setAccessToken] = useState("");
+  
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.hash.slice(1));
+    const token = params.get("access_token");
+    if (token) {
+      setAccessToken(token);
+    }
+  }, []);
+  
+  if (accessToken !== "") {
+    return <AwardsPage accessToken={accessToken} logOut={() => setAccessToken("")} />;
+  }
+  
   return (
     <div className="main-wrapper">
-      <Menu showLogOut={false} />
+      <Menu showLogOut={false} logOut={() => setAccessToken("")} />
       <HomeContent />
       <Footer />
     </div>

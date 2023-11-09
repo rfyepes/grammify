@@ -81,7 +81,7 @@ function ControlPanel({ isTogglable, toggleWinnerSelection, season, changeSeason
   );
 }
 
-export default function AwardsPage() {
+export default function AwardsPage({ accessToken, logOut }) {
   const [topTracks, setTopTracks] = useState(null);
   const [season, setSeason] = useState(Object.keys(PALETTES)[Math.floor(Math.random() * Object.keys(PALETTES).length)]);
   const [ogNominations, setOgNominations] = useState({
@@ -92,6 +92,7 @@ export default function AwardsPage() {
   const [nominations, setNominations] = useState(ogNominations);
   const [canToggleWinners, setCanToggleWinners] = useState(false);
   const [isLoading, setLoading] = useState(true);
+  const [loadingMessage, setLoadingMessage] = useState("Loading...");
   
   const toggleWinnerSelection = (id) => {
     let newNoms = JSON.parse(JSON.stringify(ogNominations));
@@ -136,35 +137,28 @@ export default function AwardsPage() {
   
   useEffect(() => {
     const getTopTracks = async () => {
-      // Retrieve access token
-      const params = new URLSearchParams(window.location.hash.slice(1));
-      const accessToken = params.get("access_token");
-      const error = params.get("error");
-      if (!accessToken || error) {
-        alert("Error: " + (error ? error : "no access token found."));
-      }
-      sessionStorage.setItem("accessToken", accessToken);
       
       // Retrieve top tracks
       try {
         var tracks = {
-          long_term: await retrieveTopTracks("long_term"),
-          medium_term: await retrieveTopTracks("medium_term"),
-          short_term: await retrieveTopTracks("short_term")
+          long_term: await retrieveTopTracks("long_term", accessToken),
+          medium_term: await retrieveTopTracks("medium_term", accessToken),
+          short_term: await retrieveTopTracks("short_term", accessToken)
         };
       } catch (error) {
-        alert("Error retrieving Spotify data. Sign back in to reauthenticate.");
+        setLoadingMessage(error.toString());
+        return;
       }
 
       setTopTracks(tracks);
     }
     getTopTracks();
-  }, []);
+  }, [accessToken]);
   
   useEffect(() => { 
     const getNominations = async () => {
       let noms = generateNominations(topTracks);
-      const artistImages = await getArtistImages(noms.artists);
+      const artistImages = await getArtistImages(noms.artists, accessToken);
       noms.artists = noms.artists.map((artist, index) => {
         return {
           ...artist,
@@ -180,7 +174,7 @@ export default function AwardsPage() {
     if (topTracks !== null) {
       getNominations();
     }
-  }, [topTracks]);
+  }, [topTracks, accessToken]);
   
   useEffect(() => {
     if (nominations.albums.length !== 0) {
@@ -191,11 +185,11 @@ export default function AwardsPage() {
   return (
     <>
     <div className="main-wrapper">
-      <Menu showLogOut={true} />
+      <Menu showLogOut={true} logOut={logOut} />
       <div className="main-body">
         {
           isLoading 
-          ? <div className="loading-message">Loading results...</div>
+          ? <div className="loading-message">{loadingMessage}</div>
           : <>
               <Awards nominations={nominations} palette={PALETTES[season]} toggleWinners={toggleWinners} isChoosable={canToggleWinners} />
               <ControlPanel isTogglable={canToggleWinners} toggleWinnerSelection={toggleWinnerSelection} season={season} changeSeason={setSeason} saveAndShare={exportImage} />

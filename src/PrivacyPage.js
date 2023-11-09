@@ -12,7 +12,7 @@ function PrivacyPolicy() {
         None of your data is stored, collected, or shared with third parties. The data is solely used to generate the SpotiGrammy graphic.
       </div>
       <div className="privacy-policy-block">
-        To remove permissions to retrieve this data, visit <a href="https://www.spotify.com/account/apps/" target="_blank">spotify.com/account</a>.
+        To remove permissions to retrieve this data, visit <a href="https://www.spotify.com/account/apps/" target="_blank" rel="noreferrer">spotify.com/account</a>.
       </div>
     </div>
   );

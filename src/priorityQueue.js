@@ -11,7 +11,7 @@ export default class PriorityQueue {
     this.set = new Set();
   }
   isEmpty() {
-    return this.length() == 0;
+    return this.length() === 0;
   }
   length() {
     return this.queue.length;
@@ -41,7 +41,7 @@ export default class PriorityQueue {
     const extracted = this.queue[0].element;
     this.set.delete(extracted);
     
-    if (this.length() == 1) {
+    if (this.length() === 1) {
       return this.queue.pop().element;
     }
     

@@ -2,17 +2,17 @@
 // Contains async functions called in AwardsPage.js that fetch data from the
 // Spotify API
 
-export async function retrieveTopTracks(timeRange) {
+export async function retrieveTopTracks(timeRange, accessToken) {
   
   try {
     const response = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=${timeRange}&limit=50`, {
       headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("accessToken")
+        Authorization: "Bearer " + accessToken
       }
     });
     
     if (!response.ok) {
-      throw new Error(`HTTP error: status ${response.status}`);
+      throw new Error(`HTTP error - status ${response.status}`);
     }
     
     var data = await response.json();
@@ -24,13 +24,13 @@ export async function retrieveTopTracks(timeRange) {
   return data.items;  
 }
 
-export async function getArtistImages(artists) {
+export async function getArtistImages(artists, accessToken) {
   
   const images = await artists.map(async (artist) => {
     try {
         const response = await fetch(`https://api.spotify.com/v1/artists/${artist.id}`, {
           headers: {
-            Authorization: 'Bearer ' + sessionStorage.getItem("accessToken")
+            Authorization: 'Bearer ' + accessToken
           }
         });
         const data = await response.json();
