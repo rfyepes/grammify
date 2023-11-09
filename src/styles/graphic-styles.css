@@ -35,14 +35,28 @@ body {
 }
 #export-image .export-image-footer-title img {
   position: absolute;
-  top: 5px;
+  top: -5px;
+  height: 90px;
+  
+  /* width: "80px";
+  margin-right: 10px; */
 }
+
+#export-image .export-image-footer-description img {
+  width: 200px;
+}
+
 #export-image .export-image-footer-title-text {
-  margin-left: 90px;
+  margin-left: 70px;
 }
 
 #export-image .export-image-footer-description {
   font-size: 40px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 #export-image .awards {

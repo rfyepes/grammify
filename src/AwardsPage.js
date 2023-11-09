@@ -167,7 +167,7 @@ export default function AwardsPage({ accessToken, logOut }) {
       });
 
       noms = await replaceImages(noms);
-      
+            
       setOgNominations(JSON.parse(JSON.stringify(noms)));
       setNominations(JSON.parse(JSON.stringify(noms)));
     };
