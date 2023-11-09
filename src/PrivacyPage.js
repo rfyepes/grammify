@@ -1,14 +1,7 @@
-import React, { StrictMode } from "react";
-import { useState } from 'react';
-// icons from https://react-icons.github.io/react-icons
-import { RxInfoCircled } from 'react-icons/rx';
-import { TbLogout2 } from 'react-icons/tb';
-import { Link } from 'react-router-dom';
-
 import Menu from "./Menu";
+import Footer from "./Footer";
 
-function MainPage() {
-  
+function PrivacyPolicy() {
   return (
     <div className="privacy-policy">
       <div className="privacy-policy-title">Privacy Policy</div>
@@ -25,13 +18,12 @@ function MainPage() {
   );
 }
 
-export default function Privacy() {
-  
+export default function PrivacyPage() {
   return (
   <div className="main-wrapper">
     <Menu showLogOut={false} />
-    <MainPage />
+    <PrivacyPolicy />
+    <Footer />
   </div>
   );
 }
-

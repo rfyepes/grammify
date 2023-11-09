@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&family=DM+Sans:opsz,wght@9..40,600&family=Bebas+Neue&family=Lilita+One&family=Passion+One&family=Patua+One&family=Paytone+One&family=Tenor+Sans&family=Sriracha&family=DM+Serif+Display&family=Prata&display=swap');
 
-* {
-  /* border: 1px black solid; */
-}
-
 body {
   margin: 0px;
 }
@@ -17,9 +13,7 @@ body {
 .main-body {
   display: flex;
   flex-direction: row;
-  /* height: 100vh; */
 }
-
 
 .button {
   margin: 10px 20px;
@@ -41,15 +35,6 @@ body {
   align-items: center;
 }
 
-.button:hover span {
-  transform: scale(1);
-}
-
-.button:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
-  transform: scale(1.1);
-}
-
 .button:active {
   transform: scale(1);
 }
@@ -64,13 +49,12 @@ body {
   height: 100vh;
 }
 
-
 .title {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 40px;
-  font-family: Bebas Neue; /* Lilita One, Patua One, Passion One, Paytone One, Tenor Sans, Sriracha */
+  font-family: Bebas Neue; 
 }
 
 .menu {
@@ -84,16 +68,12 @@ body {
 }
 
  .awards {
-  /* width: 60vw; */
-  /* height: 100vh; */
   flex: 1;
   display: flex;
-  /* box-sizing: border-box; */
   padding: 10px;
   flex-direction: column;
   justify-content: space-between;
   color: white;
-  /* padding: 0px 25px 0px 25px; */
   font-family: Bebas Neue;
   padding-bottom: 20px;
 }
@@ -119,7 +99,7 @@ body {
  .category-title {
   font-size: 3em;
   height: 20%;
-  padding: 0px 0.2em; /* TODO: this padding is to make the title align with album cover */
+  padding: 0px 0.2em; /* NOTE: this padding is to make the title align with album cover */
 }
 
  .nominees {
@@ -140,7 +120,6 @@ body {
 }
 
  .nominee-wrap {
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -177,8 +156,6 @@ body {
   opacity: 0.5;
 }
 
-
-
 /****/
 
 .control-panel {
@@ -200,13 +177,11 @@ body {
 .save-and-share {
   background-color: black;
   color: white;
-  /* font-family: Bebas Neue; */
   width: 215px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  /* border: 5px black solid; */
   height: 60px;
   font-size: 20px;
   font-weight: 700;
@@ -215,18 +190,9 @@ body {
   transform: scale(1);
 }
 
-.save-and-share:hover {
-  /* background-color: white;
-  color: black; */
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
-
-}
-
 .save-and-share:active {
   transform: scale(1);
 }
-
 
 .theme-selector-buttons {
   display: flex;
@@ -264,27 +230,8 @@ body {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
 }
 
-.option-button span {
-  /* display: none; */
-}
-
-.option-button:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
-  transform: scale(1.1);
-}
-
-.option-button:hover span {
-  display: block;
-}
-
 .option-button:active {
-  /* transform: scale(1); */
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5) inset, inset 0 -2px 10px -2px rgba(0,0,0,0.5); 
-
-}
-.active-option:hover {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5) inset, inset 0 -2px 10px -2px rgba(0,0,0,0.5); 
-  /* transform: scale(1);  */
 }
 
 .active-option span {
@@ -320,12 +267,10 @@ body {
   margin: 15px 0px;
 }
 
-
 .control {
   font-size: 18px;
   margin: 10px 0px; 
 }
-
 
 .winner-selector {
   display: flex;
@@ -334,10 +279,6 @@ body {
   align-items: flex-start;
   margin: 10px 0px;
   font-size: 18px;
-}
-
-.winner-selector-title {
-  /* font-size: 18px; */
 }
 
 .winner-selector-options {
@@ -370,23 +311,50 @@ body {
   cursor: pointer;
 }
 
-.user-select:hover {
-  transform: scale(1.1);
+@media (hover: hover) {
+  .user-select:hover {
+    transform: scale(1.1);
+  }
+  
+  .user-select:hover .grammy {
+    display: block;
+    opacity: 0.75;
+  }
+  
+  .button:hover span {
+    transform: scale(1);
+  }
 
+  .button:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
+    transform: scale(1.1);
+  }
+
+  .save-and-share:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
+  }
+
+  .option-button:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
+    transform: scale(1.1);
+  }
+
+  .option-button:hover span {
+    display: block;
+  }
+
+  .active-option:hover {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5) inset, inset 0 -2px 10px -2px rgba(0,0,0,0.5); 
+  }
 }
-.user-select:hover .grammy {
-  display: block;
-  opacity: 0.75;
-}
-
-
-
 
 @media screen and (max-width: 700px) {
   
   .main-body {
     flex-direction: column;
   }
+  
   .awards {
     margin: 10px;
   }

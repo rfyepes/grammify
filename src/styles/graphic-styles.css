@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600&family=Bebas+Neue&family=Lilita+One&family=Passion+One&family=Patua+One&family=Paytone+One&family=Tenor+Sans&family=Sriracha&family=DM+Serif+Display&family=Prata&display=swap');
 
-* {
-  /* border: 1px black solid; */
-}
-
 body {
   margin: 0px;
 }
@@ -20,7 +16,6 @@ body {
   width: 1050px;
   padding-bottom: 25px;
 }
-
 
 #export-image .export-image-footer {
   width: 1050px;
@@ -78,26 +73,13 @@ body {
   box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.5) inset, -5px 0px 5px 0px rgba(0, 0, 0, 0.5) inset, 0px -5px 5px 0px rgba(0, 0, 0, 0.5) inset;
 }
 
-/* #export-image .award:nth-child(1) {
-  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.5) inset, inset 0 -7px 9px -7px rgba(0,0,0,0.5); 
-}
-#export-image .award:nth-child(2) {
-  box-shadow: inset 7px 0 9px -7px rgba(0,0,0,0.5), inset -7px 0 9px -7px rgba(0,0,0,0.5), inset 0 -7px 9px -7px rgba(0,0,0,0.5);
-}
-
-#export-image .award:nth-child(3) {
-  box-shadow: inset 7px 0 9px -7px rgba(0,0,0,0.5), inset -7px 0 9px -7px rgba(0,0,0,0.5), inset 0 -7px 9px -7px rgba(0,0,0,0.5);
-} */
-
-
 #export-image .category-title {
   font-size: 400%;
   height: 20%;
-  padding: 0px 13px; /* TODO: this padding is to make the title align with album cover */
+  padding: 0px 13px; /* NOTE: this padding is to make the title align with album cover */
 }
 
 #export-image .nominees {
-  /* margin-top: 10px; */
   display: flex;
   height: 100%;
   align-items: center;
@@ -108,10 +90,6 @@ body {
   align-items: flex-start;
 }
 
-#export-image .award:nth-child(3) .nominees {
-  /* margin-top: 20px; */
-}
-
 #export-image .nominee {
   width: 100%;
   display: flex;
@@ -119,7 +97,6 @@ body {
 }
 
 #export-image .nominee-wrap {
-
   display: flex;
   justify-content: center;
   align-items: center;

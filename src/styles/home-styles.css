@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,600&family=Bebas+Neue&family=Lilita+One&family=Passion+One&family=Patua+One&family=Paytone+One&family=Tenor+Sans&family=Sriracha&family=DM+Serif+Display&family=Prata&display=swap');
 
-
 .main-page {
   display: flex;
   flex-direction: row;
@@ -14,11 +13,9 @@
   padding: 20px 10px;
   font-family: 'Inter', sans-serif;
   color: rgba(0, 0, 0, 0.5);
-  /* width: 100vw; */
 }
 
 .footer a {
-  /* text-decoration: none; */
   opacity: 0.75;
 }
 
@@ -40,7 +37,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .example-image {
@@ -84,10 +80,6 @@
   cursor: pointer;
 }
 
-.sign-in:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
-  transform: scale(1.1);
-}
 
 .sign-in:active {
   transform: scale(1);
@@ -130,7 +122,6 @@
 }
 
 .info-title {
-  /* font-weight: 800; */
   font-size: 40px;
   text-align: center;
   font-family: Bebas Neue;
@@ -148,6 +139,7 @@
 a {
   color: #0041c2;
 }
+
 a:visited {
   color: #6f2da8;
 }
@@ -173,16 +165,19 @@ a:visited {
   transform: scale(1);
 }
 
-#info-close-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
+@media (hover: hover) {
+  #info-close-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
+  }
+  .sign-in:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
+    transform: scale(1.1);
+  }
 }
 
-
 @media screen and (max-width: 700px) {
-  
   .main-page {
     flex-direction: column;
   }
-
 }

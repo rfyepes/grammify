@@ -1,3 +1,9 @@
+// priorityQueue.js
+// Contains a priority queue implementation that uses a max heap. 
+// Note that this implementation does not allow for repeat elements - if a 
+// repeated element is inserted, its priority simply gets added to the 
+// preexisting element in the queue.
+
 export default class PriorityQueue {
   // Public methods
   constructor() {
@@ -31,7 +37,7 @@ export default class PriorityQueue {
     if (this.isEmpty()) {
       return null;
     } 
-    // remove the element
+    // Remove the element
     const extracted = this.queue[0].element;
     this.set.delete(extracted);
     
