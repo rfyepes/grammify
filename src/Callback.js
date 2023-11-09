@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { generateNominations } from "./dataManager";
+import Temp2 from "./Temp2";
 
 import * as htmlToImage from 'html-to-image';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
@@ -275,6 +276,7 @@ export default function Callback() {
         <Awards nominations={nominations} palette={season}/>
         <ControlPanel changeSeason={(season) => setSeason(PALETTES[season])}/>
       </div>
+
     </div>
   );
 }

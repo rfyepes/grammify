@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&family=DM+Sans:opsz,wght@9..40,600&family=Bebas+Neue&family=Lilita+One&family=Passion+One&family=Patua+One&family=Paytone+One&family=Tenor+Sans&family=Sriracha&family=DM+Serif+Display&family=Prata&display=swap');
+
+.privacy-policy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  margin: 20px;
+}
+
+.privacy-policy-title {
+  font-family: Bebas Neue;
+  font-size: 40px;
+  text-align: center;
+}
+
+.privacy-policy-block {
+  text-align: left;
+  margin: 10px auto;
+  
+  width: 95%;
+  max-width: 750px;
+  
+}

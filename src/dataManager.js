@@ -38,10 +38,10 @@ function isEligible(track) {
 // Data expected to be an object with three fields - short_term, medium_term, 
 // and long_term - each mapping to an array of 50 Spotify TrackObjects
 export function generateNominations(data) {
+  // console.log("DATA BELOW");
+  // console.log(data);
+  // console.log("DATA ABOVE");
   // alert(JSON.stringify(data));
-  console.log("DATA BELOW");
-  console.log(data);
-  console.log("DATA ABOVE");
   const numNominations = 5; // TODO
   // validate that the data json is actually what we expect? right fields, etc.
   
@@ -51,11 +51,19 @@ export function generateNominations(data) {
     tracks.insert(data.long_term[i].id, 150 - i);
     tracks.insert(data.medium_term[i].id, 100 - i);
     tracks.insert(data.short_term[i].id, 50 - i);
-    
+
     trackMap.set(data.long_term[i].id, data.long_term[i]);
     trackMap.set(data.medium_term[i].id, data.medium_term[i]);
     trackMap.set(data.short_term[i].id, data.short_term[i]);
   }
+  
+  // 08 Air Force One
+  // 10 Did You Wait?
+  // 18 Get Up
+  // 10 Cool With You
+  // 21 New Jeans
+  // 22 OMG
+  // 31 FLOWER
   
   
   let artistSet = new Set();
@@ -78,7 +86,7 @@ export function generateNominations(data) {
         // TODO: check if valid length? i.e., don't allow intros?
         return;
       }
-      console.log(track.name);
+      // console.log(track.name);
       // Nominate track if it's an unseen artist
       if (nominations.records.length < numNominations && !artistSet.has(track.artists[0].id) && track.duration_ms >= 60000) { // TODO: look at all artists?
         nominations.records.push(track); // TODO: update for 6 month tracks?
@@ -114,21 +122,23 @@ export function generateNominations(data) {
       albums: nominations.albums.map((album, rank) => {
         return {
           name: album.name,
-          image: album.images[1].url,
+          image: (album.images.length > 1) ? album.images[1].url : album.images[0].url,
           imageAlt: album.name + " album cover",
-          details: album.artists[0].name,
-          isWinner: rank == 0
+          details: album.artists.map(artist => artist.name).join(", "),
+          isWinner: rank == 0,
+          releaseDate: album.release_date
         };
-      }),//.sort((a, b) => a.details.localeCompare(b.details)),
+      }).sort((a, b) => { return new Date(a.releaseDate) - new Date(b.releaseDate); }),
       records: nominations.records.map((record, rank) => {
         return {
           name: record.name,
-          image: record.album.images[1].url,
+          image: (record.album.images.length > 1) ? record.album.images[1].url : record.album.images[0].url,
           imageAlt: record.album.name + " album cover",
-          details: record.artists[0].name,
-          isWinner: rank == 0
+          details: record.artists.map(artist => artist.name).join(", "),
+          isWinner: rank == 0,
+          releaseDate: record.album.release_date
         };
-      }),//.sort((a, b) => a.details.localeCompare(b.details)),
+      }).sort((a, b) => { return new Date(a.releaseDate) - new Date(b.releaseDate); }),
       artists: nominations.artists.map((artist, rank) => {
         return {
           name: artist.name,
@@ -137,7 +147,7 @@ export function generateNominations(data) {
           details: null,
           isWinner: rank == 0
         };
-      }),//.sort((a, b) => a.name.localeCompare(b.name)),
+      }).sort((a, b) => a.name.localeCompare(b.name)),
     };
   
     

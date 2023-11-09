@@ -11,6 +11,7 @@ import { RxInfoCircled } from 'react-icons/rx';
 import { TbLogout2 } from 'react-icons/tb';
 
 import grammy from './grammy3.png'
+import spotify from './spotify.png'
 
 const PALETTES = {
   spring: ["#fa92b1", "#94DE8B", "#F4DB87"],
@@ -65,7 +66,9 @@ function Award({ category, nominees, color }) {
     <div className="award" style={style}>
       <div className="category-title">{category}</div>
       <div className="nominees">
-      {nominees.map((nominee) => { return <Nominee data={nominee} isArtist={isArtist} />; })}
+        <div className="nominees-wrap">
+          {nominees.map((nominee) => { return <Nominee data={nominee} isArtist={isArtist} />; })}
+        </div>
       </div>
     </div>
   );
@@ -99,6 +102,7 @@ async function retrieveTopTracks(timeRange, next = "https://api.spotify.com/v1/m
   
 }
 
+// TODO: remove!!!!
 async function replaceImages(nominations) {
   
   const fetchImage = (elem, index) => {
@@ -163,124 +167,17 @@ async function getArtistImages(artists) {
   return await Promise.all(images);
 }
 
-export default function Temp2() {
-  const [topTracks, setTopTracks] = useState(null);
-  const [season, setSeason] = useState(PALETTES.autumn);
-  const [nominations, setNominations] = useState({
-    albums: [],
-    records: [],
-    artists: []
-  });
-  
-  useEffect(() => {
-    const getTopTracks = async () => {
-      // alert("in GET TOP TRACKS");
-      const params = new URLSearchParams(window.location.hash.slice(1));
-      
-      const accessToken = params.get('access_token');
-      sessionStorage.setItem("accessToken", accessToken);
-      const error = params.get('error');
-      const tracks = {
-        long_term: await retrieveTopTracks("long_term"),
-        medium_term: await retrieveTopTracks("medium_term"),
-        short_term: await retrieveTopTracks("short_term")
-      };
-      
-      setTopTracks(tracks);
-    }
-    getTopTracks();
-  }, []);
-  
-  useEffect(() => { 
-    const getNominations = async () => {
-      let nominations = generateNominations(topTracks);
-      const artistImages = await getArtistImages(nominations.artists);
-      nominations.artists = nominations.artists.map((artist, index) => {
-        return {
-          ...artist,
-          image: artistImages[index]
-        };
-      });
-      
-      nominations = await replaceImages(nominations);
-      
-      setNominations(nominations);
-      
-    };
-    if (topTracks !== null) {
-      getNominations();
-    }
-  }, [topTracks]);
-  
-  useEffect(() => {
-    if (nominations.albums.length != 0) {
-      // var element = document.getElementById('export-image');
-      // html2pdf(element);
-      const generatePDF = () => {
-    const divToCapture = document.getElementById('export-image'); // Replace 'yourDivId' with the actual ID of the div
-
-    if (divToCapture) {
-      const pdfOptions = {
-        margin: 10,
-        filename: 'div_image.pdf',
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: { useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      };
-
-      html2pdf().from(divToCapture).set(pdfOptions).outputPdf().then(function (pdf) {
-        const img = new Image();
-        img.src = pdf.output('img');
-        alert(pdf.output('img'));
-        img.onload = function () {
-          const a = document.createElement('a');
-          a.href = img.src;
-          a.download = 'div_image.jpg';
-          a.click();
-        };
-      });
-    }
-  };
-  
-  generatePDF();
-  
-      
-    
-      // const imageUrls = [];
-      // for (let i = 0; i < 5; i++) {
-      //   imageUrls.push(nominations.records[0].image);
-      //   imageUrls.push(nominations.albums[0].image);
-      //   imageUrls.push(nominations.artists[0].image);
-      // }
-      // const preloadImages = () => {
-      //   for (const imageUrl of imageUrls) {
-      //     const img = new Image();
-      //     img.src = imageUrl;
-      //   }
-      // };
-      // preloadImages();
-  
-  
-  
-      // htmlToImage.toPng(document.getElementById('export-image'))
-      //   .then(function (dataUrl) {
-      //     const downloadLink = document.createElement('a');
-      //     downloadLink.href = dataUrl; // Set the base64 data as the link's href
-      //     downloadLink.download = 'export-image.png'; // Set the desired filename for the download
-      // 
-      //     // Trigger a click event on the anchor element to initiate the download
-      //     downloadLink.click();
-      //   });
-    }
-  
-  }, [nominations]);
-  
+export default function Temp2({ nominations, season }) {
+// TODO: Spotigrammy 2024, add spotify logo?
   return (
     <div className="export-image" id="export-image">
       <div className="export-image-header"></div>
       <Awards nominations={nominations} palette={season}/>
       <div className="export-image-footer">
-        <div className="export-image-footer-title">SpotiGrammy</div>
+        <div className="export-image-footer-title">
+          <img src={spotify} style={{width: "80px", marginRight: "10px"}}/>
+          <div className="export-image-footer-title-text">SpotiGrammy</div>
+        </div>
         <div className="export-image-footer-description">SpotiGrammy.com</div>
       </div>
     </div>

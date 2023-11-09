@@ -6,22 +6,23 @@
 
 body {
   margin: 0px;
-  background: black;
 }
 
 .export-image {
   background: #fbfbf8;
   width: 1050px;
   font-family: Bebas Neue;
+  clip-path: inset(0 100% 0 0);
+  display: none;
 }
 
-.export-image-header {
+#export-image .export-image-header {
   width: 1050px;
   padding-bottom: 25px;
 }
 
 
-.export-image-footer {
+#export-image .export-image-footer {
   width: 1050px;
   box-sizing: border-box;
   display: flex;
@@ -30,16 +31,26 @@ body {
   padding: 0px 25px 20px 25px;
 }
 
-.export-image-footer-title {
-  padding-top: 20px;
+#export-image .export-image-footer-title {
+  margin-top: 20px;
   font-size: 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+#export-image .export-image-footer-title img {
+  position: absolute;
+  top: 5px;
+}
+#export-image .export-image-footer-title-text {
+  margin-left: 90px;
 }
 
-.export-image-footer-description {
+#export-image .export-image-footer-description {
   font-size: 40px;
 }
 
-.awards {
+#export-image .awards {
   width: 1000px;
   height: 1000px;
   display: flex;
@@ -49,69 +60,84 @@ body {
   padding: 0px 25px 0px 25px;
 }
 
-.award {
+#export-image .award {
   height: 100%;
   display: flex;
   flex-direction: column;
   padding: 10px 10px;
 }
 
-.award:nth-child(1) {
+#export-image .award:nth-child(1) {
+  box-shadow: 15px 0px 15px 0px rgba(0, 0, 0, 0.5) inset, -15px 0px 15px 0px rgba(0, 0, 0, 0.5) inset, 0px -5px 20px 0px rgba(0, 0, 0, 0.5) inset, 0px 15px 15px 0px rgba(0, 0, 0, 0.5) inset;
+}
+#export-image .award:nth-child(2) {
+  box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.5) inset, -10px 0px 10px 0px rgba(0, 0, 0, 0.5) inset, 0px -5px 20px 0px rgba(0, 0, 0, 0.5) inset;
+}
+
+#export-image .award:nth-child(3) {
+  box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.5) inset, -5px 0px 5px 0px rgba(0, 0, 0, 0.5) inset, 0px -5px 5px 0px rgba(0, 0, 0, 0.5) inset;
+}
+
+/* #export-image .award:nth-child(1) {
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.5) inset, inset 0 -7px 9px -7px rgba(0,0,0,0.5); 
 }
-.award:nth-child(2) {
+#export-image .award:nth-child(2) {
   box-shadow: inset 7px 0 9px -7px rgba(0,0,0,0.5), inset -7px 0 9px -7px rgba(0,0,0,0.5), inset 0 -7px 9px -7px rgba(0,0,0,0.5);
 }
 
-.award:nth-child(3) {
+#export-image .award:nth-child(3) {
   box-shadow: inset 7px 0 9px -7px rgba(0,0,0,0.5), inset -7px 0 9px -7px rgba(0,0,0,0.5), inset 0 -7px 9px -7px rgba(0,0,0,0.5);
-}
+} */
 
 
-.category-title {
-  font-size: 250%;
-  height: 15%;
+#export-image .category-title {
+  font-size: 400%;
+  height: 20%;
   padding: 0px 13px; /* TODO: this padding is to make the title align with album cover */
 }
 
-.nominees {
-  margin-top: 10px;
+#export-image .nominees {
+  /* margin-top: 10px; */
   display: flex;
   height: 100%;
-  justify-content: space-between;
-}
-
-.award:nth-child(3) .nominees {
-  margin-top: 20px;
-}
-
-.nominee {
-  width: 100%;
-  display: flex;
-  justify-content: center;
   align-items: center;
 }
 
-.nominee-wrap {
-  height: 100%;
+#export-image .nominees-wrap {
   display: flex;
-  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#export-image .award:nth-child(3) .nominees {
+  /* margin-top: 20px; */
+}
+
+#export-image .nominee {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#export-image .nominee-wrap {
+
+  display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.image-wrap {
+#export-image .image-wrap {
   width: 100%;
   text-align: center;
   position: relative;
 }
 
-.nominee-img {
+#export-image .nominee-img {
   width: 85%;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4); 
 }
 
-.grammy {
+#export-image .grammy {
   width: 35%;
   position: absolute;
   bottom: 0px;
@@ -119,11 +145,11 @@ body {
   filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));
 }
 
-.nominee-name {
+#export-image .nominee-name {
   width: 85%;
   font-size: 20px;
 }
 
-.nominee-details {
+#export-image .nominee-details {
   opacity: 0.5;
 }
