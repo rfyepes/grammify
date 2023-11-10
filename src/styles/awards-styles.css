@@ -46,7 +46,7 @@ body {
   align-items: center;
   font-family: Bebas Neue;
   font-size: 40px;
-  height: 100vh;
+  height: 90vh;
 }
 
 .title {
@@ -150,6 +150,7 @@ body {
  .nominee-name {
   width: 85%;
   font-size: 1em;
+  overflow-wrap: anywhere;
 }
 
  .nominee-details {
@@ -200,9 +201,12 @@ body {
   flex-direction: row;
   width: 100%;
   justify-content: space-around;
-  align-items: center;
   box-sizing: border-box;
-  padding: 0px 30px;
+  /* padding: 0px 10px; */
+}
+.theme-wrap {
+  display: flex;
+  justify-content: center;
 }
 
 .theme-option {
@@ -250,6 +254,7 @@ body {
   font-family: 'Inter', sans-serif;
   box-sizing: border-box;
   padding: 10px 20px;
+  max-width: 700px;
 }
 
 .controls-title {

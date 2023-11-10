@@ -11,6 +11,16 @@ import HomePage from "./HomePage";
 import AwardsPage from "./AwardsPage";
 import PrivacyPage from "./PrivacyPage";
 
+// TODO: 
+//  = [DONE] fix album size issue on mobile
+//  = fix artist padding issue?
+//  = find alternate way of indicating winner
+//  = change domian name 😭 (updating header, info modal, example, image, graphic, app name)
+// then:
+//  - remove strict mode 
+//  - update redirect uri 
+//  - remove hard-coded noms
+
 const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>

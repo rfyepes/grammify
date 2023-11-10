@@ -64,11 +64,13 @@ function ControlPanel({ isTogglable, toggleWinnerSelection, season, changeSeason
         </div>
         <div className="control">
           <div className="control-title">Theme Selection</div>
-          <div className="control-options theme-selector-buttons">
-            <ThemeButton theme="spring" isActive={season === "spring"} onClick={() => changeSeason("spring")} />
-            <ThemeButton theme="summer" isActive={season === "summer"} onClick={() => changeSeason("summer")} />
-            <ThemeButton theme="autumn" isActive={season === "autumn"} onClick={() => changeSeason("autumn")} />
-            <ThemeButton theme="winter" isActive={season === "winter"} onClick={() => changeSeason("winter")} />
+          <div className="theme-wrap">
+            <div className="control-options theme-selector-buttons">
+              <ThemeButton theme="spring" isActive={season === "spring"} onClick={() => changeSeason("spring")} />
+              <ThemeButton theme="summer" isActive={season === "summer"} onClick={() => changeSeason("summer")} />
+              <ThemeButton theme="autumn" isActive={season === "autumn"} onClick={() => changeSeason("autumn")} />
+              <ThemeButton theme="winter" isActive={season === "winter"} onClick={() => changeSeason("winter")} />
+            </div>
           </div>
         </div>
         <div className="control save-and-share-wrapper">
