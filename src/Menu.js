@@ -24,7 +24,7 @@ function Info({ hideInfo }) {
           What is SpotiGrammy?
         </div>
         <div className="info-block-content">
-          SpotiGrammy is a personalized adaptation of the GRAMMY® Awards based on your most-listened-to Spotify tracks, albums, and artists. SpotiGrammy creates a graphic showcasing nominees and a winner for each category: Song of the Year, Album of the Year, and Artist of the Year. Note that SpotiGrammy is not affiliated with the actual GRAMMY® Awards.
+          SpotiGrammy is a personalized adaptation of the GRAMMY Awards® based on your most-listened-to Spotify tracks, albums, and artists. SpotiGrammy creates a graphic showcasing nominees and a winner for each category: Song of the Year, Album of the Year, and Artist of the Year. Note that SpotiGrammy is not affiliated with the actual GRAMMY Awards®.
           <br />
           <br />
           SpotiGrammy was inspired by <a href="https://www.instafest.app/home">Instafest</a>, which creates a festival lineup based on your Spotify data.
@@ -35,7 +35,7 @@ function Info({ hideInfo }) {
           What are the eligibility requirements? 
         </div>
         <div className="info-block-content">
-          SpotiGrammy eligibility is loosely based on the Grammy Awards, taking place in February. The eligibility period is October to the end of September. For example, tracks/albums released between October 2022 and September 2023 are eligible for SpotiGrammy 2024. Albums are only eligible if they contain at least 5 tracks, while songs are only eligible if they are at least 1 minute long. 
+          SpotiGrammy eligibility is loosely based on the Grammy Awards®, taking place in February. The eligibility period is October to the end of September. For example, tracks/albums released between October 2022 and September 2023 are eligible for SpotiGrammy 2024. Albums are only eligible if they contain at least 5 tracks, while songs are only eligible if they are at least 1 minute long. 
         </div>
       </div>
       <div className="info-block">

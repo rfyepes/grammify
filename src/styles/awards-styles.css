@@ -222,6 +222,7 @@ body {
 .option-button {
   height: 40px;
   width: 40px;
+  user-select: none;
   border-radius: 50%;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -354,6 +355,10 @@ body {
   }
 }
 
+#credit-2 {
+  display: none;
+}
+
 @media screen and (max-width: 700px) {
   
   .main-body {
@@ -367,5 +372,25 @@ body {
   .control-panel {
     margin-left: 10px;
   }
+  
+  #credit-1 {
+    display: none;
+  }
+  
+  #credit-2 {
+    display: block;
+  }
 
+}
+
+@media screen and (max-width: 600px) {
+  
+  .nominee-name {
+   font-size: 0.7em;
+ }
+ 
+ .category-title {
+  padding: 0px 0.1em; /* NOTE: this padding is to make the title align with album cover */
+}
+  
 }
