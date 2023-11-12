@@ -61,7 +61,7 @@ body {
 
 #export-image .awards {
   width: 1000px;
-  height: 1000px;
+  /* height: 1000px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -71,9 +71,10 @@ body {
 
 #export-image .award {
   height: 100%;
+  /* min-height: 335px; - use when make awards height 1005 instead of 1000*/
   display: flex;
   flex-direction: column;
-  padding: 10px 10px;
+  padding: 15px 10px;
 }
 
 #export-image .award:nth-child(1) {

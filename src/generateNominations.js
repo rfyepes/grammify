@@ -22,10 +22,33 @@ const NOW = {
 const AWARD_MONTH = 2; // Assumes Grammy Awards are held in February
 const AWARD_YEAR = (NOW.month > AWARD_MONTH) ? NOW.year + 1 : NOW.year;
 
-const ELIGIBILITY_START = 10; // Assumes elibilility period begins in October
-const ELIGIBILITY_END = 9; // Assumes elibilility period ends in September
+const ELIGIBILITY_START_MONTH = 10; // Elibilility period begins October 1
+const ELIGIBILITY_START_DAY = 1;
+const ELIGIBILITY_END_MONTH = 9; // Elibilility period ends September 15
+const ELIGIBILITY_END_DAY = 15;
 
 const NUM_NOMINATIONS = 5; // Needs 5 nominees per category
+
+// TODO: delete this function
+// function isLessThanSixMonthsOld(track) {
+//   const splitDate = track.album.release_date.split("-");
+// 
+//   if (splitDate.length < 2) {
+//     return false;
+//   }
+// 
+//   const releaseDate = {
+//     year: parseInt(splitDate[0]),
+//     month: parseInt(splitDate[1])
+//   };
+// 
+//   switch (releaseDate.year) {
+//     case NOW.year: return releaseDate.month >= (NOW.month - 6);
+//     case NOW.year - 1: return releaseDate.month >= (NOW.month + 6);
+//     default: return false;
+//   }
+// 
+// }
 
 // Returns true iff the given track was released within eligibility period
 function isEligible(track) {
@@ -40,12 +63,23 @@ function isEligible(track) {
   
   const releaseDate = {
     year: parseInt(splitDate[0]),
-    month: parseInt(splitDate[1])
+    month: parseInt(splitDate[1]),
+    day: parseInt(splitDate[2] ? splitDate[2] : ELIGIBILITY_END_DAY + 1) // Disqualified if no date
   };
   
   switch (releaseDate.year) {
-    case AWARD_YEAR - 2: return releaseDate.month >= ELIGIBILITY_START;
-    case AWARD_YEAR - 1: return releaseDate.month <= ELIGIBILITY_END;
+    case AWARD_YEAR - 2:
+      if (releaseDate.month === ELIGIBILITY_START_MONTH) {
+        return releaseDate.day >= ELIGIBILITY_START_DAY;
+      } else {
+        return releaseDate.month >= ELIGIBILITY_START_MONTH;
+      }
+    case AWARD_YEAR - 1: 
+      if (releaseDate.month === ELIGIBILITY_END_MONTH) {
+        return releaseDate.day <= ELIGIBILITY_END_DAY;
+      } else {
+        return releaseDate.month <= ELIGIBILITY_END_MONTH;
+      }
     default: return false;
   }
 }
@@ -53,7 +87,11 @@ function isEligible(track) {
 // Data expected to be an object with three fields - short_term, medium_term, 
 // and long_term - each mapping to an array of Spotify TrackObjects
 export default function generateNominations(data) {
-
+  
+  // TODO: releases from past 6 months that are on long term shoudl be above 
+  // older realses that are on long term but not medium term!!!!! 
+  // and same for 4 weeks ig 
+  
   // Ensure each data field is non-empty
   const emptyDataset = ["long_term", "medium_term", "short_term"].reduce((isEmpty, time) => 
     ((!(time in data) || data[time].length === 0) ? true : isEmpty)
