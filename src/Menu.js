@@ -35,7 +35,7 @@ function Info({ hideInfo }) {
           What are the eligibility requirements? 
         </div>
         <div className="info-block-content">
-          SpotiGrammy eligibility is loosely based on the Grammy Awards®, taking place in February. The eligibility period is October to the end of September. For example, tracks/albums released between October 2022 and September 2023 are eligible for SpotiGrammy 2024. Albums are only eligible if they contain at least 5 tracks, while songs are only eligible if they are at least 1 minute long. 
+          SpotiGrammy eligibility is loosely based on the Grammy Awards®, taking place in February. The eligibility period is October 1 to September 15. For example, tracks/albums released between October 1st, 2022 and September 15th, 2023 are eligible for SpotiGrammy 2024. Albums are only eligible if they contain at least 5 tracks, while songs are only eligible if they are at least 1 minute long. 
         </div>
       </div>
       <div className="info-block">
