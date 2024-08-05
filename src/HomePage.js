@@ -47,7 +47,7 @@ function HomeContent() {
           Sign in with Spotify
         </div>
         <div className="description-block privacy">
-          <a href="/#/privacy" target="_blank">Privacy Policy</a>
+          <a href="/grammify/#/privacy" target="_blank">Privacy Policy</a>
         </div>
       </div>
     </div>
