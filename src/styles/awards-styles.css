@@ -100,6 +100,21 @@ body {
   font-size: 3em;
   /* height: 20%; */
   padding: 0px 0.2em; /* NOTE: this padding is to make the title align with album cover */
+  /* border: 1px red solid; */
+  display: flex;
+  align-items: center;
+}
+.category-title span {
+ /* display: flex;
+ align-items: center; */
+ /* border: 1px green solid; */
+ height: 100%;
+}
+
+.category-icon {
+  /* border: 1px black solid; */
+  /* height: 100%; */
+  /* margin-right: 0.1em; */
 }
 
  .nominees {
@@ -132,8 +147,10 @@ body {
   position: relative;
 }
 
+
  .nominee-img {
   width: 85%;
+  object-fit: cover;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4); 
   aspect-ratio: 1/1;
 }
@@ -156,6 +173,7 @@ body {
  .nominee-details {
   opacity: 0.5;
 }
+
 
 /****/
 

@@ -1,7 +1,7 @@
 {
   "name": "spotify-awards",
   "version": "0.1.0",
-  "homepage": "https://www.spotigrammy.com/",
+  "homepage": "https://rfyepes.github.io/grammify",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
@@ -51,6 +51,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.0.0"
+    "gh-pages": "^6.1.1"
   }
 }

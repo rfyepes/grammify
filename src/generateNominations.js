@@ -93,12 +93,13 @@ export default function generateNominations(data) {
   // and same for 4 weeks ig 
   
   // Ensure each data field is non-empty
-  const emptyDataset = ["long_term", "medium_term", "short_term"].reduce((isEmpty, time) => 
-    ((!(time in data) || data[time].length === 0) ? true : isEmpty)
-  , false);
-  if (emptyDataset) {
-    throw new Error("Empty dataset");
-  }
+  // TODO - what if 4 weeks is empty but others are not?
+  // const emptyDataset = ["long_term", "medium_term", "short_term"].reduce((isEmpty, time) => 
+  //   ((!(time in data) || data[time].length === 0) ? true : isEmpty)
+  // , false);
+  // if (emptyDataset) {
+  //   throw new Error("Empty dataset");
+  // }
   
   const trackMap = new Map();
   const trackQueue = new PriorityQueue(); // Ideal for track repitition

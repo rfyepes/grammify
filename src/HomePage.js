@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Menu from "./Menu";
 import Footer from "./Footer";
 import AwardsPage from "./AwardsPage";
-import spotigrammy from "./images/example.jpg";
+import spotigrammy from "./images/example-new.jpg";
 
 // TODO: credit Spotify for code
 var generateRandomString = function (length) {
@@ -16,7 +16,7 @@ var generateRandomString = function (length) {
 };
 
 var client_id = "daf1a83621b44968afa25e3d49387bf1";
-var redirect_uri = "https://www.spotigrammy.com";
+var redirect_uri = "https://rfyepes.github.io/grammify";//"http://localhost:3000";//"https://www.spotigrammy.com";
 
 var state = generateRandomString(16);
 localStorage.setItem("stateKey", state);
@@ -28,6 +28,7 @@ AUTH_URL += "&client_id=" + encodeURIComponent(client_id);
 AUTH_URL += "&scope=" + encodeURIComponent(scope);
 AUTH_URL += "&redirect_uri=" + encodeURIComponent(redirect_uri);
 AUTH_URL += "&state=" + encodeURIComponent(state);
+AUTH_URL += "&show_dialog=true";
 
 function HomeContent() {
   return (

@@ -10,6 +10,7 @@
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1) inset; 
   display: flex;
   justify-content: space-between;
+  align-items: center; /* TODO: remove if spotify logo is removed */
   padding: 20px 10px;
   font-family: 'Inter', sans-serif;
   color: rgba(0, 0, 0, 0.5);
@@ -125,6 +126,7 @@
   font-size: 40px;
   text-align: center;
   font-family: Bebas Neue;
+  margin: 0px 0px 10px 0px;
 }
 
 .info-block {
@@ -150,6 +152,21 @@ a:visited {
   margin-top: 20px;
 }
 
+.info-close-button-mini {
+  text-align: left;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#info-close-button-mini {
+  font-weight: bold;
+  font-size: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  transform: scale(1);
+  margin: -10px 0px;
+}
+
 #info-close-button {
   display: flex;
   justify-content: center;
@@ -170,14 +187,29 @@ a:visited {
     transform: scale(1.1);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
   }
+  #info-close-button-mini:hover {
+    transform: scale(1.3);
+  }
   .sign-in:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
     transform: scale(1.1);
   }
 }
 
+/* Spotify dev guidelines say logo can't be <70px */
+.footer-content img {
+  min-width: 70px;
+}
+
 @media screen and (max-width: 700px) {
   .main-page {
     flex-direction: column;
+  }
+  
+  .footer {
+    flex-direction: column;
+  }
+  .footer-content {
+    margin: 10px 0px;
   }
 }

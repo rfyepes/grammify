@@ -16,18 +16,21 @@ function MenuButton({ icon: Icon, onClick, isVisible }) {
 function Info({ hideInfo }) {
   return (
     <div className="info-modal" onClick={(e) => {e.stopPropagation()}}>
-      <div className="info-title info-block">
-        Welcome to SpotiGrammy!
+      <div className="info-close-button-mini">
+        <div id="info-close-button-mini" onClick={hideInfo}>&times;</div>
+      </div>
+      <div className="info-title">
+        Welcome to GRAMMIFY!
       </div>
       <div className="info-block">
         <div className="info-block-header">
-          What is SpotiGrammy?
+          What is GRAMMIFY?
         </div>
         <div className="info-block-content">
-          SpotiGrammy is a personalized adaptation of the GRAMMY Awards® based on your most-listened-to Spotify tracks, albums, and artists. SpotiGrammy creates a graphic showcasing nominees and a winner for each category: Song of the Year, Album of the Year, and Artist of the Year. Note that SpotiGrammy is not affiliated with the actual GRAMMY Awards®.
+          GRAMMIFY is a personalized take on the GRAMMY Awards® based on your most-listened-to Spotify tracks, albums, and artists. GRAMMIFY creates a graphic showcasing nominees and a winner for each category: Song of the Year, Album of the Year, and Artist of the Year. GRAMMIFY is not affiliated with the actual GRAMMY Awards®.
           <br />
           <br />
-          SpotiGrammy was inspired by <a href="https://www.instafest.app/home">Instafest</a>, which creates a festival lineup based on your Spotify data.
+          GRAMMIFY was inspired by <a href="https://www.instafest.app/home" target="_blank" rel="noreferrer">Instafest</a>, which creates a festival lineup based on your Spotify data.
         </div>
       </div>
       <div className="info-block">
@@ -35,7 +38,7 @@ function Info({ hideInfo }) {
           What are the eligibility requirements? 
         </div>
         <div className="info-block-content">
-          SpotiGrammy eligibility is loosely based on the Grammy Awards®, taking place in February. The eligibility period is October 1 to September 15. For example, tracks/albums released between October 1st, 2022 and September 15th, 2023 are eligible for SpotiGrammy 2024. Albums are only eligible if they contain at least 5 tracks, while songs are only eligible if they are at least 1 minute long. 
+          GRAMMIFY eligibility is loosely based on the GRAMMY Awards®, taking place in February. The eligibility period is October 1 to September 15. For example, tracks/albums released between October 1st, 2022 and September 15th, 2023 are eligible for GRAMMIFY 2024. Albums are only eligible if they contain at least 5 tracks, while songs are only eligible if they are at least 1 minute long. 
         </div>
       </div>
       <div className="info-block">
@@ -82,7 +85,7 @@ export default function Menu({ showLogOut, logOut }) {
     <>
     <div className="menu">
       <MenuButton icon={RxInfoCircled} onClick={() => setShowModal(true)} />
-      <Link to="/" className="home-button" onClick={logOut}><div className="title">SpotiGrammy</div></Link>
+      <Link to="/" className="home-button" onClick={logOut}><div className="title">GRAMMIFY</div></Link>
       <Link to="/" style={logOutStyle} onClick={logOut}>
         <MenuButton icon={TbLogout2} onClick={() => {}} />
       </Link>

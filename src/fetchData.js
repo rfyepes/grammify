@@ -49,6 +49,9 @@ export async function getArtistImages(artists, accessToken) {
 export async function replaceImages(nominations) {
   
   const fetchImage = (elem, index) => {
+    if (!elem.image) {
+      return null;
+    }
     return new Promise((resolve, reject) => {
       fetch(elem.image)
         .then((response) => response.blob())

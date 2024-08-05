@@ -1,6 +1,6 @@
 import Awards from "./Awards";
 
-import spotify from './images/spotify.png'
+import spotify from './images/spotify-green.png'
 import spotigrammy from './images/spotigrammy.png'
 
 export default function Graphic({ nominations, season }) {
@@ -11,11 +11,11 @@ export default function Graphic({ nominations, season }) {
       <div className="export-image-footer">
         <div className="export-image-footer-title">
           <img src={spotigrammy} alt="" />
-          <div className="export-image-footer-title-text">SpotiGrammy {nominations.year}</div>
+          <div className="export-image-footer-title-text">GRAMMIFY <span style={{color: "#b89a5a"}}>{nominations.year}</span></div>
         </div>
         <div className="export-image-footer-description">
           <div className="export-image-footer-url">
-            SpotiGrammy.com
+            GRAMMIFY.com
           </div>
           <img src={spotify} alt="" />
         </div>
