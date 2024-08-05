@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/grammify/static/css/main.a9fe9d37.css",
-    "main.js": "/grammify/static/js/main.37888024.js",
+    "main.js": "/grammify/static/js/main.17ff7d1a.js",
     "static/media/example-new.jpg": "/grammify/static/media/example-new.c275e0b8137ab6694cca.jpg",
     "static/media/grammy.png": "/grammify/static/media/grammy.ad9a08993d8fb344fb95.png",
     "static/media/spotify-green.png": "/grammify/static/media/spotify-green.0c4ae91bae23217d39c9.png",
@@ -12,10 +12,10 @@
     "static/media/song-placeholder.png": "/grammify/static/media/song-placeholder.5924c6169617fd80bf6f.png",
     "index.html": "/grammify/index.html",
     "main.a9fe9d37.css.map": "/grammify/static/css/main.a9fe9d37.css.map",
-    "main.37888024.js.map": "/grammify/static/js/main.37888024.js.map"
+    "main.17ff7d1a.js.map": "/grammify/static/js/main.17ff7d1a.js.map"
   },
   "entrypoints": [
     "static/css/main.a9fe9d37.css",
-    "static/js/main.37888024.js"
+    "static/js/main.17ff7d1a.js"
   ]
 }
