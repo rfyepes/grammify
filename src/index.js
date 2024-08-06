@@ -25,7 +25,7 @@ import PrivacyPage from "./PrivacyPage";
 //  = make height of each award category the same? match the max?
 // then:
 //  - remove strict mode 
-//  - update redirect uri 
+//  - update redirect uri (homepage.js and package.json)
 //  - remove hard-coded noms
 
 const root = createRoot(document.getElementById("root"));

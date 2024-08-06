@@ -131,6 +131,12 @@ export default function AwardsPage({ accessToken, logOut }) {
         link.download = 'my-grammify.jpg';
         link.href = canvas.toDataURL("image/jpeg");
         link.click();
+        ///////
+        // navigator.share(canvas.toDataURL("image/jpeg"));
+        // var image = document.createElement('img');
+        // image.src = canvas.toDataURL("image/jpeg");
+        // image.style = "width: 100px";
+        // document.body.appendChild(image);
       });
     } else {
       alert("Error: wait a few seconds and try again.");
