@@ -23,6 +23,11 @@ import PrivacyPage from "./PrivacyPage";
 //  = change domian name 😭 (updating header, info modal, example, image, graphic, app name)
 //    Grammify?
 //  = make height of each award category the same? match the max?
+//  = image download on small screen leaves smaller right border???? why??
+//  = make seperate CSS for touchscreen (media query hover?)
+//       = make active button pop a bit
+//       = make winner selection animate grammy award (bounce)
+//  = fix footer
 // then:
 //  - remove strict mode 
 //  - update redirect uri (homepage.js and package.json)
