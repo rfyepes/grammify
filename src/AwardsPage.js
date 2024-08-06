@@ -103,7 +103,6 @@ export default function AwardsPage({ accessToken, logOut }) {
       setCanToggleWinners(false);
     } else if (id === "me-pick") {
       for (const category in newNoms) {
-        if (category === "year") continue;
         newNoms[category].forEach((nominee) => {
           nominee.isWinner = false;
         });
@@ -272,8 +271,7 @@ export default function AwardsPage({ accessToken, logOut }) {
       //       image: "https://i.scdn.co/image/ab67616100005174859e4c14fa59296c8649e0e4",
       //       isWinner: false
       //     }
-      //   ],
-      //   year: 2024
+      //   ]
       // };
       
       noms = await replaceImages(noms);

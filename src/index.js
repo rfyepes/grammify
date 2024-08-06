@@ -28,6 +28,8 @@ import PrivacyPage from "./PrivacyPage";
 //       = make active button pop a bit
 //       = make winner selection animate grammy award (bounce)
 //  = fix footer
+//  = fix flexbox column-reverse issue (doesn't work on mobile)
+//  = Remove space between GRAMMIFY and 2025? (menu and graphic)
 // then:
 //  - remove strict mode 
 //  - update redirect uri (homepage.js and package.json)

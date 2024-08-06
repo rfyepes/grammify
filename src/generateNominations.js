@@ -13,21 +13,22 @@
 //     medium_term, which get prioritized over the short_term.
 
 import PriorityQueue from "./priorityQueue"
+import { AWARD_YEAR, ELIGIBILITY, NUM_NOMINATIONS } from "./Constants"
 
-const NOW = {
-  year: new Date().getFullYear(),
-  month: new Date().getMonth() + 1
-};
+// const NOW = {
+//   year: new Date().getFullYear(),
+//   month: new Date().getMonth() + 1
+// };
 
-const AWARD_MONTH = 2; // Assumes Grammy Awards are held in February
-const AWARD_YEAR = (NOW.month > AWARD_MONTH) ? NOW.year + 1 : NOW.year;
-
-const ELIGIBILITY_START_MONTH = 10; // Elibilility period begins October 1
-const ELIGIBILITY_START_DAY = 1;
-const ELIGIBILITY_END_MONTH = 9; // Elibilility period ends September 15
-const ELIGIBILITY_END_DAY = 15;
-
-const NUM_NOMINATIONS = 5; // Needs 5 nominees per category
+// const AWARD_MONTH = 2; // Assumes Grammy Awards are held in February
+// const AWARD_YEAR = (NOW.month > AWARD_MONTH) ? NOW.year + 1 : NOW.year;
+// 
+// const ELIGIBILITY_START_MONTH = 10; // Elibilility period begins October 1
+// const ELIGIBILITY_START_DAY = 1;
+// const ELIGIBILITY_END_MONTH = 9; // Elibilility period ends September 15
+// const ELIGIBILITY_END_DAY = 15;
+// 
+// const NUM_NOMINATIONS = 5; // Needs 5 nominees per category
 
 // TODO: delete this function
 // function isLessThanSixMonthsOld(track) {
@@ -64,21 +65,21 @@ function isEligible(track) {
   const releaseDate = {
     year: parseInt(splitDate[0]),
     month: parseInt(splitDate[1]),
-    day: parseInt(splitDate[2] ? splitDate[2] : ELIGIBILITY_END_DAY + 1) // Disqualified if no date
+    day: parseInt(splitDate[2] ? splitDate[2] : ELIGIBILITY.end_day + 1) // Disqualified if no date
   };
   
   switch (releaseDate.year) {
     case AWARD_YEAR - 2:
-      if (releaseDate.month === ELIGIBILITY_START_MONTH) {
-        return releaseDate.day >= ELIGIBILITY_START_DAY;
+      if (releaseDate.month === ELIGIBILITY.start_month) {
+        return releaseDate.day >= ELIGIBILITY.start_day;
       } else {
-        return releaseDate.month >= ELIGIBILITY_START_MONTH;
+        return releaseDate.month >= ELIGIBILITY.start_month;
       }
     case AWARD_YEAR - 1: 
-      if (releaseDate.month === ELIGIBILITY_END_MONTH) {
-        return releaseDate.day <= ELIGIBILITY_END_DAY;
+      if (releaseDate.month === ELIGIBILITY.end_month) {
+        return releaseDate.day <= ELIGIBILITY.end_day;
       } else {
-        return releaseDate.month <= ELIGIBILITY_END_MONTH;
+        return releaseDate.month <= ELIGIBILITY.end_month;
       }
     default: return false;
   }
@@ -115,8 +116,7 @@ export default function generateNominations(data) {
   let nominations = {
     songs: [],
     albums: [],
-    artists: [],
-    year: AWARD_YEAR
+    artists: []
   };
   
   trackQueue.convertToArray().forEach((trackID, index) => {
@@ -187,7 +187,6 @@ export default function generateNominations(data) {
         details: null,
         isWinner: rank === 0
       };
-    }).sort((a, b) => a.name.localeCompare(b.name)),
-    year: nominations.year
+    }).sort((a, b) => a.name.localeCompare(b.name))
   };
 }

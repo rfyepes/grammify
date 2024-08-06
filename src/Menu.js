@@ -5,6 +5,8 @@ import { RxInfoCircled } from 'react-icons/rx';
 import { TbLogout2 } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
+import { AWARD_YEAR } from "./Constants"
+
 function MenuButton({ icon: Icon, onClick, isVisible }) {
   return (
     <div className="button" onClick={onClick}>
@@ -38,7 +40,10 @@ function Info({ hideInfo }) {
           What are the eligibility requirements? 
         </div>
         <div className="info-block-content">
-          GRAMMIFY eligibility is loosely based on the GRAMMY Awards®, taking place in February. The eligibility period is October 1 to September 15. For example, tracks/albums released between October 1st, 2022 and September 15th, 2023 are eligible for GRAMMIFY 2024. Albums are only eligible if they contain at least 5 tracks, while songs are only eligible if they are at least 1 minute long. 
+          GRAMMIFY eligibility is loosely based on the GRAMMY Awards®, taking place in February. The eligibility period is September 16 to August 30. For example, tracks/albums released between September 16st, 2023 and August 30th, 2024 are eligible for GRAMMIFY 2025. 
+          <br />
+          <br />
+          Albums are eligible if they contain at least 5 tracks, while songs are eligible if they are at least 1 minute long. 
         </div>
       </div>
       <div className="info-block">
@@ -85,7 +90,7 @@ export default function Menu({ showLogOut, logOut }) {
     <>
     <div className="menu">
       <MenuButton icon={RxInfoCircled} onClick={() => setShowModal(true)} />
-      <Link to="/" className="home-button" onClick={logOut}><div className="title">GRAMMIFY</div></Link>
+      <Link to="/" className="home-button" onClick={logOut}><div className="title">GRAMMIFY&nbsp;<span style={{color: "#b89a5a"}}>{AWARD_YEAR}</span></div></Link>
       <Link to="/" style={logOutStyle} onClick={logOut}>
         <MenuButton icon={TbLogout2} onClick={() => {}} />
       </Link>
