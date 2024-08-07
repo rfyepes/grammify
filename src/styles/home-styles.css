@@ -44,6 +44,8 @@
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
   -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 .description {
@@ -80,7 +82,7 @@
   transition: transform 0.3s ease;
   transform: scale(1);
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .modal {
@@ -178,7 +180,7 @@ a:visited {
   cursor: pointer;
   transition: transform 0.3s ease;
   transform: scale(1);
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (hover: hover) {
