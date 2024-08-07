@@ -16,7 +16,7 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage }) {
   return (
     <div className="nominee">
       <div className="nominee-wrap">
-        <div className={isWinnable ? "image-wrap user-select" : "image-wrap"} onClick={isWinnable ? makeWinner : () => {}}>
+        <div className={isWinnable ? "image-wrap user-select" : "image-wrap"} onClick={isWinnable ? makeWinner : () => {}} style={imageStyle}>
           <img src={image} alt={data.imageAlt} className="nominee-img" draggable="false" style={imageStyle} />
           <img src={grammy} alt="grammy icon" className="grammy" draggable="false" style={data.isWinner ? visibleGrammy : {}}/>
         </div>
