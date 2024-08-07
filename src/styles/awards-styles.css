@@ -153,6 +153,7 @@ body {
   object-fit: cover;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4); 
   aspect-ratio: 1/1;
+  -webkit-touch-callout: none;
 }
 
  .grammy {
@@ -164,6 +165,7 @@ body {
   top: 63%;
   filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));
   display: none;
+  -webkit-touch-callout: none;
 }
 
  .nominee-name {
@@ -380,7 +382,7 @@ body {
 } */
 
 @media (pointer: coarse) {
-  .nominee-img:active {
+  .user-select:active {
     animation: bounce .1s infinite alternate;
     animation-iteration-count: 2;
   }

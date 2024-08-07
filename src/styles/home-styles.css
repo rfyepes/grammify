@@ -43,6 +43,7 @@
 .example-image {
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
+  -webkit-touch-callout: none;
 }
 
 .description {
