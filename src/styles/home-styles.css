@@ -80,11 +80,7 @@
   transition: transform 0.3s ease;
   transform: scale(1);
   cursor: pointer;
-}
-
-
-.sign-in:active {
-  transform: scale(1);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .modal {
@@ -166,6 +162,7 @@ a:visited {
   transition: transform 0.3s ease;
   transform: scale(1);
   margin: -10px 0px 0px 0px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 #info-close-button {
@@ -181,6 +178,7 @@ a:visited {
   cursor: pointer;
   transition: transform 0.3s ease;
   transform: scale(1);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 @media (hover: hover) {
@@ -195,11 +193,32 @@ a:visited {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */
     transform: scale(1.1);
   }
+  .sign-in:active {
+    transform: scale(1);
+  }
 }
 
 /* Spotify dev guidelines say logo can't be <70px */
 .footer-content img {
   min-width: 70px;
+}
+
+@media (pointer: coarse) {
+  .sign-in:active {
+    animation: bounce .1s infinite alternate;
+    animation-iteration-count: 2;
+  }
+  #info-close-button-mini:active {
+    animation: bounce .1s infinite alternate;
+    animation-iteration-count: 2;
+  }
+  #info-close-button:active {
+    animation: bounce .1s infinite alternate;
+    animation-iteration-count: 2;
+  }
+  @keyframes bounce {
+    to { transform: scale(0.9); }
+  }
 }
 
 @media screen and (max-width: 700px) {

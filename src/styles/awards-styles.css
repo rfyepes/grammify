@@ -27,16 +27,13 @@ body {
   transition: transform 0.3s ease;
   transform: scale(1);
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .button span {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.button:active {
-  transform: scale(1);
 }
 
 .loading-message {
@@ -154,6 +151,7 @@ body {
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4); 
   aspect-ratio: 1/1;
   -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
  .grammy {
@@ -166,6 +164,7 @@ body {
   filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));
   display: none;
   -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
  .nominee-name {
@@ -211,10 +210,7 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease;
   transform: scale(1);
-}
-
-.save-and-share:active {
-  transform: scale(1);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .theme-selector-buttons {
@@ -375,6 +371,14 @@ body {
   .active-option:hover {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5) inset, inset 0 -2px 10px -2px rgba(0,0,0,0.5); 
   }
+  
+  .button:active {
+    transform: scale(1);
+  }
+
+  .save-and-share:active {
+    transform: scale(1);
+  }
 }
 
 /* #credit-2 {
@@ -383,6 +387,16 @@ body {
 
 @media (pointer: coarse) {
   .user-select:active {
+    animation: bounce .1s infinite alternate;
+    animation-iteration-count: 2;
+  }
+  
+  .save-and-share:active {
+    animation: bounce .1s infinite alternate;
+    animation-iteration-count: 2;
+  }
+  
+  .button:active {
     animation: bounce .1s infinite alternate;
     animation-iteration-count: 2;
   }
