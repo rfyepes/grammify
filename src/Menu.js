@@ -59,7 +59,7 @@ function Info({ hideInfo }) {
           How will my data be used?
         </div>
         <div className="info-block-content">
-          Your data is not stored, collected, or shared with any third parties. For more details, see the <a href="/#/privacy" target="_blank">Privacy Policy</a>.
+          Your data is not stored, collected, or shared with any third parties. For more details, see the <a href="/grammify/#/privacy" target="_blank">Privacy Policy</a>.
         </div>
       </div>
       <div className="info-close info-block">

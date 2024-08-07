@@ -60,11 +60,11 @@ body {
 .menu {
   display: flex;
   justify-content: space-between;
-  position: sticky;
+  /* position: sticky;
   top: 0;
+  z-index: 5; */
   background-color: white;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1); 
-  z-index: 5;
 }
 
  .awards {
@@ -375,9 +375,21 @@ body {
   }
 }
 
-#credit-2 {
+/* #credit-2 {
   display: none;
+} */
+
+@media (pointer: coarse) {
+  .nominee-img:active {
+    animation: bounce .1s infinite alternate;
+    animation-iteration-count: 2;
+  }
+
+  @keyframes bounce {
+    to { transform: scale(0.9); }
+  }
 }
+
 
 @media screen and (max-width: 800px) {
   
@@ -397,13 +409,13 @@ body {
     margin: 10px;
   }
   
-  #credit-1 {
+  /* #credit-1 {
     display: none;
   }
   
   #credit-2 {
     display: block;
-  }
+  } */
 
 }
 

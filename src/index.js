@@ -30,6 +30,8 @@ import PrivacyPage from "./PrivacyPage";
 //  = fix footer
 //  = fix flexbox column-reverse issue (doesn't work on mobile)
 //  = Remove space between GRAMMIFY and 2025? (menu and graphic)
+//  = shadow behind images on graphic?
+//  = finalize font size for graphic
 // then:
 //  - remove strict mode 
 //  - update redirect uri (homepage.js and package.json)
