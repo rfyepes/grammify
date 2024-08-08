@@ -167,11 +167,12 @@ export default function AwardsPage({ accessToken, logOut }) {
       // TODO: first check if topTracks has enough data, 
       //       OR just check if returned noms have 5 per category
       let noms = generateNominations(topTracks);
-      if (noms.songs.length !== 5 || noms.albums.length !== 5 || noms.artists.length !== 5) {
-        setLoadingMessage("ERROR: Insufficient listening data (sorry 😢)");
-        setLoading(true);
-        return;
-      }
+      // TODO: uncomment and refine
+      // if (noms.songs.length !== 5 || noms.albums.length !== 5 || noms.artists.length !== 5) {
+      //   setLoadingMessage("ERROR: Insufficient listening data (sorry 😢)");
+      //   setLoading(true);
+      //   return;
+      // }
       const artistImages = await getArtistImages(noms.artists, accessToken);
       noms.artists = noms.artists.map((artist, index) => {
         return {
