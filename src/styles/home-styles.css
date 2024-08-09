@@ -25,6 +25,7 @@
   text-decoration: none;
   display: flex;
   justify-content: center;
+  -webkit-tap-highlight-color: transparent;
 }
 .home-button:visited {
   color: black;

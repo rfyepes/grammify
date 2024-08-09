@@ -6,10 +6,12 @@ import "./styles/home-styles.css";
 import "./styles/awards-styles.css";
 import "./styles/graphic-styles.css";
 import "./styles/privacy-styles.css";
+import "./test-styles.css";
 
 import HomePage from "./HomePage";
 import AwardsPage from "./AwardsPage";
 import PrivacyPage from "./PrivacyPage";
+import TestPage from "./TestPage";
 
 // TODO: 
 //  = [DONE] fix album size issue on mobile
@@ -23,7 +25,6 @@ import PrivacyPage from "./PrivacyPage";
 //  = change domian name 😭 (updating header, info modal, example, image, graphic, app name)
 //    Grammify?
 //  = make height of each award category the same? match the max?
-//  = image download on small screen leaves smaller right border???? why??
 //  = make seperate CSS for touchscreen (media query hover?)
 //       = make active button pop a bit
 //       = make winner selection animate grammy award (bounce)
@@ -44,6 +45,7 @@ root.render(
         <Route index element={<HomePage />} />
         <Route path="awards" element={<AwardsPage />} />
         <Route path="privacy" element={<PrivacyPage />} />
+        <Route path="test" element={<TestPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </HashRouter>

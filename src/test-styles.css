@@ -1,0 +1,90 @@
+.shell {
+  padding: 10px;
+  /* background-color: black; */
+  
+}
+
+.wrapper {
+  /* border: 1px red solid; */
+  height: 296px;
+  width: 980px;
+  /* background-color: pink; */
+  /* background-image: url("./images/empty-copy.jpg"); */
+  overflow: hidden;
+  /* margin-left: 25px; */
+  margin: auto;
+  margin-top: 123px;
+  position: relative;
+  /* mask-image: linear-gradient(to right, transparent, black 1.5%, black 98.5%, transparent); */
+  /* -webkit-mask-image: linear-gradient(to right, transparent, black 1.5%, black 98.5%, transparent); */
+}
+
+.carosel {
+  display: flex;
+  animation: slide 60s linear infinite;
+  width: 200%;
+}
+
+.carosel img {
+  width: 951px;
+  height: 296px;
+  margin-right: 14.5px;
+  margin-left: 14.5px;
+}
+
+.carosel-2 {
+  animation: slide 60s linear infinite, reveal 0s forwards;
+  animation-delay: 30s;
+  visibility: hidden;
+  position: absolute;
+  top: 0px;
+}
+
+@keyframes reveal {
+  to {
+    visibility: visible;
+  }
+} 
+
+@keyframes slide {
+  /* 0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  } */
+  to {
+    transform: translateX(-200%);
+  }
+}
+
+
+
+/* .carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-slide {
+    display: flex;
+    animation: slide 12s linear infinite;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+}
+ */
+ 
+ 
+ .graphic {
+   width: 1050px;
+   height: 1307px;
+   border: 3px black solid;
+   /* box-sizing: border-box; */
+   background-image: url("./images/empty.jpg");
+   background-size: contain;
+   /* background-repeat: no-repeat; */
+ }
+ 
