@@ -1,8 +1,23 @@
 .shell {
-  padding: 10px;
-  /* background-color: black; */
-  
+  /* padding: 10px;
+  background-color: pink;
+  border: 1px green solid; */
 }
+
+.graphic {
+  width: 1050px;
+  height: 1271px;
+  border: 3px black solid;
+  /* box-sizing: border-box; */
+  background-image: url("./images/empty.jpg");
+  background-size: contain;
+  /* background-repeat: no-repeat; */
+  /* transform: scale(0.7); */
+  /* display: none; */
+  position: absolute;
+  /* top: 0; */
+}
+
 
 .wrapper {
   /* border: 1px red solid; */
@@ -21,20 +36,39 @@
 
 .carosel {
   display: flex;
-  animation: slide 60s linear infinite;
   width: 200%;
 }
 
+.songs .carosel {
+  animation: slideLeft 100s linear infinite;
+}
+
+.albums .carosel {
+  animation: slideRight 100s linear infinite;
+}
+
+.songs .carosel-2 {
+  animation: slideLeft 100s linear infinite, reveal 0s forwards;
+  animation-delay: 50s;
+}
+
+.albums .carosel-2 {
+  animation: slideRight 100s linear infinite, reveal 0s forwards;
+  animation-delay: 50s;
+}
+
+.albums {
+  margin-top: 98px;
+}
+
 .carosel img {
-  width: 951px;
+  /* width: 951px;
   height: 296px;
   margin-right: 14.5px;
-  margin-left: 14.5px;
+  margin-left: 14.5px; */
 }
 
 .carosel-2 {
-  animation: slide 60s linear infinite, reveal 0s forwards;
-  animation-delay: 30s;
   visibility: hidden;
   position: absolute;
   top: 0px;
@@ -46,7 +80,7 @@
   }
 } 
 
-@keyframes slide {
+@keyframes slideLeft {
   /* 0% {
     transform: translateX(0%);
   }
@@ -55,6 +89,15 @@
   } */
   to {
     transform: translateX(-200%);
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
 
@@ -78,13 +121,23 @@
  */
  
  
- .graphic {
-   width: 1050px;
-   height: 1307px;
-   border: 3px black solid;
-   /* box-sizing: border-box; */
-   background-image: url("./images/empty.jpg");
-   background-size: contain;
-   /* background-repeat: no-repeat; */
+
+ .carosel-nominee {
+   position: relative;
  }
  
+ .carosel-nominee img {
+   object-fit: fill;
+   width: 196px;
+   display: inline-block;
+ }
+ 
+ .plain {
+ }
+ 
+ .awarded {
+   position: absolute;
+   left: 0;
+   opacity: 0;
+   transition-duration: 1s;
+ }
