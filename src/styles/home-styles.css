@@ -227,7 +227,10 @@ a:visited {
 @media screen and (max-width: 700px) {
   .main-page {
     flex-direction: column;
-    flex-flow: column-reverse;
+  }
+  
+  .example-awards {
+    padding-bottom: 5px;
   }
   
   /* .footer {
@@ -241,7 +244,6 @@ a:visited {
 @media screen and (max-width: 700px) {
 
   .footer {
-    flex-direction: column;
     flex-direction: column-reverse;
   }
   

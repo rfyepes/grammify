@@ -33,6 +33,7 @@ import TestPage from "./TestPage";
 //  = Remove space between GRAMMIFY and 2025? (menu and graphic)
 //  = shadow behind images on graphic?
 //  = finalize font size for graphic
+//  = remove unneeded font imports
 // then:
 //  - remove strict mode 
 //  - update redirect uri (homepage.js and package.json)
