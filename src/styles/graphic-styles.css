@@ -1,100 +1,167 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600&family=Bebas+Neue&family=Lilita+One&family=Passion+One&family=Patua+One&family=Paytone+One&family=Tenor+Sans&family=Sriracha&family=DM+Serif+Display&family=Prata&display=swap');
 
-body {
-  margin: 0px;
+#test-wrap .example-awards {
+  /* padding: 10px; */
+  background-color: pink;
+  /* border: 1px green solid; */
 }
+
 
 .export-image {
   background: #fbfbf8;
-  width: 1050px;
+  width: 100%;
+  height: 100%;
   font-family: Bebas Neue;
+  /* clip-path: inset(0 100% 0 0);
+  display: none; */
+}
+
+.staticFont {
   clip-path: inset(0 100% 0 0);
   display: none;
 }
 
-#export-image .export-image-header {
-  width: 1050px;
-  padding-bottom: 25px;
+#export-image .awards {
+  padding: calc((25 / 1050) * 100%) calc((25 / 1050) * 100%) 0px calc((25 / 1050) * 100%);
+  /* display: block; */
+  /* height: 90%; */
 }
 
 #export-image .export-image-footer {
-  width: 1050px;
+  /* width: 1050px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 0px 25px 20px 25px;
+  padding: 0px 25px 20px 25px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0% calc((25 / 1050) * 100%);
 }
 
 #export-image .export-image-footer-title {
-  margin-top: 20px;
+  /* margin-top: 20px;
   font-size: 80px;
   display: flex;
   align-items: center;
+  position: relative; */
+  display: flex;
+  /* font-size: 7.2cqw; */
+  display: flex;
+  align-items: flex-start;
   position: relative;
+  flex: 1;
+  margin: auto;
+  line-height: 1;
+  /* border: 1px red solid; */
+  padding-top: 1%;
+  margin: 1% 0%;
 }
+
+.dynamicFont .export-image-footer-title {
+  font-size: 7.2cqw;
+}
+.staticFont .export-image-footer-title {
+  font-size: 490%;
+}
+
 #export-image .export-image-footer-title img {
-  position: absolute;
+  /* position: absolute;
   top: -5px;
-  height: 90px;
+  height: 90px; */
   
   /* width: "80px";
   margin-right: 10px; */
+  /* width: calc(80px / 1050px); */
+  width: 8%;
+  height: auto;
+
 }
 
 #export-image .export-image-footer-description img {
-  width: 185px;
+  /* width: 185px; */
+  width: 79%;
+  /* min-width: 70px; */
 }
 
 #export-image .export-image-footer-title-text {
-  margin-left: 70px;
+  /* margin-left: 70px; */
+  margin: 1.75%;
+  /* background: blue; */
 }
 
 #export-image .export-image-footer-description {
-  font-size: 40px;
+  /* font-size: 40px;
   text-align: right;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-end; */
+  text-align: right;
+  flex: 0.3;
+  /* font-size: 3.6cqw; */
+}
+
+.dynamicFont .export-image-footer-description {
+  font-size: 3.6cqw;
+}
+.staticFont .export-image-footer-description {
+  font-size: 247%;
 }
 
 #export-image .awards {
-  width: 1000px;
-  margin: 0px;
+  /* width: 1000px;
+  margin: 0px; */
   /* height: 1000px; */
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: space-between;
   color: white;
-  padding: 0px 25px 0px 25px;
+  padding: 0px 25px 0px 25px; */
 }
 
 #export-image .award {
   height: 100%;
+  /* width: calc(100% - ((50 / 1050) * 100%)); */
+  padding: 0px;
+  padding: calc((15 / 1050) * 100%) calc((10 / 1050) * 100%);
+  /* flex: 1; */
   /* min-height: 335px; - use when make awards height 1005 instead of 1000*/
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  padding: 15px 10px;
+  padding: 15px 10px; */
 }
 
-#export-image .award:nth-child(1) {
+.staticFont  .award:nth-child(1) {
   box-shadow: 15px 0px 15px 0px rgba(0, 0, 0, 0.5) inset, -15px 0px 15px 0px rgba(0, 0, 0, 0.5) inset, 0px -5px 20px 0px rgba(0, 0, 0, 0.5) inset, 0px 15px 15px 0px rgba(0, 0, 0, 0.5) inset;
 }
-#export-image .award:nth-child(2) {
+.staticFont  .award:nth-child(2) {
   box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.5) inset, -15px 0px 15px 0px rgba(0, 0, 0, 0.5) inset, 0px -5px 20px 0px rgba(0, 0, 0, 0.5) inset;
 }
-
-#export-image .award:nth-child(3) {
+.staticFont  .award:nth-child(3) {
   box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.5) inset, -5px 0px 5px 0px rgba(0, 0, 0, 0.5) inset, 0px -5px 5px 0px rgba(0, 0, 0, 0.5) inset;
 }
 
 #export-image .category-title {
-  font-size: 400%;
+  /* font-size: 6cqw; */
   height: 20%;
-  padding: 0px 13px; /* NOTE: this padding is to make the title align with album cover */
-  display: flex;
-  align-items: flex-start;
+  padding-left: 1.1%;
+  /* background: red; */
+  /* padding: 0px 13px;  NOTE: this padding is to make the title align with album cover */
+  /* display: flex; */
+  /* align-items: flex-start; */
+  /* border: 1px black solid; */
+  line-height: 0.85;
+  padding-bottom: 0.5%;
+  
+}
+
+.dynamicFont .category-title {
+  font-size: 6cqw;
+}
+.staticFont .category-title {
+  font-size: 400%;
 }
 
 #export-image .category-title span {
@@ -108,53 +175,91 @@ body {
 } */
 
 #export-image .nominees {
-  display: flex;
+  /* display: flex;
   height: 100%;
-  align-items: center;
+  align-items: center; */
+  /* font-size: 2.5cqw; */
+  width: 100%;
+  /* width: 200%; */
+}
+
+.dynamicFont .nominees {
+  font-size: 2.5cqw;
+}
+.staticFont .nominees {
+  font-size: 173%;
 }
 
 #export-image .nominees-wrap {
-  display: flex;
-  align-items: flex-start;
+  /* display: flex;
+  align-items: flex-start; */
+  /* border: 1px red solid; */
+  width: 100%;
 }
 
 #export-image .nominee {
-  width: 100%;
+  /* width: 100%;
   display: flex;
-  align-items: center;
+  align-items: center; */
+  width: 100%;
+  
 }
 
 #export-image .nominee-wrap {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
+  width: 100%;
 }
 
 #export-image .image-wrap {
-  width: 100%;
+  /* width: 100%;
   text-align: center;
-  position: relative;
+  position: relative; */
+  width: 85%;
 }
 
 #export-image .nominee-img {
-  width: 85%;
-  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4); 
+  /* width: 85%;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4);  */
 }
 
 #export-image .grammy {
-  width: 37%;
+  /* width: 37%;
   position: absolute;
   top: 105px;
   left: 123px;
-  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)); */
 }
 
 #export-image .nominee-name {
+  /* width: 85%;
+  font-size: 30px; */
   width: 85%;
-  font-size: 30px;
+  margin-top: 4%;
 }
 
 #export-image .nominee-details {
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
+
+
+@media screen and (min-width: 701px) {
+  
+  .dynamicFont .nominees {
+    font-size: 1.25cqw; 
+  }
+  .dynamicFont .category-title {
+    font-size: 3cqw;
+  }
+  .dynamicFont .export-image-footer-title {
+    font-size: 3.6cqw;
+  }
+  .dynamicFont .export-image-footer-description {
+    font-size: 1.8cqw;
+  }
+  
+}
+
+

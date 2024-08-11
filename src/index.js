@@ -6,6 +6,7 @@ import "./styles/home-styles.css";
 import "./styles/awards-styles.css";
 import "./styles/graphic-styles.css";
 import "./styles/privacy-styles.css";
+
 import "./test-styles.css";
 
 import HomePage from "./HomePage";

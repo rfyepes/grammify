@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 import Menu from "./Menu";
 import Footer from "./Footer";
 import AwardsPage from "./AwardsPage";
+import Graphic from "./Graphic";
 import spotigrammy from "./images/example-new.jpg";
+
+import { PALETTES, EXAMPLE_NOMINATIONS } from "./Constants"
 
 // TODO: credit Spotify for code
 var generateRandomString = function (length) {
@@ -33,8 +36,10 @@ AUTH_URL += "&show_dialog=true";
 function HomeContent() {
   return (
     <div className="main-page">
-      <div className="example-awards"> 
-        <img src={spotigrammy} alt="Example of a SpotiGrammy graphic" className="example-image" />
+      <div className="example-awards">
+      <div className="example-image"> 
+      <Graphic nominations={EXAMPLE_NOMINATIONS} season={PALETTES["summer"]} forExport={false} />
+      </div> 
       </div>
       <div className="description">
         <div className="description-block description-title">

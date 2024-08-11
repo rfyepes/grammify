@@ -178,8 +178,8 @@ body {
   position: absolute;
   /* bottom: 0px; */
   /* right: 8px; */
-  left: 65%;
-  top: 65%;
+  left: 64%;
+  top: 64%;
   border-radius: 50%;
   /* filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)); */
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.4); 
@@ -450,7 +450,7 @@ body {
     margin: 0px 20px;
   }
   
-  .awards {
+  #user-grammify .awards {
     margin: 10px;
   }
   
@@ -466,12 +466,12 @@ body {
 
 @media screen and (max-width: 600px) {
   
-  .nominee-name {
+  #user-grammify .nominee-name {
    font-size: 0.8em;
    margin-top: 4.5px;
  }
  
- .category-title {
+ #user-grammify .category-title {
   font-size: 2em;
   padding: 0px 0.1em; /* NOTE: this padding is to make the title align with album cover */
 }
@@ -479,7 +479,7 @@ body {
 }
 
 @media screen and (max-width: 500px) {
-  .awards {
+  #user-grammify .awards {
     padding: 0px;
     margin: 6px;
   }
@@ -489,7 +489,7 @@ body {
     margin-top: 5px;
   }
   
-  .award {
+  #user-grammify .award {
     padding: 5px 2px;
   }
 }
