@@ -34,6 +34,7 @@ export async function getArtistImages(artists, accessToken) {
           }
         });
         const data = await response.json();
+        // TODO: error check
         if (data.images.length === 0) {
           return null;
         }

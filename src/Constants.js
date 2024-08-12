@@ -62,6 +62,36 @@ export const EXAMPLE_NOMINATIONS = {
       details: "Olivia Rodrigo",
       image: "https://i.scdn.co/image/ab67616d00001e02e85259a1cae29a8d91f2093d",
       isWinner: false
+    },
+    {
+      name: "Espresso",
+      details: "Sabrina Carpenter",
+      image: "https://i.scdn.co/image/ab67616d00001e02de84adf0e48248ea2d769c3e",
+      isWinner: false
+    },
+    {
+      name: "Not Like Us",
+      details: "Kendrick Lamar",
+      image: "https://i.scdn.co/image/ab67616d00001e021ea0c62b2339cbf493a999ad",
+      isWinner: false
+    },
+    {
+      name: "Magnetic",
+      details: "ILLIT",
+      image: "https://i.scdn.co/image/ab67616d00001e02f037c5fb9de6c78726cb8e2c",
+      isWinner: true
+    },
+    {
+      name: "Too Sweet",
+      details: "Hozier",
+      image: "https://i.scdn.co/image/ab67616d00001e02a5aab55aa65e5f6bd19564a2",
+      isWinner: false
+    },
+    {
+      name: "Houdini",
+      details: "Dua Lipa",
+      image: "https://i.scdn.co/image/ab67616d00001e02778c1e4660aa23f6728b32a1",
+      isWinner: false
     }
   ],
   albums: [
@@ -95,6 +125,36 @@ export const EXAMPLE_NOMINATIONS = {
       image: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44",
       isWinner: false
     },
+    {
+      name: "HIT ME HARD AND SOFT",
+      details: "Billie Eilish",
+      image: "https://i.scdn.co/image/ab67616d00001e0271d62ea7ea8a5be92d3c1f62",
+      isWinner: false
+    },
+    {
+      name: "ORQUÍDEAS",
+      details: "Kali Uchis",
+      image: "https://i.scdn.co/image/ab67616d00001e02b968625b03ec59b30b48e9c3",
+      isWinner: true
+    },
+    {
+      name: "God Said No",
+      details: "Omar Apollo",
+      image: "https://i.scdn.co/image/ab67616d00001e02f6ba7085174586aed75935bc",
+      isWinner: false
+    },
+    {
+      name: "<Dall>",
+      details: "ARTMS",
+      image: "https://i.scdn.co/image/ab67616d00001e023eaf9b3c1c804fec2bb06ac0",
+      isWinner: false
+    },
+    {
+      name: "TIMELESS",
+      details: "KAYTRANADA",
+      image: "https://i.scdn.co/image/ab67616d00001e023d1996a2dc962e53e12cb7cb",
+      isWinner: false
+    }
   ],
   artists: [
     {
@@ -121,11 +181,33 @@ export const EXAMPLE_NOMINATIONS = {
       name: "Taylor Swift",
       image: "https://i.scdn.co/image/ab67616100005174859e4c14fa59296c8649e0e4",
       isWinner: false
+    },
+    {
+      name: "Tate McRae",
+      image: "https://i.scdn.co/image/ab67616100005174846308bf9bf7d3183958b3a6",
+      isWinner: false
+    },
+    {
+      name: "Benson Boone",
+      image: "https://i.scdn.co/image/ab67616100005174b2ce21a89c09c00d80d8ca25",
+      isWinner: false
+    },
+    {
+      name: "Chappell Roan",
+      image: "https://i.scdn.co/image/ab67616100005174cde5a0d57c1b79de5fce6bee",
+      isWinner: false
+    },
+    {
+      name: "Charli xcx",
+      image: "https://i.scdn.co/image/ab67616100005174936885667ef44c306483c838",
+      isWinner: true
+    },
+    {
+      name: "FLO",
+      image: "https://i.scdn.co/image/ab67616100005174c11fac63b181b445fb715a44",
+      isWinner: false
     }
   ]
 };
 
-
-
-
-
+ 

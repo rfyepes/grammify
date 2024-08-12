@@ -34,11 +34,75 @@ AUTH_URL += "&state=" + encodeURIComponent(state);
 AUTH_URL += "&show_dialog=true";
 
 function HomeContent() {
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [winners, setWinners] = useState([2, 1, 3]);
+  const [prevWinners, setPrevWinners] = useState([0, 0, 0]);
+  
+  useEffect(() => {
+    // code adapted from https://betterprogramming.pub/using-window-matchmedia-in-react-8116eada2588?gi=1ac30d49552e
+    const mediaWatcher = window.matchMedia("screen and (prefers-reduced-motion: reduce)")
+    setReduceMotion(mediaWatcher.matches);
+
+    function updateReduceMotion(e) {
+      setReduceMotion(e.matches);
+    }
+    if (mediaWatcher.addEventListener) {
+      mediaWatcher.addEventListener('change', updateReduceMotion)
+      return function cleanup() {
+        mediaWatcher.removeEventListener('change', updateReduceMotion)
+      }
+    } else {
+      // for older Safari versions
+      mediaWatcher.addListener(updateReduceMotion)
+      return function cleanup() {
+        mediaWatcher.removeListener(updateReduceMotion)
+      }
+    }
+  });
+  
+  const reduceMotionNoms = {
+    songs: EXAMPLE_NOMINATIONS.songs.slice(0, 5),
+    albums: EXAMPLE_NOMINATIONS.albums.slice(0, 5),
+    artists: EXAMPLE_NOMINATIONS.artists.slice(0, 5)
+  };
+  const nominations = reduceMotion ? reduceMotionNoms : {
+    songs: EXAMPLE_NOMINATIONS.songs.concat(reduceMotionNoms.songs),
+    albums: EXAMPLE_NOMINATIONS.albums.concat(reduceMotionNoms.albums),
+    artists: EXAMPLE_NOMINATIONS.artists.concat(reduceMotionNoms.artists),
+
+  };
+
+  for (let i = 0; i < nominations.songs.length; i += 5) {
+    nominations.songs[winners[0] + i].isWinner = true;
+    nominations.songs[prevWinners[0] + i].isWinner = false;
+    nominations.albums[winners[1] + i].isWinner = true;
+    nominations.albums[prevWinners[1] + i].isWinner = false;
+    nominations.artists[winners[2] + i].isWinner = true;
+    nominations.artists[prevWinners[2] + i].isWinner = false;
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPrevWinners(winners);
+      let newWinners = new Array(3);
+      for (let i = 0; i < 3; i++) {
+        let rand;
+        do {
+          rand = Math.floor(Math.random() * 5);
+        } while (rand == winners[i]);
+        newWinners[i] = rand;
+      }
+      setWinners(newWinners);
+    }, 3000);
+  
+    return () => clearInterval(interval);
+  }, [nominations]);
+  
   return (
     <div className="main-page">
       <div className="example-awards">
       <div className="example-image"> 
-      <Graphic nominations={EXAMPLE_NOMINATIONS} season={PALETTES["summer"]} forExport={false} />
+      <Graphic nominations={nominations} season={PALETTES["summer"]} forExport={false} />
       </div> 
       </div>
       <div className="description">

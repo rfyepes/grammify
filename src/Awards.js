@@ -8,7 +8,7 @@ import { BiSolidAlbum } from "react-icons/bi";
 import { IoMdMusicalNote } from "react-icons/io";
 
 function Nominee({ data, isArtist, makeWinner, isWinnable, altImage }) {
-  const visibleGrammy = { display: "block", opacity: "1" };
+  const visibleGrammy = { opacity: "1" };
   const imageStyle = { borderRadius: isArtist ? "50%" : "0%" };
   const nameStyle = { textAlign: isArtist ? "center" : "left" };
   const image = (data.image != null) ? data.image : altImage;

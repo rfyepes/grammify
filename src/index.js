@@ -6,8 +6,9 @@ import "./styles/home-styles.css";
 import "./styles/awards-styles.css";
 import "./styles/graphic-styles.css";
 import "./styles/privacy-styles.css";
+import "./styles/carosel-styles.css";
 
-import "./test-styles.css";
+// import "./test-styles.css";
 
 import HomePage from "./HomePage";
 import AwardsPage from "./AwardsPage";

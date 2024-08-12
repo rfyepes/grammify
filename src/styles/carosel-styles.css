@@ -1,0 +1,38 @@
+@media screen and (prefers-reduced-motion: no-preference) {
+  #export-image .nominees {
+    width: 300%;
+  }
+  
+  #export-image .award {
+    overflow: hidden;
+  }
+  
+  #export-image .award:nth-child(1) .nominees {
+    animation: slideLeft 55s linear infinite;
+  }
+  #export-image .award:nth-child(2) .nominees {
+    animation: slideRight 40s linear infinite;
+  }
+  #export-image .award:nth-child(3) .nominees {
+    animation: slideLeft 35s linear infinite;
+  }
+}
+
+#export-image .grammy {
+  transition: opacity 1s ease;
+}
+
+@keyframes slideLeft {
+  to {
+    transform: translateX(calc(-100% * (2/3)));
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(calc(-100% * (2/3)));
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
