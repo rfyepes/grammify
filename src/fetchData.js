@@ -12,7 +12,7 @@ export async function retrieveTopTracks(timeRange, accessToken) {
     });
     
     if (!response.ok) {
-      throw new Error(`HTTP error - status ${response.status}`);
+      throw new Error(`HTTP error - status ${response.status}: ${response.message}`);
     }
     
     var data = await response.json();
