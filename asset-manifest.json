@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/grammify/static/css/main.b0318a41.css",
-    "main.js": "/grammify/static/js/main.e6df476f.js",
+    "main.css": "/grammify/static/css/main.69e7d360.css",
+    "main.js": "/grammify/static/js/main.dc604bf0.js",
     "static/media/example-new.jpg": "/grammify/static/media/example-new.c275e0b8137ab6694cca.jpg",
     "static/media/test1.jpg": "/grammify/static/media/test1.93b7294cb39f4f69b8e3.jpg",
     "static/media/empty.jpg": "/grammify/static/media/empty.768cf64aba51ac17adf1.jpg",
@@ -24,11 +24,11 @@
     "static/media/artist-placeholder.png": "/grammify/static/media/artist-placeholder.9794e9bfbace4a447e63.png",
     "static/media/song-placeholder.png": "/grammify/static/media/song-placeholder.5924c6169617fd80bf6f.png",
     "index.html": "/grammify/index.html",
-    "main.b0318a41.css.map": "/grammify/static/css/main.b0318a41.css.map",
-    "main.e6df476f.js.map": "/grammify/static/js/main.e6df476f.js.map"
+    "main.69e7d360.css.map": "/grammify/static/css/main.69e7d360.css.map",
+    "main.dc604bf0.js.map": "/grammify/static/js/main.dc604bf0.js.map"
   },
   "entrypoints": [
-    "static/css/main.b0318a41.css",
-    "static/js/main.e6df476f.js"
+    "static/css/main.69e7d360.css",
+    "static/js/main.dc604bf0.js"
   ]
 }
