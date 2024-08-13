@@ -10,7 +10,7 @@ export async function retrieveTopTracks(timeRange, accessToken) {
         Authorization: "Bearer " + accessToken
       }
     });
-    
+    // TODO: alter message w/ instructions to user?
     if (!response.ok) {
       throw new Error(`HTTP error - status ${response.status}: ${response.message}`);
     }
