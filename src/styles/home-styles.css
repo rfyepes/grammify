@@ -96,7 +96,7 @@
   height: 100%;
   overflow: auto;
   background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(100,100,100,0.4);
 }
 
 .overflow-y-hidden {
@@ -120,6 +120,8 @@
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   overflow: scroll;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 1%;
 }
 
 .info-title {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import html2canvas from "html2canvas";
 
 import Awards from "./Awards";
@@ -6,9 +6,12 @@ import Graphic from "./Graphic";
 import Menu from "./Menu";
 import Footer from "./Footer";
 
+import { LuShare, LuDownload } from "react-icons/lu";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+
 import generateNominations from "./generateNominations";
 import { retrieveTopTracks, getArtistImages, replaceImages } from "./fetchData";
-import { SYMBOLS, PALETTES } from "./Constants"
+import { SYMBOLS, PALETTES, EXAMPLE_NOMINATIONS } from "./Constants"
 
 
 function ThemeButton({ theme, isActive, onClick }) {
@@ -114,16 +117,8 @@ export default function AwardsPage({ accessToken, logOut }) {
       imageDiv.style.display = "block";
       html2canvas(imageDiv, { scale: 2, windowWidth: 1050 }).then(canvas => {
         imageDiv.style.display = "none";
-        var link = document.createElement('a');
-        link.download = 'my-grammify.jpg';
-        link.href = canvas.toDataURL("image/jpeg");
-        link.click();
-        ///////
-        // navigator.share(canvas.toDataURL("image/jpeg"));
-        // var image = document.createElement('img');
-        // image.src = canvas.toDataURL("image/jpeg");
-        // image.style = "width: 100px";
-        // document.body.appendChild(image);
+        imageData.current.src = canvas.toDataURL("image/jpeg");
+        setShowModal(true);
       });
     } else {
       alert("Error: wait a few seconds and try again.");
@@ -161,6 +156,11 @@ export default function AwardsPage({ accessToken, logOut }) {
       //   setLoading(true);
       //   return;
       // }
+      if (noms.songs.length === 0 && noms.albums.length === 0 && noms.artists.length === 0) {
+        setLoadingMessage("ERROR: No eligible listening data (sorry 😢)");
+        setLoading(true);
+        return;
+      }
       const artistImages = await getArtistImages(noms.artists, accessToken);
       noms.artists = noms.artists.map((artist, index) => {
         return {
@@ -168,6 +168,12 @@ export default function AwardsPage({ accessToken, logOut }) {
           image: artistImages[index]
         };
       });
+      
+      // noms = {
+      //   songs: EXAMPLE_NOMINATIONS.songs.slice(0, 5),
+      //   albums: EXAMPLE_NOMINATIONS.albums.slice(0, 5),
+      //   artists: EXAMPLE_NOMINATIONS.artists.slice(0, 5)
+      // };
       
       noms = await replaceImages(noms);
             
@@ -184,7 +190,45 @@ export default function AwardsPage({ accessToken, logOut }) {
       setLoading(false);
     }
   }, [nominations]);
+  const [showModal, setShowModal] = useState(false);
+  const imageData = useRef(null);
+  useEffect(() => {
+    if (showModal) {
+      document.body.classList.add("overflow-y-hidden");
+    } else {
+      document.body.classList.remove("overflow-y-hidden");
+    }
+  }, [showModal]);
   
+  const handleDownload = () => {
+    var link = document.createElement('a');
+    link.download = 'my-grammify.jpg';
+    link.href = imageData.current.src;
+    link.click();
+  };
+  
+  const handleShare = async () => {
+  if (navigator.share) {
+    try {
+      const response = await fetch(imageData.current.src);
+      const blob = await response.blob();
+      const file = new File([blob], "my-grammify.jpg", { type: "image/jpeg" });
+      
+      await navigator.share({
+        title: "GRAMMIFY",
+        text: "Check out my GRAMMIFY lineup!",
+        files: [file],
+      });
+      
+      console.log("Share successful");
+    } catch (error) {
+      console.error("Error sharing: ", error);
+    }
+  } else {
+    console.error("Share API not supported");
+  }
+};
+
   return (
     <>
     <div className="main-wrapper">
@@ -200,6 +244,32 @@ export default function AwardsPage({ accessToken, logOut }) {
         }
       </div>
       <Footer />
+    </div>
+    <div className="modal" onClick={() => setShowModal(false)} style={{display: (showModal ? "block" : "none")}}>
+      <div className="export-modal" onClick={(e) => {e.stopPropagation()}}>
+        <div className="export-modal-inner">
+          <div className="info-close-button-mini">
+            <div id="info-close-button-mini" onClick={() => setShowModal(false)}>&times;</div>
+          </div>
+          <img ref={imageData} alt="Screenshot" />
+          <div className="export-buttons">
+            <div className="export-button" onClick={handleDownload}>
+              <LuDownload />
+              <span>Download</span>
+            </div>
+            <div className="export-button" onClick={handleShare}>
+              <LuShare />
+              <span>Share</span>
+            </div>
+          </div>
+          <div className="export-close">
+          <div className="export-close-button" onClick={() => setShowModal(false)}>
+            <AiOutlineCloseCircle />
+            <span>Close</span>
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
     <Graphic nominations={nominations} season={PALETTES[season]} forExport={true} />
     </>
