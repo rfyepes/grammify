@@ -139,7 +139,7 @@ export default function AwardsPage({ accessToken, logOut }) {
         setLoadingMessage(error.toString());
         return;
       }
-
+      
       setTopTracks(tracks);
     }
     getTopTracks();
@@ -216,7 +216,7 @@ export default function AwardsPage({ accessToken, logOut }) {
       
       await navigator.share({
         title: "GRAMMIFY",
-        text: "Check out my GRAMMIFY lineup!",
+        text: "Check out my GRAMMIFY lineup!", // TODO: insert grammify link
         files: [file],
       });
       
@@ -243,6 +243,7 @@ export default function AwardsPage({ accessToken, logOut }) {
             </>
         }
       </div>
+      <div style={{display: "flex", justifyContent: "center", marginBottom: "10px"}}><button type="button" style={{width: "100px", height: "20px"}} onClick={() => {navigator.clipboard.writeText(JSON.stringify(topTracks)); alert("Data copied to clipboard")}}>Copy Data</button></div>
       <Footer />
     </div>
     <div className="modal" onClick={() => setShowModal(false)} style={{display: (showModal ? "block" : "none")}}>
