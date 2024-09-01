@@ -30,6 +30,18 @@ export const PALETTES = {
 };
 
 
+// NULL NOMINEE (space fillers in case there aren't enough nominations)
+export const NULL_NOMINEE = {
+  name: "",
+  image: null,
+  imageAlt: "",
+  details: "",
+  isWinner: false,
+  releaseDate: null,
+  empty: true
+};
+
+
 // EXAMPLE AWARD NOMINEES
 export const EXAMPLE_NOMINATIONS = {
   songs: [
@@ -210,4 +222,5 @@ export const EXAMPLE_NOMINATIONS = {
   ]
 };
 
- 
+
+

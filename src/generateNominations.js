@@ -52,11 +52,11 @@ import { AWARD_YEAR, ELIGIBILITY, NUM_NOMINATIONS } from "./Constants"
 // }
 
 // Returns true iff the given track was released within eligibility period
-function isEligible(track) {
+export function isEligible(dateString) {
   
   // Assumes release date is in format "YYYY-MM" or "YYYY-MM-DD"
   // TODO: account for "YYYY" by looking at release date precision field
-  const splitDate = track.album.release_date.split("-");
+  const splitDate = dateString.split("-");
   
   if (splitDate.length < 2) {
     return false;
@@ -65,7 +65,7 @@ function isEligible(track) {
   const releaseDate = {
     year: parseInt(splitDate[0]),
     month: parseInt(splitDate[1]),
-    day: parseInt(splitDate[2] ? splitDate[2] : ELIGIBILITY.end_day + 1) // Disqualified if no date
+    day: parseInt(splitDate[2] ? splitDate[2].substring(0, 2) : ELIGIBILITY.end_day + 1) // Disqualified if no date
   };
   
   switch (releaseDate.year) {
@@ -87,7 +87,7 @@ function isEligible(track) {
 
 // Data expected to be an object with three fields - short_term, medium_term, 
 // and long_term - each mapping to an array of Spotify TrackObjects
-export default function generateNominations(data) {
+export function generateNominations(data) {
   
   // TODO: releases from past 6 months that are on long term shoudl be above 
   // older realses that are on long term but not medium term!!!!! 
@@ -106,7 +106,9 @@ export default function generateNominations(data) {
   const trackQueue = new PriorityQueue(); // Ideal for track repitition
   const tracks = data.long_term.concat(data.medium_term.concat(data.short_term));
   for (let i = 0; i < tracks.length; i++) {
-    trackQueue.insert(tracks[i].id, tracks.length - i);
+    // console.log(parseInt(i + 1) + " - " + tracks[i].name + " by " + tracks[i].artists[0].name);
+
+    trackQueue.insert(tracks[i].id, tracks.length - i); // TODO: improve track priority, esp with recent release dates
     trackMap.set(tracks[i].id, tracks[i]);
   }
   
@@ -121,10 +123,11 @@ export default function generateNominations(data) {
   
   trackQueue.convertToArray().forEach((trackID, index) => {
     const track = trackMap.get(trackID);
-    if (!isEligible(track)) {
+    // console.log("TRACK - " + track.name + " by " + track.artists[0].name + ", " + track.album.release_date);
+    if (!isEligible(track.album.release_date)) {
       return;
     }
-    
+    // console.log("ELIGIBLE TRACK - " + track.name + ", by: " + track.artists.map(a => a.name));
     // Nominate track if its primary artist has not yet been encountered
     if (nominations.songs.length < NUM_NOMINATIONS && !artistSet.has(track.artists[0].id) && track.duration_ms >= 60000) {
       nominations.songs.push(track);
@@ -132,18 +135,22 @@ export default function generateNominations(data) {
     }
     
     // Nominate album if eligible
+    // TODO: album can only be nominated if user listened to at least 3 tracks?
     if (track.album.total_tracks > 4) {
-      albumQueue.insert(JSON.stringify(track.album), 1 / track.album.total_tracks);
-    }
+      albumQueue.insert(JSON.stringify(track.album), 1);
+    } 
     
     // Increment priority of artist for artist award
-    artistQueue.insert(JSON.stringify(track.artists[0]), 1);
+    for (let i = 0; i < track.artists.length; i++) {
+      artistQueue.insert(JSON.stringify(track.artists[i]), i === 0 ? 2 : 1);
+    }
   });
     
   artistSet.clear();
-  const albums = albumQueue.convertToArray().map(str => JSON.parse(str));
-  
-  // Generate 5 album nominations with no repeat artists
+  const albums = albumQueue.convertToArray(2).map(str => JSON.parse(str));
+  // console.log("albums:")
+  // console.log(albums);
+  // Generate 5 album nominations with no repeat artists (TODO: unless <5 noms?)
   for (let i = 0; i < albums.length; i++) {
     if (nominations.albums.length === NUM_NOMINATIONS) {
       break;
@@ -153,10 +160,11 @@ export default function generateNominations(data) {
       artistSet.add(albums[i].artists[0].id);
     }
   }
-  
+  // console.log(nominations.songs);
   // Generate 5 artist nominations
-  nominations.artists = artistQueue.convertToArray().slice(0, NUM_NOMINATIONS).map(str => JSON.parse(str));
-  
+  // console.log(artistQueue.convertToArray().map(str => JSON.parse(str)).map(a => a.name));
+  nominations.artists = artistQueue.convertToArray(3).slice(0, NUM_NOMINATIONS).map(str => JSON.parse(str));
+  // console.log("artist queue:")
   return {
     songs: nominations.songs.map((song, rank) => {
       return {
@@ -165,7 +173,10 @@ export default function generateNominations(data) {
         imageAlt: song.album.name + " album cover",
         details: song.artists.map(artist => artist.name).join(", "),
         isWinner: rank === 0,
-        releaseDate: song.album.release_date
+        releaseDate: song.album.release_date,
+        empty: false,
+        popularity: rank === 0 ? 101 : 100,
+        id: song.id
       };
     }).sort((a, b) => { return new Date(a.releaseDate) - new Date(b.releaseDate); }),
     albums: nominations.albums.map((album, rank) => {
@@ -175,7 +186,10 @@ export default function generateNominations(data) {
         imageAlt: album.name + " album cover",
         details: album.artists.map(artist => artist.name).join(", "),
         isWinner: rank === 0,
-        releaseDate: album.release_date
+        releaseDate: album.release_date,
+        empty: false,
+        popularity: rank === 0 ? 101 : 100,
+        id: album.id
       };
     }).sort((a, b) => { return new Date(a.releaseDate) - new Date(b.releaseDate); }),
     artists: nominations.artists.map((artist, rank) => {
@@ -185,7 +199,9 @@ export default function generateNominations(data) {
         image: null, // Artist images need to be retrieved separately
         imageAlt: artist.name + " profile image",
         details: null,
-        isWinner: rank === 0
+        isWinner: rank === 0,
+        empty: false,
+        popularity: rank === 0 ? 101 : 100
       };
     }).sort((a, b) => a.name.localeCompare(b.name))
   };

@@ -36,6 +36,9 @@ import TestPage from "./TestPage";
 //  = shadow behind images on graphic?
 //  = finalize font size for graphic
 //  = remove unneeded font imports
+//  = change 401 behaviour - refreshes page when signing in...
+//  - glassomorphic design for modal?
+//  = images - smallest dimension rather than last in array?
 // then:
 //  - remove strict mode 
 //  - update redirect uri (homepage.js and package.json)

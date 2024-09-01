@@ -9,6 +9,7 @@ export default class PriorityQueue {
   constructor() {
     this.queue = []
     this.set = new Set();
+    this.counter = 0;
   }
   isEmpty() {
     return this.length() === 0;
@@ -27,8 +28,9 @@ export default class PriorityQueue {
     } else {
       this.set.add(element);
       this.queue.push({ 
+        id: this.nextId(),
         element: element, 
-        priority: priority 
+        priority: priority
       });
       this.bubbleUp(this.queue.length - 1);
     }
@@ -51,15 +53,21 @@ export default class PriorityQueue {
     
     return extracted;
   }
-  convertToArray() {
+  convertToArray(threshold = null) {
     const array = [];
     while (!this.isEmpty()) {
+      if (threshold && this.queue[0].priority < threshold) {
+        break;
+      }
       array.push(this.extract());
     }
     return array;
   }
 
   // Private methods
+  nextId() {
+    return this.counter++;
+  }
   bubbleUp(index) {
     while (index > 0) {
       const parent = Math.floor((index - 1) / 2);
@@ -70,16 +78,25 @@ export default class PriorityQueue {
       index = parent;
     }
   }
+  // returns true if first has priority over second
+  hasPriority(first, second) {
+    if (this.queue[first].priority > this.queue[second].priority) {
+      return true;
+    } else if (this.queue[first].priority === this.queue[second].priority) {
+      return this.queue[first].id < this.queue[second].id;
+    }
+    return false;
+  }
   bubbleDown(index) {
     const left = 2 * index + 1;
     const right = 2 * index + 2;
     let maxIndex = index;
 
-    if (left < this.queue.length && this.queue[left].priority > this.queue[maxIndex].priority) {
+    if (left < this.queue.length && this.hasPriority(left, maxIndex)) {
       maxIndex = left;
     }
 
-    if (right < this.queue.length && this.queue[right].priority > this.queue[maxIndex].priority) {
+    if (right < this.queue.length && this.hasPriority(right, maxIndex)) {
       maxIndex = right;
     }
 

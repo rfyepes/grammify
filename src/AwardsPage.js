@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import html2canvas from "html2canvas";
 
 import Awards from "./Awards";
@@ -9,9 +10,10 @@ import Footer from "./Footer";
 import { LuShare, LuDownload } from "react-icons/lu";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-import generateNominations from "./generateNominations";
-import { retrieveTopTracks, getArtistImages, replaceImages } from "./fetchData";
-import { SYMBOLS, PALETTES, EXAMPLE_NOMINATIONS } from "./Constants"
+import { generateNominations } from "./generateNominations";
+import { retrieveTopTracks, getArtistImages, replaceImages, replaceImage, getAlbumPopularity } from "./fetchData";
+import { SYMBOLS, PALETTES, EXAMPLE_NOMINATIONS, NULL_NOMINEE, NUM_NOMINATIONS } from "./Constants"
+
 
 
 function ThemeButton({ theme, isActive, onClick }) {
@@ -86,6 +88,70 @@ export default function AwardsPage({ accessToken, logOut }) {
   const [canToggleWinners, setCanToggleWinners] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [loadingMessage, setLoadingMessage] = useState("Loading...");
+  const navigate = useNavigate();
+  
+  const clearQueryParams = () => {
+    navigate(0, { replace: true });
+  }
+  
+  const addNominee = async (nominee, cat) => {
+    const updateNominations = (n) => {
+      let maxPopularity = 0;
+      let maxPopularityIndex = 0;
+      const newOgNoms = JSON.parse(JSON.stringify(ogNominations));
+      const newNoms = JSON.parse(JSON.stringify(nominations));
+      for (let i = 0; i < NUM_NOMINATIONS; i++) {
+        newOgNoms[cat][i].isWinner = false;
+        newNoms[cat][i].isWinner = false;//TODO?
+        
+        if (!newOgNoms[cat][i].empty && newOgNoms[cat][i].popularity > maxPopularity) {
+          maxPopularityIndex = i;
+          maxPopularity = newOgNoms[cat][i].popularity;
+        }
+        if (newOgNoms[cat][i].empty) {
+          newOgNoms[cat][i].name = newNoms[cat][i].name = n.name;
+          newOgNoms[cat][i].image = newNoms[cat][i].image = n.image;
+          newOgNoms[cat][i].imageAlt = newNoms[cat][i].imageAlt = n.name + (cat == "artists") ? " profile image" : " album cover"; // TODO: ugh
+          newOgNoms[cat][i].details = newNoms[cat][i].details = n.details;
+          newOgNoms[cat][i].releaseDate = newNoms[cat][i].releaseDate = n.release_date;
+          newOgNoms[cat][i].empty = newNoms[cat][i].empty = false;
+          newOgNoms[cat][i].isWinner = false;
+          newNoms[cat][i].isWinner = false;//TODO?
+          newOgNoms[cat][i].popularity = newNoms[cat][i].popularity = n.popularity;
+          
+          if (n.popularity > maxPopularity) {
+            maxPopularityIndex = i;
+            maxPopularity = n.popularity;
+          }
+
+          break;
+        } 
+
+      }
+      newOgNoms[cat][maxPopularityIndex].isWinner = true;
+      newNoms[cat][maxPopularityIndex].isWinner = !canToggleWinners;
+
+
+      
+      // noms = await replaceImages(noms);
+            
+      setOgNominations(JSON.parse(JSON.stringify(newOgNoms)));
+      setNominations(JSON.parse(JSON.stringify(newNoms)));
+
+    };
+    replaceImage(nominee.image).then((res) => {
+      nominee.image = res;
+      if (cat == "albums") {
+        getAlbumPopularity(nominee.id, accessToken).then((res) => {
+          nominee.popularity = res;
+          updateNominations(nominee);
+        });
+      } else {
+        updateNominations(nominee);
+      }
+    })
+    
+  };
   
   const toggleWinnerSelection = (id) => {
     let newNoms = JSON.parse(JSON.stringify(ogNominations));
@@ -136,6 +202,12 @@ export default function AwardsPage({ accessToken, logOut }) {
           short_term: await retrieveTopTracks("short_term", accessToken)
         };
       } catch (error) {
+        // if (error === 401) { // TODO: replace with Error object
+        //   clearQueryParams();
+        //   window.location.href = window.location.pathname;
+        // } else {
+        //   setLoadingMessage(error.toString());
+        // }
         setLoadingMessage(error.toString());
         return;
       }
@@ -151,15 +223,34 @@ export default function AwardsPage({ accessToken, logOut }) {
       //       OR just check if returned noms have 5 per category
       let noms = generateNominations(topTracks);
       // TODO: uncomment and refine
-      // if (noms.songs.length !== 5 || noms.albums.length !== 5 || noms.artists.length !== 5) {
+      if (noms.songs.length !== 5 || noms.albums.length !== 5 || noms.artists.length !== 5) {
       //   setLoadingMessage("ERROR: Insufficient listening data (sorry 😢)");
+      //   setLoading(true);
+      //   let x = "Oh...you're one of THOSE people...😒"
+      //   "Your listening data is clogged with music that was released before eligibility period! Not all nomin"
+      //   "Your top tracks don't contain enough eligible music to generate enough nominees accross all categories."
+      //   "Try listening to "
+      // 
+      // 
+      //   "I'll let you add nominees if you want to fill up each category... or you can leave it as is..."
+      //   return;
+        // noms = await extendNominations(noms);
+      }
+      // if (noms.songs.length === 0 || noms.albums.length === 0 || noms.artists.length === 0) {
+      //   setLoadingMessage("ERROR: Not enough eligible listening data (sorry 😢)");
       //   setLoading(true);
       //   return;
       // }
-      if (noms.songs.length === 0 && noms.albums.length === 0 && noms.artists.length === 0) {
-        setLoadingMessage("ERROR: No eligible listening data (sorry 😢)");
-        setLoading(true);
-        return;
+      for (let i = 0; i < NUM_NOMINATIONS; i++) {
+        if (noms.songs.length - 1 < i) {
+          noms.songs.push(NULL_NOMINEE);
+        }
+        if (noms.albums.length - 1 < i) {
+          noms.albums.push(NULL_NOMINEE);
+        }
+        if (noms.artists.length - 1 < i) {
+          noms.artists.push(NULL_NOMINEE);
+        }
       }
       const artistImages = await getArtistImages(noms.artists, accessToken);
       noms.artists = noms.artists.map((artist, index) => {
@@ -238,12 +329,11 @@ export default function AwardsPage({ accessToken, logOut }) {
           isLoading 
           ? <div className="loading-message">{loadingMessage}</div>
           : <>
-              <Awards nominations={nominations} palette={PALETTES[season]} toggleWinners={toggleWinners} isChoosable={canToggleWinners} />
+              <Awards nominations={nominations} palette={PALETTES[season]} toggleWinners={toggleWinners} isChoosable={canToggleWinners} accessToken={accessToken} addNominee={addNominee} />
               <ControlPanel isTogglable={canToggleWinners} toggleWinnerSelection={toggleWinnerSelection} season={season} changeSeason={setSeason} saveAndShare={exportImage} />
             </>
         }
       </div>
-      <div style={{display: "flex", justifyContent: "center", marginBottom: "10px"}}><button type="button" style={{width: "100px", height: "20px"}} onClick={() => {navigator.clipboard.writeText(JSON.stringify(topTracks)); alert("Data copied to clipboard")}}>Copy Data</button></div>
       <Footer />
     </div>
     <div className="modal" onClick={() => setShowModal(false)} style={{display: (showModal ? "block" : "none")}}>

@@ -2,6 +2,8 @@
 // Contains async functions called in AwardsPage.js that fetch data from the
 // Spotify API
 
+import { AWARD_YEAR } from "./Constants"
+
 export async function retrieveTopTracks(timeRange, accessToken) {
   
   try {
@@ -10,6 +12,9 @@ export async function retrieveTopTracks(timeRange, accessToken) {
         Authorization: "Bearer " + accessToken
       }
     });
+    // if (response.status === 401) {
+    //   throw 401;
+    // }
     // TODO: alter message w/ instructions to user?
     if (!response.ok) {
       throw new Error(`HTTP error - status ${response.status}: ${response.message}`);
@@ -20,13 +25,15 @@ export async function retrieveTopTracks(timeRange, accessToken) {
     console.error("Error fetching data:", error.message);
     throw error;
   }
-  
   return data.items;  
 }
 
 export async function getArtistImages(artists, accessToken) {
   
   const images = await artists.map(async (artist) => {
+    if (artist.empty) {
+      return null;
+    }
     try {
         const response = await fetch(`https://api.spotify.com/v1/artists/${artist.id}`, {
           headers: {
@@ -40,7 +47,7 @@ export async function getArtistImages(artists, accessToken) {
         }
         return (data.images.length === 1) ? data.images[0].url : data.images[1].url;
     } catch (error) {
-      throw error;
+      return null;
     }
   })
   return await Promise.all(images);
@@ -87,4 +94,79 @@ export async function replaceImages(nominations) {
   nominations.artists = nominations.artists.map(makeReplaceImage(await Promise.all(artistImages)));
   
   return nominations;
+}
+
+export async function replaceImage(imageURL) {
+  if (!imageURL) {
+    return null;
+  }
+  try {
+      const response = await fetch(imageURL);
+      const blob = await response.blob();
+      return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = (error) => reject(error);
+          reader.readAsDataURL(blob);
+      });
+  } catch (error) {
+      throw new Error('Error converting image to base64: ' + error.message);
+      return null;
+  }
+};
+
+
+export async function spotifySearch(query, type, accessToken) {
+  //TODO: add limit??? rn tehre are 100
+  try {
+    const response = await fetch(`https://api.spotify.com/v1/search?${new URLSearchParams({
+      q: `${type}:${query}${type === "artist" ? "" : ` year:${AWARD_YEAR - 2}-${AWARD_YEAR - 1}`}`,
+      type: type,
+    })}`, {
+      headers: {
+        Authorization: "Bearer " + accessToken
+      }
+    });
+    if (response.status === 401) {
+      throw 401;
+    }
+    // TODO: alter message w/ instructions to user?
+    if (!response.ok) {
+      // TODO: search api may be affected and return nothing
+      console.log(`HERE - HTTP error - status ${response.status}: ${response.message}`);
+      throw new Error(`HTTP error - status ${response.status}: ${response.message}`);
+    }
+    
+    var data = await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+    return [];
+  }
+  return data[type + "s"].items;  
+}
+
+export async function getAlbumPopularity(id, accessToken) {
+
+  try {
+    const response = await fetch(`https://api.spotify.com/v1/albums/${id}`, {
+      headers: {
+        Authorization: "Bearer " + accessToken
+      }
+    });
+    if (response.status === 401) {
+      throw 401;
+    }
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error - status ${response.status}: ${response.message}`);
+    }
+    
+    var data = await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+    return 0;
+  }
+  // console.log("FETCH DONE!!!!!!!");
+  // console.log(data);
+  return data.popularity;  
 }

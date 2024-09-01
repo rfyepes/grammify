@@ -101,6 +101,7 @@
 
 .overflow-y-hidden {
   overflow: hidden;
+  position: fixed;
 }
 
 .info-modal {
