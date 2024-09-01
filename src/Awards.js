@@ -24,6 +24,7 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken
   
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
+      inputRef.current.blur();
       handleSubmit(e);
     }
   };
