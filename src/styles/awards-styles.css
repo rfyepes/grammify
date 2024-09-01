@@ -148,10 +148,12 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: visible;
 }
 
  .image-wrap {
-  width: 85%;
+  width: 84.9%; /* TODO: use better method... */
+  overflow: visible;
   text-align: center;
   position: relative;
   -webkit-touch-callout: none;
@@ -505,7 +507,7 @@ body {
   /* border: 1px red solid; */
   background-color: white;
   font-family: 'Inter', sans-serif;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -646,7 +648,9 @@ body {
   transform: scale(1);
   border:  3px rgba(255, 255, 255, 0.5) dashed;
   box-sizing: border-box;
-  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
 }
 
 @media (pointer: fine) {
@@ -657,14 +661,14 @@ body {
 }
 
 .plus {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: rgba(255, 255, 255, 0.5);
-  font-size: 50px;
+  font-size: 35px;
   height: 100%;
   width: 100%;
   display: flex;
@@ -679,7 +683,7 @@ body {
   max-width: 90vw;
   height: 100%;
   font-family: 'Inter', sans-serif;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -740,7 +744,7 @@ body {
   margin: 0;
   border-radius: 5px;
   border-style: none;
-  padding: 0px 5px;
+  padding: 0px 7px;
   top: 0;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;

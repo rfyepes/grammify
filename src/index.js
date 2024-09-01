@@ -39,6 +39,7 @@ import TestPage from "./TestPage";
 //  = change 401 behaviour - refreshes page when signing in...
 //  - glassomorphic design for modal?
 //  = images - smallest dimension rather than last in array?
+//  = fix modal background scroll on mobile
 // then:
 //  - remove strict mode 
 //  - update redirect uri (homepage.js and package.json)

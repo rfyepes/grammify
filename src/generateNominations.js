@@ -142,7 +142,7 @@ export function generateNominations(data) {
     
     // Increment priority of artist for artist award
     for (let i = 0; i < track.artists.length; i++) {
-      artistQueue.insert(JSON.stringify(track.artists[i]), i === 0 ? 2 : 1);
+      artistQueue.insert(JSON.stringify(track.artists[i]), i === 0 ? 1 : 0.5);
     }
   });
     
@@ -163,7 +163,7 @@ export function generateNominations(data) {
   // console.log(nominations.songs);
   // Generate 5 artist nominations
   // console.log(artistQueue.convertToArray().map(str => JSON.parse(str)).map(a => a.name));
-  nominations.artists = artistQueue.convertToArray(3).slice(0, NUM_NOMINATIONS).map(str => JSON.parse(str));
+  nominations.artists = artistQueue.convertToArray(2).slice(0, NUM_NOMINATIONS).map(str => JSON.parse(str));
   // console.log("artist queue:")
   return {
     songs: nominations.songs.map((song, rank) => {

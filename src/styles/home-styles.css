@@ -101,7 +101,7 @@
 
 .overflow-y-hidden {
   overflow: hidden;
-  position: fixed;
+  /* position: absolute; */
 }
 
 .info-modal {
@@ -114,7 +114,7 @@
   padding: 20px;
   font-family: 'Inter', sans-serif;
   max-height: 85%;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);

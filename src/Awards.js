@@ -11,6 +11,7 @@ import artistPlaceholder from './images/artist-placeholder.png'
 import { IoPerson, IoSearch } from "react-icons/io5";
 import { BiSolidAlbum } from "react-icons/bi";
 import { IoMdMusicalNote } from "react-icons/io";
+import { BiPlus } from "react-icons/bi";
 
 function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken, type, nominate, ids, addId, hide }) {
   const [showModal, setShowModal] = useState(false);
@@ -89,7 +90,7 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken
     <div className="nominee">
       <div className="nominee-wrap">
         <div className={`image-wrap${data.empty && hide ? " hidden-nominee" : ""}${data.empty && !hide ? " empty-nominee": ""}${isWinnable && !data.empty ? " user-select" : ""}${showModal ? " hover-active" : ""}`} onClick={data.empty ? () => setShowModal(true) : isWinnable ? makeWinner : () => {}} style={{...imageWrapStyle, ...showModal ? {background: "rgba(255, 255, 255, 0.2)"} : {}}}>
-          <div className="plus" style={{visibility: data.empty && !hide ? "visible" : "hidden"}}>+</div>
+          <div className="plus" style={{visibility: data.empty && !hide ? "visible" : "hidden" }}><BiPlus /></div>
           <img src={image} alt={data.imageAlt} className="nominee-img" draggable="false" style={imageStyle} />
           <img src={grammy} alt="grammy icon" className="grammy" draggable="false" style={data.isWinner ? visibleGrammy : {visibility: data.empty ? "hidden" : "visible" }}/>
         </div>
