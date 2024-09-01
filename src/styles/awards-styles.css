@@ -677,6 +677,7 @@ body {
 .choose-nominee-modal {
   width: 500px;
   max-width: 90vw;
+  height: 100%;
   font-family: 'Inter', sans-serif;
   position: absolute;
   top: 50%;
@@ -768,7 +769,7 @@ body {
 .result-block {
   width: 100%;
   /* height: auto; */
-  max-height: 80vh;
+  max-height: 60%;
   margin-top: 20px;
   background: white;
   display: flex;
