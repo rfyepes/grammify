@@ -7,6 +7,8 @@ import "./styles/awards-styles.css";
 import "./styles/graphic-styles.css";
 import "./styles/privacy-styles.css";
 import "./styles/carosel-styles.css";
+import "./styles/modal-styles.css";
+
 
 // import "./test-styles.css";
 

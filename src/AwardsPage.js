@@ -89,6 +89,8 @@ export default function AwardsPage({ accessToken, logOut }) {
   const [isLoading, setLoading] = useState(true);
   const [loadingMessage, setLoadingMessage] = useState("Loading...");
   const navigate = useNavigate();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alert, setAlert] = useState(["", ""]);
   
   const clearQueryParams = () => {
     navigate(0, { replace: true });
@@ -178,6 +180,24 @@ export default function AwardsPage({ accessToken, logOut }) {
   };
   
   const exportImage = () => {
+    const missingNoms = (prev, n) => {
+      return n.empty || prev;
+    };
+    if (nominations.songs.reduce(missingNoms, false) || nominations.albums.reduce(missingNoms, false) || nominations.artists.reduce(missingNoms, false)) {
+      setAlert([
+        "Oh you thought you were done? 🤭 That's funny.",
+        "You're not done selecting the missing nominees!"
+      ]);
+      setShowAlert(true);
+      return;
+    } else if (!nominations.songs.some(n => n.isWinner) || !nominations.albums.some(n => n.isWinner) || !nominations.artists.some(n => n.isWinner)) {
+      setAlert([
+        "The nominees are revolting! 🫣",
+        "They won't accept a tie! Select the winners or let the algorithm choose for you."
+      ]);
+      setShowAlert(true);
+      return;
+    }
     if (nominations.albums.length !== 0) {
       const imageDiv = document.getElementById("export-image");
       imageDiv.style.display = "block";
@@ -226,12 +246,17 @@ export default function AwardsPage({ accessToken, logOut }) {
       if (noms.songs.length !== 5 || noms.albums.length !== 5 || noms.artists.length !== 5) {
       //   setLoadingMessage("ERROR: Insufficient listening data (sorry 😢)");
       //   setLoading(true);
+      
       //   let x = "Oh...you're one of THOSE people...😒"
       //   "Your listening data is clogged with music that was released before eligibility period! Not all nomin"
       //   "Your top tracks don't contain enough eligible music to generate enough nominees accross all categories."
       //   "Try listening to "
       // 
-      // 
+      setAlert([
+        <>🤩&nbsp;&nbsp;It's your lucky day!&nbsp;&nbsp;🤩</>, 
+        <>Your top tracks don't contain enough eligible music to generate all nominees, so...<p style={{fontWeight: "bold"}}>...you get to hand-pick the rest!</p></>
+      ]);
+      setShowAlert(true);
       //   "I'll let you add nominees if you want to fill up each category... or you can leave it as is..."
       //   return;
         // noms = await extendNominations(noms);
@@ -284,12 +309,12 @@ export default function AwardsPage({ accessToken, logOut }) {
   const [showModal, setShowModal] = useState(false);
   const imageData = useRef(null);
   useEffect(() => {
-    if (showModal) {
+    if (!isLoading && (showModal || showAlert)) {
       document.body.classList.add("overflow-y-hidden");
     } else {
       document.body.classList.remove("overflow-y-hidden");
     }
-  }, [showModal]);
+  }, [showModal, showAlert, isLoading]);
   
   const handleDownload = () => {
     var link = document.createElement('a');
@@ -335,6 +360,22 @@ export default function AwardsPage({ accessToken, logOut }) {
         }
       </div>
       <Footer />
+    </div>
+    <div className="modal" onClick={() => setShowAlert(false)} style={{display: (showAlert ? "block" : "none")}}>
+    <div className="alert-modal" onClick={(e) => {e.stopPropagation()}}>
+      <div className="alert-modal-inner">
+        <div className="alert">
+          <div className="alert-header">{alert[0]}</div>
+          <div className="alert-body">{alert[1]}</div>
+        </div>
+        <div className="export-close">
+        <div className="export-close-button" onClick={() => setShowAlert(false)}>
+          <AiOutlineCloseCircle />
+          <span>Close</span>
+        </div>
+        </div>
+      </div>
+    </div>
     </div>
     <div className="modal" onClick={() => setShowModal(false)} style={{display: (showModal ? "block" : "none")}}>
       <div className="export-modal" onClick={(e) => {e.stopPropagation()}}>
