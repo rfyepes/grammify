@@ -669,6 +669,7 @@ body {
   margin-bottom: 10px;
   display: flex;
   box-sizing: border-box;
+  align-items: center;
   border-radius: 7px;
   padding: 10px;
   box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.4), 0 0px 3px 0 rgba(0, 0, 0, 0.19); /* from https://www.w3schools.com/css/css3_shadows_box.asp */

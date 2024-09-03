@@ -14,6 +14,34 @@ export const ELIGIBILITY = {
 export const NUM_NOMINATIONS = 5; // Needs 5 nominees per category
 
 
+// AUTHORIZATION
+
+// TODO: credit Spotify for code
+var generateRandomString = function (length) {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+};
+
+var client_id = "daf1a83621b44968afa25e3d49387bf1";
+var redirect_uri = "https://rfyepes.github.io/grammify";//"http://localhost:3000";//"https://www.spotigrammy.com";
+
+var state = generateRandomString(16);
+localStorage.setItem("stateKey", state);
+var scope = "user-top-read";
+
+export const AUTH_URL = "https://accounts.spotify.com/authorize"
+  + "?response_type=token"
+  + "&client_id=" + encodeURIComponent(client_id)
+  + "&scope=" + encodeURIComponent(scope)
+  + "&redirect_uri=" + encodeURIComponent(redirect_uri)
+  + "&state=" + encodeURIComponent(state);
+export const AUTH_URL_SHOW_DIALOG = AUTH_URL + "&show_dialog=true";
+
+
 // THEME SELECTION
 export const SYMBOLS = {
   spring: "🌷",
@@ -221,6 +249,5 @@ export const EXAMPLE_NOMINATIONS = {
     }
   ]
 };
-
 
 

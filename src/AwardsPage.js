@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import html2canvas from "html2canvas";
 
 import Awards from "./Awards";
@@ -9,11 +10,11 @@ import Footer from "./Footer";
 
 import { LuShare, LuDownload } from "react-icons/lu";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { FaHome } from "react-icons/fa";
 
 import { generateNominations } from "./generateNominations";
 import { retrieveTopTracks, getArtistImages, replaceImages, replaceImage, getAlbumPopularity } from "./fetchData";
-import { SYMBOLS, PALETTES, EXAMPLE_NOMINATIONS, NULL_NOMINEE, NUM_NOMINATIONS } from "./Constants"
-
+import { SYMBOLS, PALETTES, AUTH_URL, EXAMPLE_NOMINATIONS, NULL_NOMINEE, NUM_NOMINATIONS } from "./Constants"
 
 
 function ThemeButton({ theme, isActive, onClick }) {
@@ -91,6 +92,7 @@ export default function AwardsPage({ accessToken, logOut }) {
   const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(false);
   const [alert, setAlert] = useState(["", ""]);
+  const [reauthenticate, setReauthenticate] = useState(false);
   
   const clearQueryParams = () => {
     navigate(0, { replace: true });
@@ -211,6 +213,20 @@ export default function AwardsPage({ accessToken, logOut }) {
     }
   };
   
+  const handleError = (status) => {
+    if (status == 401) {
+      setReauthenticate(true);
+      setAlert([
+        "😔 Access token expired 😔", 
+        "Reauthenticate by signing in below."
+      ]);
+    } else {
+      setReauthenticate(false);
+      setAlert(["😬 HTTP Error 😬", `Status ${status}`]);
+    }
+    setShowAlert(true);
+  };
+  
   useEffect(() => {
     const getTopTracks = async () => {
       
@@ -228,7 +244,7 @@ export default function AwardsPage({ accessToken, logOut }) {
         // } else {
         //   setLoadingMessage(error.toString());
         // }
-        setLoadingMessage(error.toString());
+        handleError(error.message);
         return;
       }
       
@@ -244,28 +260,14 @@ export default function AwardsPage({ accessToken, logOut }) {
       let noms = generateNominations(topTracks);
       // TODO: uncomment and refine
       if (noms.songs.length !== 5 || noms.albums.length !== 5 || noms.artists.length !== 5) {
-      //   setLoadingMessage("ERROR: Insufficient listening data (sorry 😢)");
-      //   setLoading(true);
-      
-      //   let x = "Oh...you're one of THOSE people...😒"
-      //   "Your listening data is clogged with music that was released before eligibility period! Not all nomin"
-      //   "Your top tracks don't contain enough eligible music to generate enough nominees accross all categories."
-      //   "Try listening to "
-      // 
-      setAlert([
-        <>🤩&nbsp;&nbsp;It's your lucky day!&nbsp;&nbsp;🤩</>, 
-        <>Your top tracks don't contain enough eligible music to generate all nominees, so...<p style={{fontWeight: "bold"}}>...you get to hand-pick the rest!</p></>
-      ]);
-      setShowAlert(true);
-      //   "I'll let you add nominees if you want to fill up each category... or you can leave it as is..."
-      //   return;
-        // noms = await extendNominations(noms);
+        setAlert([
+          <>🤩&nbsp;&nbsp;It's your lucky day!&nbsp;&nbsp;🤩</>, 
+          <>Your top tracks don't contain enough eligible music to generate all nominees, so...<p style={{fontWeight: "bold"}}>...you get to hand-pick the rest!</p></>
+        ]);
+        setReauthenticate(false);
+        setShowAlert(true);
       }
-      // if (noms.songs.length === 0 || noms.albums.length === 0 || noms.artists.length === 0) {
-      //   setLoadingMessage("ERROR: Not enough eligible listening data (sorry 😢)");
-      //   setLoading(true);
-      //   return;
-      // }
+      
       for (let i = 0; i < NUM_NOMINATIONS; i++) {
         if (noms.songs.length - 1 < i) {
           noms.songs.push(NULL_NOMINEE);
@@ -277,6 +279,7 @@ export default function AwardsPage({ accessToken, logOut }) {
           noms.artists.push(NULL_NOMINEE);
         }
       }
+      
       const artistImages = await getArtistImages(noms.artists, accessToken);
       noms.artists = noms.artists.map((artist, index) => {
         return {
@@ -354,26 +357,42 @@ export default function AwardsPage({ accessToken, logOut }) {
           isLoading 
           ? <div className="loading-message">{loadingMessage}</div>
           : <>
-              <Awards nominations={nominations} palette={PALETTES[season]} toggleWinners={toggleWinners} isChoosable={canToggleWinners} accessToken={accessToken} addNominee={addNominee} />
+              <Awards nominations={nominations} palette={PALETTES[season]} toggleWinners={toggleWinners} isChoosable={canToggleWinners} accessToken={accessToken} addNominee={addNominee} handleError={handleError} />
               <ControlPanel isTogglable={canToggleWinners} toggleWinnerSelection={toggleWinnerSelection} season={season} changeSeason={setSeason} saveAndShare={exportImage} />
             </>
         }
       </div>
       <Footer />
     </div>
-    <div className="modal" onClick={() => setShowAlert(false)} style={{display: (showAlert ? "block" : "none")}}>
+    <div className="modal" onClick={() => setShowAlert(reauthenticate)} style={{display: (showAlert ? "block" : "none")}}>
     <div className="alert-modal" onClick={(e) => {e.stopPropagation()}}>
       <div className="alert-modal-inner">
         <div className="alert">
           <div className="alert-header">{alert[0]}</div>
           <div className="alert-body">{alert[1]}</div>
         </div>
-        <div className="export-close">
-        <div className="export-close-button" onClick={() => setShowAlert(false)}>
-          <AiOutlineCloseCircle />
-          <span>Close</span>
-        </div>
-        </div>
+        { reauthenticate ? 
+          <>
+          <div className="description-block sign-in" style={{ alignSelf: "center" }} onClick={() => window.open(AUTH_URL, "_self")}>
+            Sign in with Spotify
+          </div>
+          <div className="export-close">
+            <Link to="/" onClick={logOut} style={{textDecoration: "none"}}>
+              <div className="export-close-button">
+                <FaHome />
+                <span style={{marginLeft: "5px"}}>Home</span>
+              </div>
+            </Link>
+          </div>
+          </>
+          :
+          <div className="export-close">
+            <div className="export-close-button" onClick={() => setShowAlert(false)}>
+              <AiOutlineCloseCircle />
+              <span>Close</span>
+            </div>
+          </div>
+        }
       </div>
     </div>
     </div>

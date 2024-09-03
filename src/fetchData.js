@@ -12,17 +12,13 @@ export async function retrieveTopTracks(timeRange, accessToken) {
         Authorization: "Bearer " + accessToken
       }
     });
-    // if (response.status === 401) {
-    //   throw 401;
-    // }
     // TODO: alter message w/ instructions to user?
     if (!response.ok) {
-      throw new Error(`HTTP error - status ${response.status}: ${response.message}`);
+      console.log(`HTTP error - status ${response.status}: ${response.message}`);
+      throw new Error(response.status);
     }
-    
     var data = await response.json();
   } catch (error) {
-    console.error("Error fetching data:", error.message);
     throw error;
   }
   return data.items;  
@@ -120,27 +116,24 @@ export async function spotifySearch(query, type, accessToken) {
   //TODO: add limit??? rn tehre are 100
   try {
     const response = await fetch(`https://api.spotify.com/v1/search?${new URLSearchParams({
-      q: `${type}:${query}${type === "artist" ? "" : ` year:${AWARD_YEAR - 2}-${AWARD_YEAR - 1}`}`,
-      type: type,
+      q: `${query}${type === "artist" ? "" : ` year:${AWARD_YEAR - 2}-${AWARD_YEAR - 1}`}`,
+      type: type
     })}`, {
       headers: {
         Authorization: "Bearer " + accessToken
       }
     });
-    if (response.status === 401) {
-      throw 401;
-    }
-    // TODO: alter message w/ instructions to user?
-    if (!response.ok) {
-      // TODO: search api may be affected and return nothing
-      console.log(`HERE - HTTP error - status ${response.status}: ${response.message}`);
-      throw new Error(`HTTP error - status ${response.status}: ${response.message}`);
+    
+    if (response.status === 400) {
+      return [];
+    } else if (!response.ok) {
+      console.log(`HTTP error - status ${response.status}: ${response.message}`);
+      throw new Error(response.status);
     }
     
     var data = await response.json();
   } catch (error) {
-    console.error("Error fetching data:", error.message);
-    return [];
+    throw error;
   }
   return data[type + "s"].items;  
 }

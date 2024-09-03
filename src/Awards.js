@@ -13,7 +13,7 @@ import { BiSolidAlbum } from "react-icons/bi";
 import { IoMdMusicalNote } from "react-icons/io";
 import { BiPlus } from "react-icons/bi";
 
-function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken, type, nominate, ids, addId, hide }) {
+function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken, type, nominate, ids, addId, hide, handleError }) {
   const [showModal, setShowModal] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState(null);
@@ -43,10 +43,12 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // set loading message?
-
-    const searchData = await spotifySearch(query, type, accessToken);
-    setResults(parseData(searchData));
+    try {
+      const searchData = await spotifySearch(query, type, accessToken);
+      setResults(parseData(searchData));
+    } catch (error) {
+      handleError(error.message);
+    }
   };
   const parseData = (d) => {
     const filteredData = [];
@@ -138,7 +140,7 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken
   );
 }
 
-function Award({ category, icon: Icon, nominees, color, makeWinner, isChoosable, accessToken, addNominee }) {
+function Award({ category, icon: Icon, nominees, color, makeWinner, isChoosable, accessToken, addNominee, handleError }) {
   const [ids, setIds] = useState(new Set(nominees.map(n => n.id)));
   const altImage = (category === "Song") ? songPlaceholder : (category === "Album") ? albumPlaceholder : artistPlaceholder;
   const type = {
@@ -159,19 +161,19 @@ function Award({ category, icon: Icon, nominees, color, makeWinner, isChoosable,
       </div>
       <div className="nominees">
         <div className="nominees-wrap">
-          {nominees.map((nominee, i) => { return <Nominee data={nominee} isArtist={category === "Artist"} makeWinner={() => { makeWinner(nominee) }} isWinnable={isChoosable} altImage={altImage} accessToken={accessToken} type={type[category]} nominate={addNominee} ids={ids} addId={addId} hide={ids.size <= i} />; })}
+          {nominees.map((nominee, i) => { return <Nominee data={nominee} isArtist={category === "Artist"} makeWinner={() => { makeWinner(nominee) }} isWinnable={isChoosable} altImage={altImage} accessToken={accessToken} type={type[category]} nominate={addNominee} ids={ids} addId={addId} hide={ids.size <= i} handleError={handleError} />; })}
         </div>
       </div>
     </div>
   );
 }
 
-export default function Awards({ nominations, palette, toggleWinners, isChoosable, accessToken, addNominee }) {
+export default function Awards({ nominations, palette, toggleWinners, isChoosable, accessToken, addNominee, handleError }) {
   return (
     <div className="awards" id="temp">
-      <Award category="Song" icon={IoMdMusicalNote} nominees={nominations.songs} color={palette[0]} makeWinner={(nom) => { toggleWinners(nom, "songs") }} isChoosable={isChoosable} accessToken={accessToken} addNominee={(n) => addNominee(n, "songs")} />
-      <Award category="Album" icon={BiSolidAlbum} nominees={nominations.albums} color={palette[1]} makeWinner={(nom) => { toggleWinners(nom, "albums") }} isChoosable={isChoosable} accessToken={accessToken} addNominee={(n) => addNominee(n, "albums")} />
-      <Award category="Artist" icon={IoPerson} nominees={nominations.artists} color={palette[2]} makeWinner={(nom) => { toggleWinners(nom, "artists") }} isChoosable={isChoosable} accessToken={accessToken} addNominee={(n) => addNominee(n, "artists")} />
+      <Award category="Song" icon={IoMdMusicalNote} nominees={nominations.songs} color={palette[0]} makeWinner={(nom) => { toggleWinners(nom, "songs") }} isChoosable={isChoosable} accessToken={accessToken} addNominee={(n) => addNominee(n, "songs")} handleError={handleError} />
+      <Award category="Album" icon={BiSolidAlbum} nominees={nominations.albums} color={palette[1]} makeWinner={(nom) => { toggleWinners(nom, "albums") }} isChoosable={isChoosable} accessToken={accessToken} addNominee={(n) => addNominee(n, "albums")} handleError={handleError} />
+      <Award category="Artist" icon={IoPerson} nominees={nominations.artists} color={palette[2]} makeWinner={(nom) => { toggleWinners(nom, "artists") }} isChoosable={isChoosable} accessToken={accessToken} addNominee={(n) => addNominee(n, "artists")} handleError={handleError} />
     </div>
   );
 }

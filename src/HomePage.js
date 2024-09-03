@@ -6,32 +6,7 @@ import AwardsPage from "./AwardsPage";
 import Graphic from "./Graphic";
 import spotigrammy from "./images/example-new.jpg";
 
-import { PALETTES, EXAMPLE_NOMINATIONS } from "./Constants"
-
-// TODO: credit Spotify for code
-var generateRandomString = function (length) {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
-
-var client_id = "daf1a83621b44968afa25e3d49387bf1";
-var redirect_uri = "https://rfyepes.github.io/grammify";//"http://localhost:3000";//"https://www.spotigrammy.com";
-
-var state = generateRandomString(16);
-localStorage.setItem("stateKey", state);
-var scope = "user-top-read";
-
-var AUTH_URL = "https://accounts.spotify.com/authorize";
-AUTH_URL += "?response_type=token";
-AUTH_URL += "&client_id=" + encodeURIComponent(client_id);
-AUTH_URL += "&scope=" + encodeURIComponent(scope);
-AUTH_URL += "&redirect_uri=" + encodeURIComponent(redirect_uri);
-AUTH_URL += "&state=" + encodeURIComponent(state);
-AUTH_URL += "&show_dialog=true";
+import { AUTH_URL_SHOW_DIALOG, PALETTES, EXAMPLE_NOMINATIONS } from "./Constants"
 
 function HomeContent() {
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -112,7 +87,7 @@ function HomeContent() {
         <div className="description-block sign-in-message">
           Sign in to meet the nominees.
         </div>
-        <div className="description-block sign-in" onClick={() => window.open(AUTH_URL, "_self")}>
+        <div className="description-block sign-in" onClick={() => window.open(AUTH_URL_SHOW_DIALOG, "_self")}>
           Sign in with Spotify
         </div>
         <div className="description-block privacy">
