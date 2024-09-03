@@ -42,6 +42,8 @@ import TestPage from "./TestPage";
 //  - glassomorphic design for modal?
 //  = images - smallest dimension rather than last in array?
 //  = fix modal background scroll on mobile
+//  = update secondary font?
+//  = disable text highlight for buttons? footer spotify logo?
 // then:
 //  - remove strict mode 
 //  - update redirect uri (homepage.js and package.json)

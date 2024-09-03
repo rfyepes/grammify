@@ -23,7 +23,7 @@ function ThemeButton({ theme, isActive, onClick }) {
       <div className={isActive ? "option-button active-option" : 'option-button'} id={theme} onClick={onClick}>
       <span>{SYMBOLS[theme]}</span>
       </div>
-      <div className="theme-label">{theme}</div>
+      <div className="theme-label" onClick={onClick}>{theme}</div>
     </div>
   );
 }
@@ -42,7 +42,7 @@ function ControlPanel({ isTogglable, toggleWinnerSelection, season, changeSeason
               <div className={isTogglable ? "option-button" : "option-button active-option"} id="algorithm-pick" onClick={() => toggleWinnerSelection("algorithm-pick")}>
                 <span>🧮</span>
               </div>
-              <div className="winner-selector-option-label">
+              <div className="winner-selector-option-label" onClick={() => toggleWinnerSelection("algorithm-pick")}>
                 Let the algorithm choose!
               </div>
             </div>
@@ -50,7 +50,7 @@ function ControlPanel({ isTogglable, toggleWinnerSelection, season, changeSeason
               <div className={isTogglable ? "option-button active-option" : "option-button"} id="me-pick" onClick={() => toggleWinnerSelection("me-pick")}>
                 <span>🤓</span>
               </div>
-              <div className="winner-selector-option-label">
+              <div className="winner-selector-option-label" onClick={() => toggleWinnerSelection("me-pick")}>
                 Let me choose!
               </div>
             </div>

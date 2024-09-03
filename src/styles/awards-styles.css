@@ -264,6 +264,7 @@ body {
 
 .theme-label {
   margin-top: 5px;
+  cursor: pointer;
 }
 
 .option-button {
@@ -356,6 +357,7 @@ body {
 
 .winner-selector-option-label {
   margin-left: 7px;
+  cursor: pointer;
 }
 
 .user-select {
