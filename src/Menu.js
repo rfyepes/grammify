@@ -48,14 +48,6 @@ function Info({ hideInfo }) {
       </div>
       <div className="info-block">
         <div className="info-block-header">
-          How are nominees ordered?
-        </div>
-        <div className="info-block-content">
-          Songs and albums are presented chronologically by release date, artists are presented in alphabetical order by first name.
-        </div>
-      </div>
-      <div className="info-block">
-        <div className="info-block-header">
           How will my data be used?
         </div>
         <div className="info-block-content">

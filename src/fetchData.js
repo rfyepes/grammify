@@ -106,7 +106,6 @@ export async function replaceImage(imageURL) {
           reader.readAsDataURL(blob);
       });
   } catch (error) {
-      throw new Error('Error converting image to base64: ' + error.message);
       return null;
   }
 };
@@ -139,27 +138,18 @@ export async function spotifySearch(query, type, accessToken) {
 }
 
 export async function getAlbumPopularity(id, accessToken) {
-
   try {
     const response = await fetch(`https://api.spotify.com/v1/albums/${id}`, {
       headers: {
         Authorization: "Bearer " + accessToken
       }
     });
-    if (response.status === 401) {
-      throw 401;
-    }
-    
     if (!response.ok) {
-      throw new Error(`HTTP error - status ${response.status}: ${response.message}`);
+      throw new Error(response.status);
     }
-    
     var data = await response.json();
   } catch (error) {
-    console.error("Error fetching data:", error.message);
     return 0;
   }
-  // console.log("FETCH DONE!!!!!!!");
-  // console.log(data);
   return data.popularity;  
 }

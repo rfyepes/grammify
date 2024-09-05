@@ -8,13 +8,13 @@
   }
   
   .example-image #export-image .award:nth-child(1) .nominees {
-    animation: slideLeft 55s linear infinite;
+    animation: slideLeft 85s linear infinite;
   }
   .example-image #export-image .award:nth-child(2) .nominees {
-    animation: slideRight 40s linear infinite;
+    animation: slideRight 70s linear infinite;
   }
   .example-image #export-image .award:nth-child(3) .nominees {
-    animation: slideLeft 35s linear infinite;
+    animation: slideLeft 65s linear infinite;
   }
 }
 

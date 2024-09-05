@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import html2canvas from "html2canvas";
+// import domtoimage from "dom-to-image";
 
 import Awards from "./Awards";
 import Graphic from "./Graphic";
@@ -104,10 +105,12 @@ export default function AwardsPage({ accessToken, logOut }) {
       let maxPopularityIndex = 0;
       const newOgNoms = JSON.parse(JSON.stringify(ogNominations));
       const newNoms = JSON.parse(JSON.stringify(nominations));
-      for (let i = 0; i < NUM_NOMINATIONS; i++) {
+      for (let i = 0; i < NUM_NOMINATIONS; i++) {  
         newOgNoms[cat][i].isWinner = false;
-        newNoms[cat][i].isWinner = false;//TODO?
-        
+        if (!canToggleWinners) {
+          newNoms[cat][i].isWinner = false;
+        }
+
         if (!newOgNoms[cat][i].empty && newOgNoms[cat][i].popularity > maxPopularity) {
           maxPopularityIndex = i;
           maxPopularity = newOgNoms[cat][i].popularity;
@@ -133,12 +136,10 @@ export default function AwardsPage({ accessToken, logOut }) {
 
       }
       newOgNoms[cat][maxPopularityIndex].isWinner = true;
-      newNoms[cat][maxPopularityIndex].isWinner = !canToggleWinners;
-
-
+      if (!canToggleWinners) {
+        newNoms[cat][maxPopularityIndex].isWinner = true;
+      }
       
-      // noms = await replaceImages(noms);
-            
       setOgNominations(JSON.parse(JSON.stringify(newOgNoms)));
       setNominations(JSON.parse(JSON.stringify(newNoms)));
 
@@ -203,11 +204,19 @@ export default function AwardsPage({ accessToken, logOut }) {
     if (nominations.albums.length !== 0) {
       const imageDiv = document.getElementById("export-image");
       imageDiv.style.display = "block";
+      
       html2canvas(imageDiv, { scale: 2, windowWidth: 1050 }).then(canvas => {
         imageDiv.style.display = "none";
         imageData.current.src = canvas.toDataURL("image/jpeg");
         setShowModal(true);
       });
+      // domtoimage.toJpeg(imageDiv)
+      //   .then(function (dataUrl) {
+      //       imageDiv.style.display = "none";
+      //       imageData.current.src = dataUrl;
+      //       setShowModal(true);
+      //   });
+      
     } else {
       alert("Error: wait a few seconds and try again.");
     }
@@ -426,3 +435,7 @@ export default function AwardsPage({ accessToken, logOut }) {
     </>
   );
 }
+
+// <div style={{position: "absolute", opacity: "0", pointerEvents: "none", left: "-1050px"}}>
+//   <Graphic nominations={nominations} season={PALETTES[season]} forExport={true} />
+// </div>

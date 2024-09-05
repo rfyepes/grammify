@@ -49,7 +49,8 @@ export const SYMBOLS = {
   autumn: "🍂",
   winter: "⛄️"
 };
-
+// ffdac6 ffe7c2 bAbD8D
+// d1b8a3 e596a1 c3d59f
 export const PALETTES = {
   spring: ["#e0c9a4", "#e6bfaa", "#bAbD8D"],
   summer: ["#e9b41d", "#f15e34", "#0087ae"],
@@ -74,180 +75,178 @@ export const NULL_NOMINEE = {
 export const EXAMPLE_NOMINATIONS = {
   songs: [
     {
-      name: "Flowers",
-      details: "Miley Cyrus",
-      image: "https://i.scdn.co/image/ab67616d00001e02cd222052a2594be29a6616b5",
+      name: "Espresso",
+      details: "Sabrina Carpenter",
+      image: require("./images/examples/songs/0.jpeg"),
       isWinner: false
     },
     {
-      name: "Boy's a liar Pt. 2",
-      details: "PinkPantheress, Ice Spice",
-      image: "https://i.scdn.co/image/ab67616d00001e029567e1aa41657425d046733b",
+      name: "Too Sweet",
+      details: "Hozier",
+      image: require("./images/examples/songs/1.jpeg"),
       isWinner: false
     },
     {
-      name: "Cupid - Twin Ver.",
-      details: "FIFTY FIFTY",
-      image: "https://i.scdn.co/image/ab67616d00001e0237c0b3670236c067c8e8bbcb",
+      name: "A Bar Song (Tipsy)",
+      details: "Shaboozey",
+      image: require("./images/examples/songs/2.jpeg"),
       isWinner: true
     },
     {
-      name: "FLOWER",
-      details: "JISOO",
-      image: "https://i.scdn.co/image/ab67616d00001e02f35b8a6c03cc633f734bd8ac",
-      isWinner: false
-    },
-    {
-      name: "vampire",
-      details: "Olivia Rodrigo",
-      image: "https://i.scdn.co/image/ab67616d00001e02e85259a1cae29a8d91f2093d",
-      isWinner: false
-    },
-    {
-      name: "Espresso",
-      details: "Sabrina Carpenter",
-      image: "https://i.scdn.co/image/ab67616d00001e02de84adf0e48248ea2d769c3e",
+      name: "Houdini",
+      details: "Dua Lipa",
+      image: require("./images/examples/songs/3.jpeg"),
       isWinner: false
     },
     {
       name: "Not Like Us",
       details: "Kendrick Lamar",
-      image: "https://i.scdn.co/image/ab67616d00001e021ea0c62b2339cbf493a999ad",
+      image: require("./images/examples/songs/4.jpeg"),
       isWinner: false
     },
     {
-      name: "Magnetic",
-      details: "ILLIT",
-      image: "https://i.scdn.co/image/ab67616d00001e02f037c5fb9de6c78726cb8e2c",
+      name: "Saturn",
+      details: "SZA",
+      image: require("./images/examples/songs/5.jpeg"),
+      isWinner: false
+    },
+    {
+      name: "Cruel Summer",
+      details: "Taylor Swift",
+      image: require("./images/examples/songs/7.jpeg"),
+      isWinner: false
+    },
+    {
+      name: "Cosmic",
+      details: "Red Velvet",
+      image: require("./images/examples/songs/8.jpeg"),
       isWinner: true
     },
     {
-      name: "Too Sweet",
-      details: "Hozier",
-      image: "https://i.scdn.co/image/ab67616d00001e02a5aab55aa65e5f6bd19564a2",
+      name: "Nasty",
+      details: "Tinashe",
+      image: require("./images/examples/songs/6.jpeg"),
       isWinner: false
     },
     {
-      name: "Houdini",
-      details: "Dua Lipa",
-      image: "https://i.scdn.co/image/ab67616d00001e02778c1e4660aa23f6728b32a1",
+      name: "obsessed",
+      details: "Olivia Rodrigo",
+      image: require("./images/examples/songs/9.jpeg"),
       isWinner: false
     }
   ],
   albums: [
     {
-      name: "Midnights",
-      details: "Taylor Swift",
-      image: "https://i.scdn.co/image/ab67616d00001e02bb54dde68cd23e2a268ae0f5",
-      isWinner: false
-    },
-    {
-      name: "SOS",
-      details: "SZA",
-      image: "https://i.scdn.co/image/ab67616d00001e0270dbc9f47669d120ad874ec1",
-      isWinner: true
-    },
-    {
-      name: "Red Moon In Venus",
-      details: "Kali Uchis",
-      image: "https://i.scdn.co/image/ab67616d00001e0281fccd758776d16b87721b17",
-      isWinner: false
-    },
-    {
-      name: "Did you know that there's a tunnel under Ocean Blvd",
-      details: "Lana Del Rey",
-      image: "https://i.scdn.co/image/ab67616d00001e0259ae8cf65d498afdd5585634",
-      isWinner: false
-    },
-    {
-      name: "UTOPIA",
-      details: "Travis Scott",
-      image: "https://i.scdn.co/image/ab67616d00001e02881d8d8378cd01099babcd44",
-      isWinner: false
-    },
-    {
       name: "HIT ME HARD AND SOFT",
       details: "Billie Eilish",
-      image: "https://i.scdn.co/image/ab67616d00001e0271d62ea7ea8a5be92d3c1f62",
+      image: require("./images/examples/albums/0.jpeg"),
       isWinner: false
     },
     {
       name: "ORQUÍDEAS",
       details: "Kali Uchis",
-      image: "https://i.scdn.co/image/ab67616d00001e02b968625b03ec59b30b48e9c3",
+      image: require("./images/examples/albums/1.jpeg"),
       isWinner: true
+    },
+    {
+      name: "BRAT",
+      details: "Charli xcx",
+      image: require("./images/examples/albums/2.jpeg"),
+      isWinner: false
     },
     {
       name: "God Said No",
       details: "Omar Apollo",
-      image: "https://i.scdn.co/image/ab67616d00001e02f6ba7085174586aed75935bc",
+      image: require("./images/examples/albums/3.jpeg"),
       isWinner: false
     },
     {
-      name: "<Dall>",
-      details: "ARTMS",
-      image: "https://i.scdn.co/image/ab67616d00001e023eaf9b3c1c804fec2bb06ac0",
+      name: "COWBOY CARTER",
+      details: "Beyoncé",
+      image: require("./images/examples/albums/4.jpeg"),
+      isWinner: false
+    },
+    {
+      name: "LA PANTERA NEGRA",
+      details: "Myke Towers",
+      image: require("./images/examples/albums/9.jpeg"),
       isWinner: false
     },
     {
       name: "TIMELESS",
       details: "KAYTRANADA",
-      image: "https://i.scdn.co/image/ab67616d00001e023d1996a2dc962e53e12cb7cb",
+      image: require("./images/examples/albums/8.jpeg"),
+      isWinner: true
+    },
+    {
+      name: "<Dall>",
+      details: "ARTMS",
+      image: require("./images/examples/albums/5.jpeg"),
+      isWinner: false
+    },
+    {
+      name: "empathogen",
+      details: "WILLOW",
+      image: require("./images/examples/albums/6.jpeg"),
+      isWinner: false
+    },
+    {
+      name: "F-1 Trillion",
+      details: "Post Malone",
+      image: require("./images/examples/albums/7.jpeg"),
       isWinner: false
     }
   ],
   artists: [
     {
-      name: "Gracie Abrams",
-      image: "https://i.scdn.co/image/ab67616100005174416bd8a66bfcbc545c2009ac",
+      name: "Chappell Roan",
+      image: require("./images/examples/artists/0.jpeg"),
       isWinner: false
     },
     {
-      name: "NewJeans",
-      image: "https://i.scdn.co/image/ab676161000051745da361915b1fa48895d4f23f",
+      name: "Vince Staples",
+      image: require("./images/examples/artists/1.jpeg"),
       isWinner: false
     },
     {
-      name: "Noah Kahan",
-      image: "https://i.scdn.co/image/ab676161000051747bfba04955b666b8b8219541",
+      name: "Tyla",
+      image: require("./images/examples/artists/2.jpeg"),
       isWinner: false
     },
     {
-      name: "Shakira",
-      image: "https://i.scdn.co/image/ab67616100005174284894d68fe2f80cad555110",
+      name: "Sabrina Carpenter",
+      image: require("./images/examples/artists/3.jpeg"),
       isWinner: true
     },
     {
-      name: "Taylor Swift",
-      image: "https://i.scdn.co/image/ab67616100005174859e4c14fa59296c8649e0e4",
+      name: "Benson Boone",
+      image: require("./images/examples/artists/4.jpeg"),
       isWinner: false
     },
     {
       name: "Tate McRae",
-      image: "https://i.scdn.co/image/ab67616100005174846308bf9bf7d3183958b3a6",
+      image: require("./images/examples/artists/5.jpeg"),
       isWinner: false
     },
     {
-      name: "Benson Boone",
-      image: "https://i.scdn.co/image/ab67616100005174b2ce21a89c09c00d80d8ca25",
+      name: "Ariana Grande",
+      image: require("./images/examples/artists/6.jpeg"),
       isWinner: false
     },
     {
-      name: "Chappell Roan",
-      image: "https://i.scdn.co/image/ab67616100005174cde5a0d57c1b79de5fce6bee",
+      name: "KAYTRANADA",
+      image: require("./images/examples/artists/7.jpeg"),
       isWinner: false
     },
     {
-      name: "Charli xcx",
-      image: "https://i.scdn.co/image/ab67616100005174936885667ef44c306483c838",
+      name: "Kendrick Lamar",
+      image: require("./images/examples/artists/8.jpeg"),
       isWinner: true
     },
     {
-      name: "FLO",
-      image: "https://i.scdn.co/image/ab67616100005174c11fac63b181b445fb715a44",
+      name: "Taylor Swift",
+      image: require("./images/examples/artists/9.jpeg"),
       isWinner: false
     }
   ]
 };
-
-

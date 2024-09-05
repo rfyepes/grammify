@@ -70,13 +70,9 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken
         id: d[i].id
       });
     }
-    return filteredData.sort((a, b) => { return b.popularity - a.popularity; });
+    return filteredData;
   };
   
-  const visibleGrammy = { 
-    opacity: "1", 
-    visibility: data.empty ? "hidden" : "visible" 
-  };
   const imageWrapStyle = { 
     borderRadius: isArtist ? "50%" : "0%",
     boxSizing: "border-box"
@@ -89,15 +85,17 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken
   const image = (data.image != null) ? data.image : altImage;
   
   return (
-    <div className="nominee">
+    <div className={`nominee${data.isWinner ? " winner" : ""}`}>
       <div className="nominee-wrap">
         <div className={`image-wrap${data.empty && hide ? " hidden-nominee" : ""}${data.empty && !hide ? " empty-nominee": ""}${isWinnable && !data.empty ? " user-select" : ""}${showModal ? " hover-active" : ""}`} onClick={data.empty ? () => setShowModal(true) : isWinnable ? makeWinner : () => {}} style={{...imageWrapStyle, ...showModal ? {background: "rgba(255, 255, 255, 0.2)"} : {}}}>
           <div className="plus" style={{visibility: data.empty && !hide ? "visible" : "hidden" }}><BiPlus /></div>
           <img src={image} alt={data.imageAlt} className="nominee-img" draggable="false" style={imageStyle} />
-          <img src={grammy} alt="grammy icon" className="grammy" draggable="false" style={data.isWinner ? visibleGrammy : {visibility: data.empty ? "hidden" : "visible" }}/>
+          <img src={grammy} alt="grammy icon" className="grammy" draggable="false" style={{visibility: data.empty ? "hidden" : "visible" }}/>
         </div>
         <div className="nominee-name" style={nameStyle}>
-          {data.name}
+          <div className="nominee-title">
+            {data.name}
+          </div>
           {
             (data.details === null) 
               ? "" 
