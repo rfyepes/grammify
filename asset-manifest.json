@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/grammify/static/css/main.20fb20a2.css",
-    "main.js": "/grammify/static/js/main.c643574f.js",
+    "main.css": "/grammify/static/css/main.7142a531.css",
+    "main.js": "/grammify/static/js/main.c2935aa1.js",
     "static/media/example-new.jpg": "/grammify/static/media/example-new.c275e0b8137ab6694cca.jpg",
     "static/media/test1.jpg": "/grammify/static/media/test1.93b7294cb39f4f69b8e3.jpg",
     "static/media/empty.jpg": "/grammify/static/media/empty.768cf64aba51ac17adf1.jpg",
@@ -13,22 +13,32 @@
     "static/media/7.jpg": "/grammify/static/media/7.05226fc16c7ca31176fd.jpg",
     "static/media/8.jpg": "/grammify/static/media/8.1e0386e3ba0ad90d0fd0.jpg",
     "static/media/1.jpg": "/grammify/static/media/1.c62c05ac1a34f055dfcb.jpg",
+    "static/media/0.jpeg": "/grammify/static/media/0.8e49b941bc38e2599120.jpeg",
     "static/media/9.jpg": "/grammify/static/media/9.bed40512e9dc8a9cf1ee.jpg",
     "static/media/5.jpg": "/grammify/static/media/5.2ca7431edcd5839f8418.jpg",
     "static/media/0.jpg": "/grammify/static/media/0.bad0cadff19362cc97b9.jpg",
     "static/media/2.jpg": "/grammify/static/media/2.e1b93be590bc2f4fa1b3.jpg",
     "static/media/spotify-green.png": "/grammify/static/media/spotify-green.0c4ae91bae23217d39c9.png",
     "static/media/spotify.png": "/grammify/static/media/spotify.0d1e5545dee9f6dc1079.png",
+    "static/media/1.jpeg": "/grammify/static/media/1.b582b3d2d5ab147db9c8.jpeg",
+    "static/media/6.jpeg": "/grammify/static/media/6.fee535c4b0792676a3d5.jpeg",
+    "static/media/4.jpeg": "/grammify/static/media/4.14a856f2ef129ef4a3bc.jpeg",
+    "static/media/7.jpeg": "/grammify/static/media/7.fc94cbcb1e12630ca772.jpeg",
+    "static/media/5.jpeg": "/grammify/static/media/5.084786e882e77c8bf748.jpeg",
     "static/media/album-placeholder.png": "/grammify/static/media/album-placeholder.9a83dcbfe2f0039f1b35.png",
+    "static/media/8.jpeg": "/grammify/static/media/8.9806430c7b677c3d8ffd.jpeg",
     "static/media/award.png": "/grammify/static/media/award.c8795247c7b43d314c78.png",
+    "static/media/2.jpeg": "/grammify/static/media/2.501bf2664179788377c6.jpeg",
+    "static/media/3.jpeg": "/grammify/static/media/3.5c84ebbcdc7eb8fa5e9f.jpeg",
+    "static/media/9.jpeg": "/grammify/static/media/9.5ba7c6cfa5c922266389.jpeg",
     "static/media/artist-placeholder.png": "/grammify/static/media/artist-placeholder.9794e9bfbace4a447e63.png",
     "static/media/song-placeholder.png": "/grammify/static/media/song-placeholder.5924c6169617fd80bf6f.png",
     "index.html": "/grammify/index.html",
-    "main.20fb20a2.css.map": "/grammify/static/css/main.20fb20a2.css.map",
-    "main.c643574f.js.map": "/grammify/static/js/main.c643574f.js.map"
+    "main.7142a531.css.map": "/grammify/static/css/main.7142a531.css.map",
+    "main.c2935aa1.js.map": "/grammify/static/js/main.c2935aa1.js.map"
   },
   "entrypoints": [
-    "static/css/main.20fb20a2.css",
-    "static/js/main.c643574f.js"
+    "static/css/main.7142a531.css",
+    "static/js/main.c2935aa1.js"
   ]
 }
