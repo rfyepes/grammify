@@ -16,7 +16,7 @@ export default function Graphic({ nominations, season, forExport }) {
         </div>
         <div className="export-image-footer-description">
           <div className="export-image-footer-url">
-            GRAMMIFY.com
+            GRAMMIFY.app
           </div>
           <img src={spotify} alt="" />
         </div>

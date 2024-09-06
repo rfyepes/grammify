@@ -27,7 +27,7 @@ var generateRandomString = function (length) {
 };
 
 var client_id = "daf1a83621b44968afa25e3d49387bf1";
-var redirect_uri = "https://rfyepes.github.io/grammify";//"http://localhost:3000";//"https://www.spotigrammy.com";
+var redirect_uri = "https://www.grammify.app";//"http://localhost:3000";//"https://www.spotigrammy.com";
 
 var state = generateRandomString(16);
 localStorage.setItem("stateKey", state);
