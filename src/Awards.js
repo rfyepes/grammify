@@ -89,8 +89,8 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken
       <div className="nominee-wrap">
         <div className={`image-wrap${data.empty && hide ? " hidden-nominee" : ""}${data.empty && !hide ? " empty-nominee": ""}${isWinnable && !data.empty ? " user-select" : ""}${showModal ? " hover-active" : ""}`} onClick={data.empty ? () => setShowModal(true) : isWinnable ? makeWinner : () => {}} style={{...imageWrapStyle, ...showModal ? {background: "rgba(255, 255, 255, 0.2)"} : {}}}>
           <div className="plus" style={{visibility: data.empty && !hide ? "visible" : "hidden" }}><BiPlus /></div>
-          <img src={image} alt={data.imageAlt} className="nominee-img" draggable="false" style={imageStyle} />
-          <img src={grammy} alt="grammy icon" className="grammy" draggable="false" style={{visibility: data.empty ? "hidden" : "visible" }}/>
+          <img src={image} alt={data.imageAlt} className="nominee-img" draggable="false" style={imageStyle}  loading="lazy" />
+          <img src={grammy} alt="grammy icon" className="grammy" draggable="false" style={{visibility: data.empty ? "hidden" : "visible" }} loading="lazy" />
         </div>
         <div className="nominee-name" style={nameStyle}>
           <div className="nominee-title">
