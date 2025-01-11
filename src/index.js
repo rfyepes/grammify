@@ -29,6 +29,13 @@ import PrivacyPage from "./PrivacyPage";
 //  - update redirect uri (homepage.js and package.json)
 //  - remove hard-coded noms
 
+
+// Revision TODO 
+// - [DONE] fix lower border thing in export image
+// - [DONE] add spotify url validation
+// - [DONE] add grammify link to thing
+// - update palettes
+
 const root = createRoot(document.getElementById("root"));
 root.render(
     <HashRouter>

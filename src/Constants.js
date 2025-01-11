@@ -27,7 +27,7 @@ var generateRandomString = function (length) {
 };
 
 var client_id = "daf1a83621b44968afa25e3d49387bf1";
-var redirect_uri = "https://www.grammify.app";
+export const REDIRECT_URI = "https://www.grammify.app";
 
 var state = generateRandomString(16);
 localStorage.setItem("stateKey", state);
@@ -37,7 +37,7 @@ export const AUTH_URL = "https://accounts.spotify.com/authorize"
   + "?response_type=token"
   + "&client_id=" + encodeURIComponent(client_id)
   + "&scope=" + encodeURIComponent(scope)
-  + "&redirect_uri=" + encodeURIComponent(redirect_uri)
+  + "&redirect_uri=" + encodeURIComponent(REDIRECT_URI)
   + "&state=" + encodeURIComponent(state);
 export const AUTH_URL_SHOW_DIALOG = AUTH_URL + "&show_dialog=true";
 

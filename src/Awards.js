@@ -4,6 +4,8 @@ import { spotifySearch } from "./fetchData";
 import { isEligible } from "./generateNominations";
 
 import grammy from './images/grammy.png'
+import award from './images/award-white.png'
+import spotify from './images/2024-spotify-logo-icon/Primary_Logo_White_CMYK.svg'
 import songPlaceholder from './images/song-placeholder.png'
 import albumPlaceholder from './images/album-placeholder.png'
 import artistPlaceholder from './images/artist-placeholder.png'
@@ -67,7 +69,8 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken
         previewImage: (images.length === 0) ? altImage : images[images.length - 1].url, //TODO: make null image show placeholder
         popularity: d[i].popularity,
         releaseDate: releaseDate,
-        id: d[i].id
+        id: d[i].id,
+        url: d[i].external_urls?.spotify || "https://open.spotify.com/"
       });
     }
     return filteredData;
@@ -86,24 +89,35 @@ function Nominee({ data, isArtist, makeWinner, isWinnable, altImage, accessToken
   
   return (
     <div className={`nominee${data.isWinner ? " winner" : ""}`}>
-      <div className="nominee-wrap">
-        <div className={`image-wrap${data.empty && hide ? " hidden-nominee" : ""}${data.empty && !hide ? " empty-nominee": ""}${isWinnable && !data.empty ? " user-select" : ""}${showModal ? " hover-active" : ""}`} onClick={data.empty ? () => setShowModal(true) : isWinnable ? makeWinner : () => {}} style={{...imageWrapStyle, ...showModal ? {background: "rgba(255, 255, 255, 0.2)"} : {}}}>
-          <div className="plus" style={{visibility: data.empty && !hide ? "visible" : "hidden" }}><BiPlus /></div>
-          <img src={image} alt={data.imageAlt} className="nominee-img" draggable="false" style={imageStyle}  loading="lazy" />
-          <img src={grammy} alt="grammy icon" className="grammy" draggable="false" style={{visibility: data.empty ? "hidden" : "visible" }} loading="lazy" />
-        </div>
-        <div className="nominee-name" style={nameStyle}>
-          <div className="nominee-title">
-            {data.name}
+      <div className={`nominee-wrap${isWinnable && !data.empty ? " user-select" : ""}${showModal ? " hover-active" : ""}`} onClick={data.empty ? () => {} : isWinnable ? makeWinner : () => {}}>
+        <div className="nominee-inner-wrap">
+          <img className="award-icon" src={award} />
+          <div className={`image-wrap${data.empty && hide ? " hidden-nominee" : ""}${data.empty && !hide ? " empty-nominee": ""}`} style={{...imageWrapStyle, ...showModal ? {background: "rgba(255, 255, 255, 0.2)"} : {}}} onClick={data.empty ? () => setShowModal(true) : () => {}}>
+            <div className="plus" style={{visibility: data.empty && !hide ? "visible" : "hidden" }}><BiPlus /></div>
+            <img src={image} alt={data.imageAlt} className="nominee-img" draggable="false" style={imageStyle}  loading="lazy" />
           </div>
-          {
-            (data.details === null) 
-              ? "" 
-              : <div className="nominee-details">
-                  {data.details}
-                </div>
-          }
+          <div className="nominee-name" style={nameStyle}>
+            <div className="nominee-title">
+              {data.name}
+            </div>
+            {
+              (data.details === null) 
+                ? "" 
+                : <div className="nominee-details">
+                    {data.details}
+                  </div>
+            }
+          </div>
         </div>
+      </div>
+
+      <div className={`spotify-link ${data.empty ? " hidden-nominee" : ""}`}>
+        <a className="spotify-button" href={data.url} target="_blank">
+          <div>
+            <img className="spotify-icon" src={spotify} />
+            <p>OPEN</p><p id="spotify-string">&nbsp;SPOTIFY</p>
+          </div>
+        </a>
       </div>
       <div className="modal" onClick={() => {setResults(null); setQuery(""); setShowModal(false);}} style={{display: (showModal ? "block" : "none")}}>
         <div className="choose-nominee-modal">

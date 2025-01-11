@@ -15,7 +15,7 @@ import { FaHome } from "react-icons/fa";
 
 import { generateNominations } from "./generateNominations";
 import { retrieveTopTracks, getArtistImages, replaceImages, replaceImage, getAlbumPopularity } from "./fetchData";
-import { SYMBOLS, PALETTES, AUTH_URL, EXAMPLE_NOMINATIONS, NULL_NOMINEE, NUM_NOMINATIONS } from "./Constants"
+import { SYMBOLS, PALETTES, AUTH_URL, EXAMPLE_NOMINATIONS, NULL_NOMINEE, NUM_NOMINATIONS, REDIRECT_URI } from "./Constants"
 
 
 function ThemeButton({ theme, isActive, onClick }) {
@@ -125,6 +125,7 @@ export default function AwardsPage({ accessToken, logOut }) {
           newOgNoms[cat][i].isWinner = false;
           newNoms[cat][i].isWinner = false;//TODO?
           newOgNoms[cat][i].popularity = newNoms[cat][i].popularity = n.popularity;
+          newOgNoms[cat][i].url = newNoms[cat][i].url = n.url;
           
           if (n.popularity > maxPopularity) {
             maxPopularityIndex = i;
@@ -201,7 +202,7 @@ export default function AwardsPage({ accessToken, logOut }) {
       setShowAlert(true);
       return;
     }
-    if (nominations.albums.length !== 0) {
+    if (nominations.albums.length !== 0) { // TODO: update validation
       const imageDiv = document.getElementById("export-image");
       imageDiv.style.display = "block";
       
@@ -344,7 +345,7 @@ export default function AwardsPage({ accessToken, logOut }) {
       
       await navigator.share({
         title: "GRAMMIFY",
-        text: "Check out my GRAMMIFY lineup!", // TODO: insert grammify link
+        text: "Check out my GRAMMIFY lineup! Create yours here: " + REDIRECT_URI,
         files: [file],
       });
       

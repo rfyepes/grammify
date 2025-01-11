@@ -176,7 +176,8 @@ export function generateNominations(data) {
         releaseDate: song.album.release_date,
         empty: false,
         popularity: rank === 0 ? 101 : 100,
-        id: song.id
+        id: song.id,
+        url: song.external_urls?.spotify || "https://open.spotify.com/"
       };
     }).sort((a, b) => { return new Date(a.releaseDate) - new Date(b.releaseDate); }),
     albums: nominations.albums.map((album, rank) => {
@@ -189,7 +190,8 @@ export function generateNominations(data) {
         releaseDate: album.release_date,
         empty: false,
         popularity: rank === 0 ? 101 : 100,
-        id: album.id
+        id: album.id,
+        url: album.external_urls?.spotify || "https://open.spotify.com/"
       };
     }).sort((a, b) => { return new Date(a.releaseDate) - new Date(b.releaseDate); }),
     artists: nominations.artists.map((artist, rank) => {
@@ -201,7 +203,8 @@ export function generateNominations(data) {
         details: null,
         isWinner: rank === 0,
         empty: false,
-        popularity: rank === 0 ? 101 : 100
+        popularity: rank === 0 ? 101 : 100,
+        url: artist.external_urls?.spotify || "https://open.spotify.com/"
       };
     }).sort((a, b) => a.name.localeCompare(b.name))
   };

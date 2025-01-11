@@ -112,7 +112,7 @@ body {
   display: flex;
   align-items: center;
   /* border: 1px lime solid; */
-  /* margin-bottom: -10px; */
+  margin-bottom: -0.2em;
 }
 .category-title span {
  /* display: flex;
@@ -139,24 +139,152 @@ body {
  .nominees-wrap {
   display: flex;
   align-items: flex-start;
-  /* height: 100%; */
+  height: 100%;
+  /* border: 1px blue solid; */
 }
 
  .nominee {
   width: 100%;
   display: flex;
-  align-items: center;
-  /* align-items: flex-start; */
-  /* height: 100%; */
+  /* align-items: center; */
+  flex-direction: column;
+  /* border: 1px red solid; */
+  align-items: flex-start;
+  justify-content: space-between;
   /* padding-top: calc(0.755cqw); */
+  height: 100%;
 }
 
  .nominee-wrap {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow: visible;
+  height: 100%;
+  margin: 1%;
+  /* margin-bottom: 0; */
+  position: relative;
+  /* margin-bottom: 22%; */
+  margin-bottom: 7%;
+  border-radius: 0.5em;
+  /* border: 1px green solid; */
+  /* transition: background 2s linear; */
+  /* background: rgba(0, 0, 0, 1); */
+}
+
+.nominee-wrap::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0.5em;
+    background-color: rgba(150, 150, 150, 0.15);
+    background: rgb(70,37,35);
+    background: linear-gradient(326deg, rgba(70,37,35,1) 0%, rgba(203,155,81,1) 54%, rgba(203,155,81,1) 60%, rgba(203,155,81,1) 65%, rgba(246,226,122,1) 100%, rgba(70,37,35,1) 100%);
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.4); 
+    /* background-size: cover; */
+    /* background-position: 0 -50%; */
+    background-repeat: no-repeat;
+    background-size: 100% 101%;
+    /* box-sizing: border-box; */
+    overflow: hidden;
+    background-position: center;
+    opacity: 0;
+    overflow: hidden;
+    border: none;
+}
+
+.winner .nominee-wrap::before {
+    opacity: 1;
+}
+
+.nominee-inner-wrap {
+  /* border: 1px green solid; */
+  margin: 7%;
+  /* margin-bottom: 15%; */
+  /* height: 100%; */
+  /* z-index: 5; */
+}
+
+.spotify-link {
+  /* border: 1px green solid; */
+  margin: 0 5%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.spotify-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10em;
+  background-color: #1db954;
+  font-family: 'Inter';
+  font-size: 0.7em;
+  /* padding: 5% 0; */
+  color: white;
+  cursor: pointer;
+  /* font-weight: bold; */
+  transition: transform 0.3s ease;
+  transform: scale(1);
+  text-decoration: none;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2); 
+  /* border: 1px black solid; */
+}
+
+.spotify-button:visited {
+  color: white;
+}
+
+.spotify-button div {
+  /* border: 1px blue solid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spotify-icon {
+  width: 20%;
+  margin-right: 3%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+
+.grammify {
+  /* border: 1px black solid; */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 3% 0;
+  height: 100%;
+}
+
+.award-icon {
+  width: 30%;
+  height: auto;
+  border: none;
+  box-shadow: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  border-radius: 0 0 0.5em 0;
+}
+
+.winner .award-icon {
+  opacity: 20%;
 }
 
 .winner {
@@ -177,7 +305,8 @@ background-image:
 }
 
  .image-wrap {
-  width: 84.9%; /* TODO: use better method...? */
+  width: 100%; /* TODO: use better method...? */
+  /* padding-top: 2.5%; */
   overflow: visible;
   text-align: center;
   position: relative;
@@ -212,11 +341,11 @@ background-image:
 
  .grammy {
   width: 43%;
-  position: absolute;
+  /* position: absolute; */
   /* bottom: 0px; */
   /* right: 8px; */
-  left: 64%;
-  top: 64%;
+  /* left: 65%; */
+  top: -210%;
   border-radius: 50%;
   /* filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)); */
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.4); 
@@ -226,7 +355,8 @@ background-image:
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -webkit-user-drag: none;
-  transition: box-shadow 0.3s ease; 
+  transition: box-shadow 0.3s ease;
+  display: none; 
 }
 
 .winner .grammy {
@@ -234,11 +364,13 @@ background-image:
 }
 
  .nominee-name {
-  width: 84.9%;
+  width: 100%;
   /* align-self: flex-start; */
   font-size: 1em;
   overflow-wrap: anywhere;
   margin-top: 6px;
+  position: relative;
+  z-index: 2;
   /* background: black; */
   /* text-shadow: 
   0 0 2px rgba(255, 215, 0, 0.8),  
@@ -279,7 +411,7 @@ background-image:
 .control-panel {
   flex: 0.8;
   display: flex;
-  justify-content: space-around;
+  justify-content: center; /* TODO center or flex start? */
   align-items: center;
   flex-direction: column;
   margin-right: 10px;
@@ -442,13 +574,26 @@ background-image:
     transform: scale(1.1);
   }
   
-  .user-select:hover * {
+  .spotify-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .user-select:hover {
     box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.4);
   }
   
   .user-select:hover .grammy {
     /* display: block; */
     opacity: 0.75;
+  }
+  
+  .user-select:hover .award-icon {
+    opacity: 20%;
+  }
+  
+  .user-select:hover + .spotify-link > .spotify-button {
+    transform: translateY(0.3rem);
   }
   
   .button:hover span {
@@ -551,7 +696,7 @@ background-image:
     animation-iteration-count: 2;
   }
   
-  .hover-active {
+  .hover-active  .nominee-inner-wrap .image-wrap {
     background: rgba(255, 255, 255, 0.2);
   }
   
@@ -591,7 +736,7 @@ background-image:
 }
 
 @media (pointer: fine) {
-  .hover-active {
+  .hover-active .nominee-inner-wrap .image-wrap {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.1);
   }
@@ -776,7 +921,50 @@ background-image:
   background-color: grey;
 }
 
+.spotify-button p {
+  display: inline-block;
+  margin: 5% 0;
+}
 
+@media screen and (max-width: 1230px) {
+  .spotify-icon {
+    width: 17%;
+  }
+}
+
+@media screen and (max-width: 1170px) {
+  .spotify-icon {
+    width: 17%;
+  }
+  
+  .spotify-button {
+    font-size: 0.6em;
+  }
+}
+
+@media screen and (max-width: 1090px) {
+  .spotify-button {
+    font-size: 0.6em;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #spotify-string {
+    display: none;
+  }
+  
+  .spotify-button p {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .spotify-button {
+    font-size: 0.5em;
+  }
+}
 
 @media screen and (max-width: 800px) {
   
@@ -803,7 +991,26 @@ background-image:
   #credit-2 {
     display: block;
   } */
+  
+  #spotify-string {
+    display: inline-block;
+  }
+  
+  .spotify-button {
+    font-size: 0.7em;
+  }
+  
+  .spotify-button p {
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
 
+}
+
+@media screen and (max-width: 680px) {
+  .spotify-button {
+    font-size: 0.6em;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -814,10 +1021,31 @@ background-image:
  }
  
  #user-grammify .category-title {
-  font-size: 2em;
-  padding: 0px 0.1em; /* NOTE: this padding is to make the title align with album cover */
-}
+    font-size: 2em;
+    padding: 0px 0.1em; /* NOTE: this padding is to make the title align with album cover */
+  }
   
+}
+
+@media screen and (max-width: 590px) {
+  .spotify-button {
+    font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .spotify-button p {
+    /* font-size: 0.9em; */
+    margin: 0;
+  }
+  
+  .spotify-icon {
+    width: 25%;
+  }
+  
+  #spotify-string {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -839,8 +1067,26 @@ background-image:
   }
 }
 
-/* @media screen and (max-width: 350px) {
-  .export-button {
-    font-size: 1em;
+@media screen and (min-width: 1500px) {
+  .spotify-button p {
+    font-size: 1.2em;
   }
-} */
+}
+
+@media screen and (min-width: 1700px) {
+  .spotify-icon {
+    /* width: 10%; */
+  }
+  
+  .spotify-button p {
+    font-size: 16px;
+  }
+  
+  .nominee {
+    font-size: 1.3em;
+  }
+  
+  .award-icon {
+    width: 25%;
+  }
+}
