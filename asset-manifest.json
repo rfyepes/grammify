@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b473c524.css",
-    "main.js": "/static/js/main.6b1625c9.js",
+    "main.css": "/static/css/main.955742db.css",
+    "main.js": "/static/js/main.531dfa4f.js",
     "static/media/example-new.jpg": "/static/media/example-new.c275e0b8137ab6694cca.jpg",
     "static/media/grammy.png": "/static/media/grammy.ad9a08993d8fb344fb95.png",
     "static/media/spotify-green.png": "/static/media/spotify-green.0c4ae91bae23217d39c9.png",
@@ -9,6 +9,7 @@
     "static/media/album-placeholder.png": "/static/media/album-placeholder.9a83dcbfe2f0039f1b35.png",
     "static/media/award.png": "/static/media/award.6d2ae6195c2b746c4a61.png",
     "static/media/artist-placeholder.png": "/static/media/artist-placeholder.9794e9bfbace4a447e63.png",
+    "static/media/award-white.png": "/static/media/award-white.033a18d5af45b15f26dd.png",
     "static/media/6.webp": "/static/media/6.977ee95629ae7d097700.webp",
     "static/media/0.webp": "/static/media/0.57d5f3d5a3c4b3134c67.webp",
     "static/media/4.webp": "/static/media/4.efb70f1b0594e43c111e.webp",
@@ -20,12 +21,13 @@
     "static/media/3.webp": "/static/media/3.06994fb0fc2dafee264c.webp",
     "static/media/2.webp": "/static/media/2.34fcc659af6fc46c259e.webp",
     "static/media/9.webp": "/static/media/9.8a1c6140a8460d40564c.webp",
+    "static/media/Primary_Logo_White_CMYK.svg": "/static/media/Primary_Logo_White_CMYK.22fc381d811d78b821ff8ef71d7ec934.svg",
     "index.html": "/index.html",
-    "main.b473c524.css.map": "/static/css/main.b473c524.css.map",
-    "main.6b1625c9.js.map": "/static/js/main.6b1625c9.js.map"
+    "main.955742db.css.map": "/static/css/main.955742db.css.map",
+    "main.531dfa4f.js.map": "/static/js/main.531dfa4f.js.map"
   },
   "entrypoints": [
-    "static/css/main.b473c524.css",
-    "static/js/main.6b1625c9.js"
+    "static/css/main.955742db.css",
+    "static/js/main.531dfa4f.js"
   ]
 }
