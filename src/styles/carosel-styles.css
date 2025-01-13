@@ -18,16 +18,12 @@
   }
 }
 
-.example-image #export-image .grammy {
-  transition: opacity 1s ease;
-}
-
 .example-image #export-image .award-icon {
-  transition: opacity 1s ease;
+  /* transition: opacity 1s ease; */
 }
 
 .example-image #export-image .nominee-wrap::before {
-  transition: opacity 1s ease;
+  /* transition: opacity 1s ease; */
 }
 
 @keyframes slideLeft {
